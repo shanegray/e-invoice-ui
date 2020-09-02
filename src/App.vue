@@ -48,6 +48,6 @@
     },    
     data: () => ({
       drawer: null     
-    }),
+    })
   }
 </script>

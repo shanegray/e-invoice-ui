@@ -7,7 +7,7 @@
       </v-card-text>
     </v-card>
     <v-card class="mb-4">
-      <v-card-title>Translate Invoice</v-card-title>
+      <v-card-title>Translate Invoice {{ selectedItem }}</v-card-title>
       <v-card-text>
         <v-container class="pa-0">
           <v-row>
@@ -15,7 +15,12 @@
               <v-select label="From" :items="languages" />
             </v-col>
             <v-col cols="12" sm="6" md="4">
-              <v-select label="To" :items="languages"  />
+              <v-select 
+                v-model="selectedItem"
+                label="To" 
+                :items="secondary"
+                item-text="id"
+                item-value="title"  />
             </v-col>
             <v-spacer></v-spacer>
           </v-row>
@@ -27,7 +32,7 @@
     </v-card>
     <v-card>
       <v-card-actions>
-        <v-btn @click="doSomething()" color="primary">Download XML</v-btn>
+        <v-btn  color="primary">Download XML</v-btn>
         <v-btn color="primary">Download XSLT</v-btn>
       </v-card-actions>
     </v-card>
@@ -35,16 +40,23 @@
 </template>
 
 <script>
+import { call, get } from 'vuex-pathify';
+
 export default {
   data() {
     return {
-      languages: ["English", "Irish", "German"]
+      selectedItem: ""
     }
   },
+  async created() {
+    await this.loadLanguages();
+  },
   methods: {
-    doSomething() {
-      console.log("I work")
-    }
+    loadLanguages: call("languages/loadLanguages")
+  },
+  computed: {
+    languages: get("languages/languages"),
+    ...get("languages", ["secondary"])
   },
 }
 </script>
