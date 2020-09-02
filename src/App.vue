@@ -5,7 +5,7 @@
       :clipped="$vuetify.breakpoint.lgAndUp"
       app
     >
-      navbar todo
+      <NavDrawer />
     </v-navigation-drawer>
 
     <v-app-bar
@@ -37,10 +37,11 @@
 </template>
 
 <script>
+  import NavDrawer from '@/components/nav-drawer';
   export default {
-    props: {
-      source: String,
-    },
+    components: {
+      NavDrawer,
+    },    
     data: () => ({
       drawer: null     
     }),
