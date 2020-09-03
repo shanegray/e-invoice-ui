@@ -12,7 +12,7 @@
       </v-card-actions>
     </v-card>
     <v-card class="mb-8">
-      <v-card-title>Translate Invoice {{ selectedItem }}</v-card-title>
+      <v-card-title>Translate Invoice default = {{ selectedItem }}</v-card-title>
       <v-card-text>
         <v-container class="pa-0">
           <v-row>

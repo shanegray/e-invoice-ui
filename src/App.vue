@@ -32,6 +32,8 @@
 
 <script>
 import NavDrawer from "@/components/nav-drawer";
+import { call, get } from "vuex-pathify";
+
 export default {
   components: {
     NavDrawer,
@@ -40,15 +42,15 @@ export default {
     drawer: null,     
     selectedItem: "",    
   }),
-  //async created() {
-    //await this.loadNativeLanguages();
-  //},
-  //methods: {
-    //loadNativeLanguages: call("nativelanguages/loadNativeLanguages")
-  //},
-  //computed: {
-    //nativelanguages: get("nativelanguages/nativeLanguages"),
-    //...get("nativeLanguages")
-  //},
+  async created() {
+    await this.loadNativeLanguages();
+  },
+  methods: {
+    loadNativeLanguages: call("nativelanguages/loadNativeLanguages")
+  },
+  computed: {
+    nativelanguages: get("nativelanguages/nativelanguages"),
+    ...get("nativeLanguages")
+  },
 };
 </script>
