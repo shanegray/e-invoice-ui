@@ -4,9 +4,10 @@
       <v-card-actions>
         <v-btn class="ml-6" x-large color="green" dark>Upload XML File</v-btn>
         <v-spacer></v-spacer>
-        <v-col cols="12" sm="6" md="8">
+        <v-col cols="12" sm="4" md="8">
           <br />
-          <v-text-field placeholder="XML File Goes Here " filled></v-text-field>
+          <v-label>XML File Goes Here</v-label>
+          
         </v-col>
       </v-card-actions>
     </v-card>
