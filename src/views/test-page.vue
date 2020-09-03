@@ -44,7 +44,7 @@
       <v-card-title>Translation Display</v-card-title>
       <v-card-text>
          <v-col cols="12" sm="8" md="12">
-          <v-chip label large>Translation Is Displayed Here.</v-chip>
+          <v-chip label large outlined color="black">Translation Is Displayed Here.</v-chip>
         </v-col>
       </v-card-text>
     </v-card>
