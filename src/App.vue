@@ -19,11 +19,12 @@
           :items="nativelanguages"
           item-text="name"
           item-value="code"
-          @change="languageSelected"
+          @change="localeCodeSelected"
         ></v-select>
       </v-col>
     </v-app-bar>
     <v-main>
+      <v-label>selected code = {{localeCode}}</v-label>
       <v-container fluid>
         <router-view />
       </v-container>
@@ -48,13 +49,21 @@ export default {
     await this.loadNativeLanguages();
   },
   methods: {
-    ...call("nativelanguages", ["loadNativeLanguages", "selectLanguageCode"]),
-    languageSelected() {
-      this.selectLanguageCode(this.selectedItem)
+  //  ...call("languages", ["loadLanguages"]),
+  //  languageSelected() {
+  //    this.selectLanguageCode(this.selectedItem)
+ //   }
+ // },
+  ...call("languages", [ "loadNativeLanguages","selectLocaleCode"]),
+    localeCodeSelected() {
+      call("languages", ["loadFrenchLanguages"]),
+      this.selectLocaleCode(this.selectedItem)
     }
-  },
+    },
   computed: {
-    ...get("nativelanguage", ["nativelanguages"])
+    nativelanguages: get("languages/nativeLanguages"),
+    localeCode: get("languages/selectedLocaleCode"),
+    ...get("languages")
   },
 };
 </script>

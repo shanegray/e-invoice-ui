@@ -10,17 +10,21 @@
       </v-card-actions>
     </v-card>
     <v-card class="mb-8">
-      <v-card-title>Translate Invoice default = {{ selectedItem }}</v-card-title>
+      <v-card-title>Translate in {{localeCode}} Invoice from {{fromSelectedItem}} to {{toSelectedItem}}</v-card-title>
       <v-card-text>
         <v-container class="pa-0">
           <v-row>
             <v-col cols="12" sm="6" md="4">
-              <v-select v-model="selectedItem" label="From" :items="languages" item-text="name" item-value="code" />
+              <v-select v-model="fromSelectedItem" 
+              label="From" 
+              :items="languages" 
+              item-text="name" 
+              item-value="code" />
             </v-col>
             <v-spacer/>
             <v-col cols="12" sm="6" md="4">
               <v-select
-                v-model="selectedItem"
+                v-model="toSelectedItem"
                 label="To"
                 :items="languages"
                 item-text="name"
@@ -54,16 +58,19 @@ import { call, get } from "vuex-pathify";
 export default {
   data() {
     return {
-      selectedItem: "",
+      fromSelectedItem: "",
+      toSelectedItem: ""
     };
   },
   async created() {
     await this.loadLanguages();
   },
   methods: {
-    loadLanguages: call("languages/loadLanguages"),
+    loadLanguages: call("languages/loadLanguages","selectLocaleCode"),
+    
   },
   computed: {
+    localeCode: get("languages/selectedLocaleCode"),
     languages: get("languages/languages"),
     ...get("languages"),
   },
