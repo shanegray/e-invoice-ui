@@ -16,7 +16,7 @@
         <v-container class="pa-0">
           <v-row>
             <v-col cols="12" sm="6" md="4">
-              <v-select class="From-Combo" label="From" :items="languages" item-text="name" item-value="code" />
+              <v-select v-model="selectedItem" label="From" :items="languages" item-text="name" item-value="code" />
             </v-col>
             <v-col cols="12" sm="6" md="4">
               <v-select
@@ -38,9 +38,10 @@
     <v-card>
       <v-card-actions>
         <v-spacer />
-        <v-btn class="btn-space-XML" color="primary">Download XML</v-btn>
 
-        <v-btn class="btn-space-XSLT" color="primary">Download XSLT</v-btn>
+        <v-btn  color="primary">Download XML</v-btn>
+       <v-spacer />
+        <v-btn  color="primary">Download XSLT</v-btn>
         <v-spacer />
       </v-card-actions>
     </v-card>
@@ -68,12 +69,4 @@ export default {
   },
 };
 </script>
-<style>
-.btn-space-XML {
-  margin-left: 200px;
-  margin-right: 200px;
-}
-.btn-space-XSLT {
-  margin-right: 200px;
-}
-</style>
+
