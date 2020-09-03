@@ -54,16 +54,16 @@ export default {
   //    this.selectLanguageCode(this.selectedItem)
  //   }
  // },
-  ...call("languages", [ "loadNativeLanguages","selectLocaleCode"]),
+  ...call("languageStore", [ "loadNativeLanguages","selectLocaleCode"]),
     localeCodeSelected() {
-      call("languages", ["loadFrenchLanguages"]),
-      this.selectLocaleCode(this.selectedItem)
+       this.selectLocaleCode(this.selectedItem),
+       call("languageStore", ["loadFrenchLanguages"])
     }
     },
   computed: {
-    nativelanguages: get("languages/nativeLanguages"),
-    localeCode: get("languages/selectedLocaleCode"),
-    ...get("languages")
+    nativelanguages: get("languageStore/nativeLanguages"),
+    localeCode: get("languageStore/selectedLocaleCode"),
+    ...get("languageStore")
   },
 };
 </script>

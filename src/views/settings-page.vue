@@ -39,7 +39,7 @@
       </v-card-actions>
     </v-card>
     <v-card>
-      <v-card-title>Edit App {{ selectedCode }} Translation</v-card-title>
+      <v-card-title>Edit App {{ localeCode }} Translation</v-card-title>
       <v-card-text>
         <v-container class="pa-0">
           <v-row>
@@ -100,7 +100,7 @@ export default {
     await this.loadLanguages();
   },
   methods: {
-    loadLanguages: call("languages/loadLanguages"),
+    loadLanguages: call("languageStore/loadLanguages"),
     ...call("nativelanguages", ["saveSomething"]),
     async saveMe() {
       this.saving = true;
@@ -114,9 +114,9 @@ export default {
     }
   },
   computed: {
-    languages: get("languages/languages"),
-    ...get("languages"),
-    selectedCode: get("nativelanguages/selectedCode")
+    languages: get("languageStore/languages"),
+    ...get("languageStore"),
+    localeCode: get("languageStore/selectedLocaleCode")
   },
 };
 </script>

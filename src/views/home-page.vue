@@ -66,13 +66,13 @@ export default {
     await this.loadLanguages();
   },
   methods: {
-    loadLanguages: call("languages/loadLanguages","selectLocaleCode"),
+    loadLanguages: call("languageStore/loadLanguages","selectLocaleCode"),
     
   },
   computed: {
-    localeCode: get("languages/selectedLocaleCode"),
-    languages: get("languages/languages"),
-    ...get("languages"),
+    localeCode: get("languageStore/selectedLocaleCode"),
+    languages: get("languageStore/languages"),
+    ...get("languageStore"),
   },
 };
 </script>

@@ -65,11 +65,11 @@ export default {
     await this.loadLanguages();
   },
   methods: {
-    loadLanguages: call("languages/loadLanguages")
+    loadLanguages: call("languageStore/loadLanguages")
   },
   computed: {
-    languages: get("languages/languages"),
-    ...get("languages")
+    languages: get("languageStore/languages"),
+    ...get("languageStore")
   },
 }
 </script>
