@@ -21,7 +21,7 @@ export default {
     return {
       items: [
         { title: 'Create', icon: 'mdi-file-edit-outline', url: "/" },
-        { title: 'Test', icon: 'mdi-image', url: "/test" },
+        { title: 'Test', icon: 'mdi-file-document-outline', url: "/test" },
         { title: 'Settings', icon: 'mdi-cog-outline', url: "/settings" },
       ]
     }
