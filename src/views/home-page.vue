@@ -19,6 +19,7 @@
             <v-col cols="12" sm="6" md="4">
               <v-select v-model="selectedItem" label="From" :items="languages" item-text="name" item-value="code" />
             </v-col>
+            <v-spacer/>
             <v-col cols="12" sm="6" md="4">
               <v-select
                 v-model="selectedItem"
@@ -28,12 +29,13 @@
                 item-value="code"
               />
             </v-col>
-            <v-spacer></v-spacer>
           </v-row>
         </v-container>
       </v-card-text>
       <v-card-actions>
+        <v-spacer/>
         <v-btn color="primary">Create Invoice</v-btn>
+        <v-spacer/>
       </v-card-actions>
     </v-card>
     <v-card>
