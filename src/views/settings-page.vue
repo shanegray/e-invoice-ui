@@ -6,15 +6,17 @@
         <v-container class="pa-0">
           <v-row>
             <v-col cols="12" sm="6" md="4">
-              <v-select label="Select Language" :items="languages" />
+              <v-select label="Select Language" 
+              :items="languages"
+              item-text="name"
+                item-value="code"
+                 />
             </v-col>
             <v-col cols="12" sm="6" md="4">
               <v-select
                 v-model="selectedItem"
                 label="Select A Word/Phrase To Re-Translate"
-                :items="languages"
-                item-text="name"
-                item-value="code"
+                
               />
             </v-col>
             <v-spacer></v-spacer>
@@ -42,15 +44,17 @@
         <v-container class="pa-0">
           <v-row>
             <v-col cols="12" sm="6" md="4">
-              <v-select label="Select Language" :items="languages" />
+              <v-select label="Select Language" 
+              :items="languages"
+                item-text="name"
+                item-value="code"
+               />
             </v-col>
             <v-col cols="12" sm="6" md="4">
               <v-select
                 v-model="selectedItem"
                 label="Select A Word/Phrase To Re-Translate"
-                :items="languages"
-                item-text="name"
-                item-value="code"
+                
               />
             </v-col>
             <v-spacer></v-spacer>
@@ -81,7 +85,17 @@ export default {
   data() {
     return {
       selectedItem: "",
-    };
+    }
+  },
+  async created() {
+    await this.loadLanguages();
+  },
+  methods: {
+    loadLanguages: call("languages/loadLanguages")
+  },
+  computed: {
+    languages: get("languages/languages"),
+    ...get("languages")
   },
 };
 </script>
