@@ -38,12 +38,13 @@
     </v-card>
     <v-card>
       <v-card-actions>
-        <v-spacer />
-
-        <v-btn  color="primary">Download XML</v-btn>
-       <v-spacer />
-        <v-btn  color="primary">Download XSLT</v-btn>
-        <v-spacer />
+      <v-spacer />
+      <v-btn  color="primary">Download XML</v-btn>
+      <v-spacer />
+      <v-btn  color="primary">Download PDF</v-btn>
+      <v-spacer />
+      <v-btn  color="primary">Download XSLT</v-btn>
+      <v-spacer />
       </v-card-actions>
     </v-card>
   </div>
