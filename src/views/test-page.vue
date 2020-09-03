@@ -24,8 +24,8 @@
                 v-model="selectedItem"
                 label="To" 
                 :items="languages"
-                item-text="id"
-                item-value="title"  />
+                item-text="name"
+                item-value="code"  />
             </v-col>
             <v-spacer></v-spacer>
           </v-row>

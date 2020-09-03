@@ -13,8 +13,8 @@
                 v-model="selectedItem"
                 label="Select A Word/Phrase To Re-Translate"
                 :items="languages"
-                item-text="id"
-                item-value="title"
+                item-text="name"
+                item-value="code"
               />
             </v-col>
             <v-spacer></v-spacer>
@@ -49,8 +49,8 @@
                 v-model="selectedItem"
                 label="Select A Word/Phrase To Re-Translate"
                 :items="languages"
-                item-text="id"
-                item-value="title"
+                item-text="name"
+                item-value="code"
               />
             </v-col>
             <v-spacer></v-spacer>
@@ -84,3 +84,4 @@ export default {
     };
   },
 };
+</script>
