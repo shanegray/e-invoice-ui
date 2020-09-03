@@ -5,9 +5,7 @@
         <v-btn class="ml-6" x-large color="green" dark>Upload XML File</v-btn>
         <v-spacer></v-spacer>
         <v-col cols="12" sm="4" md="8">
-          <br />
-          <v-chip label >XML File Name Goes Here</v-chip>
-          
+          <v-chip label large>XML File Name Goes Here</v-chip>          
         </v-col>
       </v-card-actions>
     </v-card>
@@ -19,6 +17,7 @@
             <v-col cols="12" sm="6" md="4">
               <v-select v-model="selectedItem" label="From" :items="languages" item-text="name" item-value="code" />
             </v-col>
+            <v-spacer/>
             <v-col cols="12" sm="6" md="4">
               <v-select
                 v-model="selectedItem"
@@ -28,7 +27,6 @@
                 item-value="code"
               />
             </v-col>
-            <v-spacer></v-spacer>
           </v-row>
         </v-container>
       </v-card-text>
@@ -38,12 +36,13 @@
     </v-card>
     <v-card>
       <v-card-actions>
-        <v-spacer />
-
-        <v-btn  color="primary">Download XML</v-btn>
-       <v-spacer />
-        <v-btn  color="primary">Download XSLT</v-btn>
-        <v-spacer />
+      <v-spacer />
+      <v-btn  color="primary">Download XML</v-btn>
+      <v-spacer />
+      <v-btn  color="primary">Download PDF</v-btn>
+      <v-spacer />
+      <v-btn  color="primary">Download XSLT</v-btn>
+      <v-spacer />
       </v-card-actions>
     </v-card>
   </div>
