@@ -8,10 +8,12 @@ interface LanguageByCode {
 
 interface LanguageState {
   nativelanguages: LanguageByCode[];
+  selectedCode: string;
 }
 
 const state: LanguageState = {
-  nativelanguages: []
+  nativelanguages: [],
+  selectedCode: ""
 }
 
 const mutations = make.mutations(state);
@@ -24,6 +26,12 @@ const actions = {
   async loadNativeLanguages({ commit }) {
     const { data } = await axios.get("https://einvoicetranslatorweb.azurewebsites.net/api/locale/getNativeLanguageNamesFilev2/");
     commit("SET_NATIVELANGUAGES", data)
+  },
+  selectLanguageCode({ commit }, code) {
+    commit("SET_SELECTED_CODE", code);
+  },
+  saveSomething({ commit }, { something }) {
+    return axios.post("https://einvoicetranslatorweb.azurewebsites.net/api/saveSomething", something);
   }
 }
 

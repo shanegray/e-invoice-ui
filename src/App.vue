@@ -13,11 +13,13 @@
         <v-select
           flat
           solo-inverted
-          hide-details          
+          hide-details
+          v-model="selectedItem"
           label="Select App Language"
           :items="nativelanguages"
-                item-text="name"
-                item-value="code"
+          item-text="name"
+          item-value="code"
+          @change="languageSelected"
         ></v-select>
       </v-col>
     </v-app-bar>
@@ -46,11 +48,13 @@ export default {
     await this.loadNativeLanguages();
   },
   methods: {
-    loadNativeLanguages: call("nativelanguages/loadNativeLanguages")
+    ...call("nativelanguages", ["loadNativeLanguages", "selectLanguageCode"]),
+    languageSelected() {
+      this.selectLanguageCode(this.selectedItem)
+    }
   },
   computed: {
-    nativelanguages: get("nativelanguages/nativelanguages"),
-    ...get("nativeLanguages")
+    ...get("nativelanguage", ["nativelanguages"])
   },
 };
 </script>

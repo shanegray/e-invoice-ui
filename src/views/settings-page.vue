@@ -39,7 +39,7 @@
       </v-card-actions>
     </v-card>
     <v-card>
-      <v-card-title>Edit App Translation</v-card-title>
+      <v-card-title>Edit App {{ selectedCode }} Translation</v-card-title>
       <v-card-text>
         <v-container class="pa-0">
           <v-row>
@@ -71,7 +71,15 @@
         </v-col>
         
 
-        <v-btn class="ml-6" x-large color="green" dark>Save</v-btn>
+        <v-btn
+          :loading="saving"
+          class="ml-6" 
+          x-large 
+          color="green" 
+          dark 
+          @click="saveMe">
+          Save
+        </v-btn>
         
       </v-card-actions>
     </v-card>
@@ -85,17 +93,30 @@ export default {
   data() {
     return {
       selectedItem: "",
+      saving: false
     }
   },
   async created() {
     await this.loadLanguages();
   },
   methods: {
-    loadLanguages: call("languages/loadLanguages")
+    loadLanguages: call("languages/loadLanguages"),
+    ...call("nativelanguages", ["saveSomething"]),
+    async saveMe() {
+      this.saving = true;
+
+      try {
+        await this.saveSomething();
+      }
+      finally {
+        this.saving = false;
+      }
+    }
   },
   computed: {
     languages: get("languages/languages"),
-    ...get("languages")
+    ...get("languages"),
+    selectedCode: get("nativelanguages/selectedCode")
   },
 };
 </script>
