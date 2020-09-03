@@ -32,7 +32,7 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="primary">Translate</v-btn>
+        <v-btn color="green" dark>Translate</v-btn>
       </v-card-actions>
     </v-card>
     <v-card>

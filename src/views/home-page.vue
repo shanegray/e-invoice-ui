@@ -2,7 +2,7 @@
   <div>
     <v-card class="mb-8">
       <v-card-actions>
-        <v-btn class="ml-6" x-large color="primary">Upload XML File</v-btn>
+        <v-btn class="ml-6" x-large color="green" dark>Upload XML File</v-btn>
         <v-spacer></v-spacer>
         <v-col cols="12" sm="6" md="8">
           <br />

@@ -30,7 +30,7 @@
           ></v-text-field>
         </v-col>
 
-        <v-btn class="ml-6" x-large color="primary">Save</v-btn>
+        <v-btn class="ml-6" x-large color="green" dark>Save</v-btn>
         <v-spacer></v-spacer>
         <v-btn x-large color="primary"> Download XLT</v-btn>
         <v-spacer></v-spacer>
@@ -67,7 +67,7 @@
         </v-col>
         
 
-        <v-btn class="ml-6" x-large color="primary">Save</v-btn>
+        <v-btn class="ml-6" x-large color="green" dark>Save</v-btn>
         
       </v-card-actions>
     </v-card>
