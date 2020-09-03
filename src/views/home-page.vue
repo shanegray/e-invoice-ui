@@ -5,9 +5,7 @@
         <v-btn class="ml-6" x-large color="green" dark>Upload XML File</v-btn>
         <v-spacer></v-spacer>
         <v-col cols="12" sm="4" md="8">
-          <br />
-          <v-chip label >XML File Name Goes Here</v-chip>
-          
+          <v-chip label large>XML File Name Goes Here</v-chip>          
         </v-col>
       </v-card-actions>
     </v-card>
