@@ -6,7 +6,7 @@
         <v-spacer></v-spacer>
         <v-col cols="12" sm="4" md="8">
           <br />
-          <v-label>XML File Goes Here</v-label>
+          <v-chip label >XML File Name Goes Here</v-chip>
           
         </v-col>
       </v-card-actions>
