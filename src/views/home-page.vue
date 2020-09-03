@@ -31,9 +31,7 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-spacer/>
         <v-btn color="primary">Create Invoice</v-btn>
-        <v-spacer/>
       </v-card-actions>
     </v-card>
     <v-card>
