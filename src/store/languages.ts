@@ -8,6 +8,7 @@ interface LanguageByCode {
 
 interface LanguageState {
   languages: LanguageByCode[];
+
 }
 
 const state: LanguageState = {
@@ -18,9 +19,13 @@ const mutations = make.mutations(state);
 
 const actions = {
   async loadLanguages({ commit }) {
-    const { data } = await axios.get("https://einvoicetranslatorweb.azurewebsites.net/api/locale/getLanguageNamesByCode?LanguageCode=en");
+    const { data } = await axios.get("https://einvoicetranslatorweb.azurewebsites.net/api/locale/getLanguageNamesByCodev2?LanguageCode=en");
     commit("SET_LANGUAGES", data)
-  }
+  }//,
+  //async loadNativeLanguages({ commit }) {
+   // const { data } = await axios.get("https://einvoicetranslatorweb.azurewebsites.net/api/locale/getNativeLanguageNamesFile/");
+    //commit("SET_NATIVELANGUAGES", data)
+  //}
 }
 
 export default {
