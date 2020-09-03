@@ -21,8 +21,22 @@
           </v-row>
         </v-container>
       </v-card-text>
+      <v-card-actions>
+        <v-col cols="12" sm="6" md="8">
+          <br>
+          <v-text-field
+           placeholder="Replace With" 
+           filled
+          ></v-text-field>
+        </v-col>
+
+        <v-btn class="ml-6" x-large color="primary">Save</v-btn>
+        <v-spacer></v-spacer>
+        <v-btn x-large color="primary"> Download XLT</v-btn>
+        <v-spacer></v-spacer>
+      </v-card-actions>
     </v-card>
-    <v-card class="mb-8">
+    <v-card>
       <v-card-title>Edit App Translation</v-card-title>
       <v-card-text>
         <v-container class="pa-0">
@@ -45,13 +59,16 @@
       </v-card-text>
       <v-card-actions>
         <v-col cols="12" sm="6" md="8">
+          <br>
           <v-text-field
            placeholder="Replace With" 
            filled
           ></v-text-field>
         </v-col>
+        
 
-        <v-btn color="primary">Save</v-btn>
+        <v-btn class="ml-6" x-large color="primary">Save</v-btn>
+        
       </v-card-actions>
     </v-card>
   </div>
