@@ -21,8 +21,10 @@ const state: LanguageState = {
 const mutations = make.mutations(state);
 
 const actions = {
-  async loadLanguages({ commit }) {
-    const { data } = await axios.get("https://einvoicetranslatorweb.azurewebsites.net/api/locale/getLanguageNamesByCodev2?LanguageCode=en" );
+  async loadLanguages({ commit, state }) {  
+    const url = 
+    'https://einvoicetranslatorweb.azurewebsites.net/api/locale/getLanguageNamesByCodev2?LanguageCode=${state.selectedLocaleCode}'
+    const { data } = await axios.get(url);
     commit("SET_LANGUAGES", data)
   },
   async loadFrenchLanguages({ commit }) {
