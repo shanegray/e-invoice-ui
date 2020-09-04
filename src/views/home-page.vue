@@ -16,7 +16,8 @@
           <v-row>
             <v-col cols="12" sm="6" md="4">
               <v-select v-model="fromSelectedItem" 
-              label="From" 
+              name="FromLanguageComboBox"
+              :label="fromLanguageComboBox"
               :items="languages" 
               item-text="name" 
               item-value="code" />
@@ -72,6 +73,7 @@ export default {
   computed: {
     localeCode: get("languageStore/selectedLocaleCode"),
     languages: get("languageStore/languages"),
+    fromLanguageComboBox: get("languageStore/fromLanguageComboBox"),
     ...get("languageStore"),
   },
 };

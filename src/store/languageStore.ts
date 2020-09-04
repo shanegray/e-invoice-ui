@@ -10,12 +10,15 @@ interface LanguageState {
   languages: LanguageByCode[];
   nativeLanguages: LanguageByCode[];
   selectedLocaleCode: string;
+  fromLanguageComboBox: string;
+
 }
 
 const state: LanguageState = {
   languages: [],
   nativeLanguages:[],
-  selectedLocaleCode: "en"
+  selectedLocaleCode: "en",
+  fromLanguageComboBox: "From:"
 }
 
 const mutations = make.mutations(state);
@@ -28,10 +31,7 @@ const actions = {
     const { data } = await axios.get(url);
     commit("SET_LANGUAGES", data)
   },
-  async loadFrenchLanguages({ commit }) {
-    const { data } = await axios.get("https://einvoicetranslatorweb.azurewebsites.net/api/locale/getLanguageNamesByCodev2?LanguageCode=fr" );
-    commit("SET_LANGUAGES", data)
-  },
+
   async loadNativeLanguages({ commit }) {
     const { data } = await axios.get("https://einvoicetranslatorweb.azurewebsites.net/api/locale/getNativeLanguageNamesFilev2/");
     commit("SET_NATIVE_LANGUAGES", data)
@@ -40,7 +40,15 @@ const actions = {
     commit("SET_SELECTED_LOCALE_CODE", code);
   },
   saveSomething({ commit }, { something }) {
-    return axios.post("https://einvoicetranslatorweb.azurewebsites.net/api/saveSomething", something);
+    //axios.post('url', data, {
+    //  headers: {
+   //     'Content-Type': 'application/json',
+   // }
+    //}
+    return axios.post("https://localhost:44390/api/fileapi/savesomething/", something, {
+      headers: {
+        'Content-Type': 'application/json'
+      }});
   }
 }
 

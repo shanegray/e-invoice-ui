@@ -101,12 +101,12 @@ export default {
   },
   methods: {
     loadLanguages: call("languageStore/loadLanguages"),
-    ...call("nativelanguages", ["saveSomething"]),
+    ...call("languageStore", ["saveSomething"]),
     async saveMe() {
       this.saving = true;
 
       try {
-        await this.saveSomething();
+        await this.saveSomething('{"something":"issomething"}');
       }
       finally {
         this.saving = false;

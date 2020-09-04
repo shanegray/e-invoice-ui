@@ -50,12 +50,15 @@ export default {
   },
   methods: {
  
-  ...call("languageStore", [ "loadNativeLanguages","selectLocaleCode"]),
-    localeCodeSelected() {
-       this.selectLocaleCode(this.selectedItem),
-       call("languageStore", ["loadLanguages"])
+  ...call("languageStore", [ "loadNativeLanguages","selectLocaleCode","loadLanguages"]),
+   
+   async localeCodeSelected() {
+       await this.selectLocaleCode(this.selectedItem)
+       ,
+       await this.loadLanguages()
     }
     },
+
   computed: {
     nativelanguages: get("languageStore/nativeLanguages"),
     localeCode: get("languageStore/selectedLocaleCode"),
