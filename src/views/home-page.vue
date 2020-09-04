@@ -66,7 +66,7 @@ export default {
     await this.loadLanguages();
   },
   methods: {
-    loadLanguages: call("languageStore/loadLanguages","selectLocaleCode"),
+    loadLanguages: call("languageStore/loadLanguages"),
     
   },
   computed: {

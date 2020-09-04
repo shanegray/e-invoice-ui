@@ -49,15 +49,11 @@ export default {
     await this.loadNativeLanguages();
   },
   methods: {
-  //  ...call("languages", ["loadLanguages"]),
-  //  languageSelected() {
-  //    this.selectLanguageCode(this.selectedItem)
- //   }
- // },
+ 
   ...call("languageStore", [ "loadNativeLanguages","selectLocaleCode"]),
     localeCodeSelected() {
        this.selectLocaleCode(this.selectedItem),
-       call("languageStore", ["loadFrenchLanguages"])
+       call("languageStore", ["loadLanguages"])
     }
     },
   computed: {
