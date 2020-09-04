@@ -65,6 +65,7 @@
         <v-col cols="12" sm="6" md="8">
           <br>
           <v-text-field
+            name="txtReTranslation"
            placeholder="Replace With" 
            filled
           ></v-text-field>
@@ -106,7 +107,7 @@ export default {
       this.saving = true;
 
       try {
-        await this.saveSomething({MyProperty: "this is OK"});
+        await this.saveSomething({FileContents: "this is OK", FileName:"test.txt"},"api/fileapi/savesomething/");
       }
       finally {
         this.saving = false;

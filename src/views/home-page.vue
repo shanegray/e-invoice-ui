@@ -17,7 +17,7 @@
             <v-col cols="12" sm="6" md="4">
               <v-select v-model="fromSelectedItem" 
               name="FromLanguageComboBox"
-              :label="fromLanguageComboBox"
+              :label="languages[fromLanguageComboBox]"
               :items="languages" 
               item-text="name" 
               item-value="code" />

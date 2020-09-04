@@ -39,9 +39,9 @@ const actions = {
   selectLocaleCode({ commit }, code) {
     commit("SET_SELECTED_LOCALE_CODE", code);
   },
-  saveSomething({ commit },  something ) {
-   
-    return axios.post("https://localhost:44390/api/fileapi/savesomething/", something
+  saveSomething({ commit },  data, route ) {
+    route="api/fileapi/savesomething/";
+    return axios.post(`https://localhost:44390/${route}`, data
     
     );
   }
