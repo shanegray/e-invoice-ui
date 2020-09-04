@@ -40,15 +40,11 @@ const actions = {
     commit("SET_SELECTED_LOCALE_CODE", code);
   },
   saveSomething({ commit }, { something }) {
-    //axios.post('url', data, {
-    //  headers: {
-   //     'Content-Type': 'application/json',
-   // }
-    //}
+   
     return axios.post("https://localhost:44390/api/fileapi/savesomething/", something, {
-      headers: {
-        'Content-Type': 'application/json'
-      }});
+    headers: {
+      'Content-Type': 'application/json'
+    }});
   }
 }
 
