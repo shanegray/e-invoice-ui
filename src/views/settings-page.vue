@@ -106,7 +106,7 @@ export default {
       this.saving = true;
 
       try {
-        await this.saveSomething({something:'{"MyProperty":"issomething"}'});
+        await this.saveSomething({MyProperty: "this is OK"});
       }
       finally {
         this.saving = false;
