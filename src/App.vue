@@ -14,7 +14,7 @@
           flat
           solo-inverted
           hide-details
-          v-model="selectedItem"
+          v-model="$i18n.locale"
           label="Select App Language"
           :items="nativelanguages"
           item-text="name"
@@ -24,7 +24,7 @@
       </v-col>
     </v-app-bar>
     <v-main>
-      <v-label>selected code = {{localeCode}}</v-label>
+      <!--<v-label>{{$t('UploadXMLTxt')}}</v-label>-->
       <v-container fluid>
         <router-view />
       </v-container>
@@ -37,13 +37,17 @@
 import NavDrawer from "@/components/nav-drawer";
 import { call, get } from "vuex-pathify";
 
+//import { LOCALES, Locales } from "@/i18n/locales";
+//import { defaultLocale } from "@/i18n";
+
 export default {
   components: {
     NavDrawer,
   },
   data: () => ({
     drawer: null,     
-    selectedItem: "",    
+    selectedItem: "", 
+   // LOCALES, defaultLocale    
   }),
   async created() {
     await this.loadNativeLanguages();
@@ -53,8 +57,9 @@ export default {
   ...call("languageStore", [ "loadNativeLanguages","selectLocaleCode","loadLanguages"]),
    
    async localeCodeSelected() {
+       
        await this.selectLocaleCode(this.selectedItem)
-       ,
+       , 
        await this.loadLanguages()
     }
     },

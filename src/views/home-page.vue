@@ -2,7 +2,7 @@
   <div>
     <v-card class="mb-8">
       <v-card-actions>
-        <v-btn class="ml-6" x-large color="green" dark>Upload XML File</v-btn>
+        <v-btn class="ml-6" x-large color="green" dark>{{$t('UploadXMLTxt')}}</v-btn>
         <v-spacer></v-spacer>
         <v-col cols="12" sm="4" md="8">
           <v-chip label large outlined color="black">XML File Name Goes Here</v-chip>          
@@ -10,14 +10,14 @@
       </v-card-actions>
     </v-card>
     <v-card class="mb-8">
-      <v-card-title>Translate in {{localeCode}} Invoice from {{fromSelectedItem}} to {{toSelectedItem}}</v-card-title>
+      <v-card-title> Translate Invoice from {{fromSelectedItem}} to {{toSelectedItem}}</v-card-title>
       <v-card-text>
         <v-container class="pa-0">
           <v-row>
             <v-col cols="12" sm="6" md="4">
               <v-select v-model="fromSelectedItem" 
               name="FromLanguageComboBox"
-              :label="languages[fromLanguageComboBox]"
+              :label="$t('FromLanguage')"
               :items="languages" 
               item-text="name" 
               item-value="code" />

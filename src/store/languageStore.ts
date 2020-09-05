@@ -1,13 +1,14 @@
 import axios from 'axios';
 import { make } from "vuex-pathify";
 
+
 interface LanguageByCode {
   name: string;
   code: string;
 }
 
 interface LanguageState {
-  languages: LanguageByCode[];
+  //languages: LanguageByCode[];
   nativeLanguages: LanguageByCode[];
   selectedLocaleCode: string;
   fromLanguageComboBox: string;
@@ -15,10 +16,11 @@ interface LanguageState {
 }
 
 const state: LanguageState = {
-  languages: [],
+  //languages: [],
   nativeLanguages:[],
   selectedLocaleCode: "en",
   fromLanguageComboBox: "From:"
+     
 }
 
 const mutations = make.mutations(state);
@@ -39,9 +41,13 @@ const actions = {
   selectLocaleCode({ commit }, code) {
     commit("SET_SELECTED_LOCALE_CODE", code);
   },
-  saveSomething({ commit },  data, route ) {
-    route="api/fileapi/savesomething/";
-    return axios.post(`https://localhost:44390/${route}`, data
+
+  selectDefaultLocale({ commit }, code) {
+    commit("SET_SELECTED_LOCALE_CODE", code);
+  },
+  saveSomething({ commit },  data) {
+    const nroute="api/fileapi/savesomething/";
+    return axios.post(`https://localhost:44390/${nroute}`, data
     
     );
   }
