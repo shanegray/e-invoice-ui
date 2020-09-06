@@ -1,3 +1,7 @@
+//import { messages } from '@/i18n';
+//import { VueI18n } from 'vue-i18n';
+//import { i18n } from '@/plugins/i18n';
+//import { messages } from '@/i18n';
 import axios from 'axios';
 import { make } from "vuex-pathify";
 
@@ -27,12 +31,25 @@ const mutations = make.mutations(state);
 
 const actions = {
   async loadLanguages({ commit, state} ) {  
-    //const res = await axios.get('https://httpbin.org/get', { params: { answer: 42 } });
+ 
     const url = 
     `https://einvoicetranslatorweb.azurewebsites.net/api/locale/getLanguageNamesByCodev2?LanguageCode=${state.selectedLocaleCode}`
     const { data } = await axios.get(url);
+    
     commit("SET_LANGUAGES", data)
   },
+
+  async loadAppComponentLocale({ commit, state} ) {  
+ 
+    const url = 
+    `https://einvoicetranslatorweb.azurewebsites.net/api/locale/gettranslatedlocale/?LanguageCode=${state.selectedLocaleCode}`
+    const { data } = await axios.get(url);
+   //TODO update the locale -> 
+   //const $i18n.messages=`${state.selectedLocaleCode} + ":"+ ${data}`";
+   
+    commit("SET_LANGUAGES", data)
+  },
+
 
   async loadNativeLanguages({ commit }) {
     const { data } = await axios.get("https://einvoicetranslatorweb.azurewebsites.net/api/locale/getNativeLanguageNamesFilev2/");
