@@ -46,7 +46,6 @@ export default {
   },
   data: () => ({
     drawer: null,     
-    selectedItem: "", 
    // LOCALES, defaultLocale    
   }),
   async created() {
@@ -58,9 +57,10 @@ export default {
    
    async localeCodeSelected() {
        
-       await this.selectLocaleCode(this.selectedItem)
+       await this.selectLocaleCode(this.$i18n.locale)
        , 
        await this.loadLanguages()
+       
     }
     },
 

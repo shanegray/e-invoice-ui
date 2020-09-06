@@ -1,5 +1,5 @@
 {
-    "UploadXMLTxt":"Carg archivo XML",
+    "UploadXMLTxt":"Cargar archivo XML",
     "btnCreateInvoiceTxt":"Crear factura",
     "btnSaveXSLT":"Descargar XSLT",
     "btnSave_XML":"Descargar XML",
@@ -32,4 +32,5 @@
     "DedleteLanguage2":"Eliminar idioma",
     "NotSaved1":"Palabra que falta para traducir",
     "NotSaved2":"No guardado ",
-    "AppLanguage":"Idioma de la aplicación "}
+    "AppLanguage":"Idioma de la aplicación "
+}

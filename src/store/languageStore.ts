@@ -12,7 +12,7 @@ interface LanguageByCode {
 }
 
 interface LanguageState {
-  //languages: LanguageByCode[];
+  languages: LanguageByCode[];
   nativeLanguages: LanguageByCode[];
   selectedLocaleCode: string;
   fromLanguageComboBox: string;
@@ -20,7 +20,7 @@ interface LanguageState {
 }
 
 const state: LanguageState = {
-  //languages: [],
+  languages: [],
   nativeLanguages:[],
   selectedLocaleCode: "en",
   fromLanguageComboBox: "From:"
@@ -37,6 +37,7 @@ const actions = {
     const { data } = await axios.get(url);
     
     commit("SET_LANGUAGES", data)
+    //console.log("languages set" )
   },
 
   async loadAppComponentLocale({ commit, state} ) {  
@@ -47,7 +48,7 @@ const actions = {
    //TODO update the locale -> 
    //const $i18n.messages=`${state.selectedLocaleCode} + ":"+ ${data}`";
    
-    commit("SET_LANGUAGES", data)
+    //commit("SET_APP_COMPONENT_LANGUAGES", data)
   },
 
 
@@ -57,6 +58,7 @@ const actions = {
   },
   selectLocaleCode({ commit }, code) {
     commit("SET_SELECTED_LOCALE_CODE", code);
+   // console.log("Local code = " + code );
   },
 
   selectDefaultLocale({ commit }, code) {
