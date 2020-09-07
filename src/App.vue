@@ -53,13 +53,14 @@ export default {
   },
   methods: {
  
-  ...call("languageStore", [ "loadNativeLanguages","selectLocaleCode","loadLanguages"]),
+  ...call("languageStore", [ "loadNativeLanguages","selectLocaleCode","loadLanguages","loadAppComponentLocale"]),
    
    async localeCodeSelected() {
        
        await this.selectLocaleCode(this.$i18n.locale)
        , 
        await this.loadLanguages()
+       await this.loadAppComponentLocale()
        
     }
     },
