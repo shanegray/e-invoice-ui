@@ -8,11 +8,7 @@
            placeholder="Enter In Text" 
            filled
           ></v-text-field>
-      <v-card-title>Text To Translate</v-card-title>
-      <v-card-text >
-        <v-col cols="12" sm="6" md="8">
-          <v-text-field v-model="textToTranslate" placeholder="Enter In Text" filled></v-text-field>
-        </v-col>
+         </v-col>
       </v-card-text>
     </v-card>
     <v-card class="mb-8">
@@ -21,18 +17,13 @@
         <v-container class="pa-0">
           <v-row>
             <v-col cols="12" sm="6" md="4">
-              <v-select :label="$t('FromLanguage')" 
-              :items="languages"
-              item-text="name"
-              item-value="code"
-                 />
-              <v-select
-                v-model="fromLanguageCode"
-                label="From"
+              <v-select v-model="fromLanguageCode"
+                :label="$t('FromLanguage')" 
                 :items="languages"
                 item-text="name"
                 item-value="code"
               />
+              
             </v-col>
             <v-spacer />
             <v-col cols="12" sm="6" md="4">
@@ -48,15 +39,13 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="green" dark>{{ $t('TranslateButton') }}</v-btn>
         <v-btn
         :loading="saving"
         @click="translateClick"
-         color="green" dark>Translate</v-btn>
+         color="green" dark>{{ $t('TranslateButton') }}</v-btn>
       </v-card-actions>
     </v-card>
     <v-card>
-      <v-card>
       <v-card-title>Translation Display</v-card-title>
       <v-card-text>
          <v-col cols="12" sm="8" md="12">
