@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-card class="mb-8">
-<<<<<<< HEAD
       <v-card-title>{{ $t('Text2Translate') }}</v-card-title>
       <v-card-text>
          <v-col cols="12" sm="6" md="8">
@@ -9,12 +8,10 @@
            placeholder="Enter In Text" 
            filled
           ></v-text-field>
-=======
       <v-card-title>Text To Translate</v-card-title>
       <v-card-text >
         <v-col cols="12" sm="6" md="8">
           <v-text-field v-model="textToTranslate" placeholder="Enter In Text" filled></v-text-field>
->>>>>>> a8de25cec84d7ae2206c05ad7f05f14b6d53a2fa
         </v-col>
       </v-card-text>
     </v-card>
@@ -24,13 +21,11 @@
         <v-container class="pa-0">
           <v-row>
             <v-col cols="12" sm="6" md="4">
-<<<<<<< HEAD
               <v-select :label="$t('FromLanguage')" 
               :items="languages"
               item-text="name"
               item-value="code"
                  />
-=======
               <v-select
                 v-model="fromLanguageCode"
                 label="From"
@@ -38,19 +33,12 @@
                 item-text="name"
                 item-value="code"
               />
->>>>>>> a8de25cec84d7ae2206c05ad7f05f14b6d53a2fa
             </v-col>
             <v-spacer />
             <v-col cols="12" sm="6" md="4">
-<<<<<<< HEAD
-              <v-select 
-                v-model="selectedItem"
-                :label="$t('ToLanguage')" 
-=======
-              <v-select
-                v-model="toLanguageCode"
-                label="To"
->>>>>>> a8de25cec84d7ae2206c05ad7f05f14b6d53a2fa
+              <v-select                
+                :label="$t('ToLanguage')"               
+                v-model="toLanguageCode"                
                 :items="languages"
                 item-text="name"
                 item-value="code"
@@ -60,43 +48,22 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
-<<<<<<< HEAD
         <v-btn color="green" dark>{{ $t('TranslateButton') }}</v-btn>
-=======
         <v-btn
         :loading="saving"
         @click="translateClick"
          color="green" dark>Translate</v-btn>
->>>>>>> a8de25cec84d7ae2206c05ad7f05f14b6d53a2fa
       </v-card-actions>
     </v-card>
     <v-card>
       <v-card>
-<<<<<<< HEAD
       <v-card-title>Translation Display</v-card-title>
       <v-card-text>
          <v-col cols="12" sm="8" md="12">
           <v-chip label large outlined color="black">{{ $t('TranslatedTextBox') }}</v-chip>
         </v-col>
       </v-card-text>
-    </v-card>
-=======
-        <v-card-title>Translation Display</v-card-title>
-        <v-card-text>
-          <v-col cols="12" sm="8" md="12">
-            <v-chip
-              
-              label
-              large
-              outlined
-              color="black"
-             
-            >{{translatedText}}</v-chip>
-          </v-col>
-        </v-card-text>
-      </v-card>
->>>>>>> a8de25cec84d7ae2206c05ad7f05f14b6d53a2fa
-    </v-card>
+    </v-card>        
   </div>
 </template>
 
