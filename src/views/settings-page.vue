@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card class="mb-8">
-      <v-card-title>Edit E-Invoice Translation</v-card-title>
+      <v-card-title>Edit Invoice Translations</v-card-title>
       <v-card-text>
         <v-container class="pa-0">
           <v-row>
@@ -14,9 +14,10 @@
             </v-col>
             <v-col cols="12" sm="6" md="4">
               <v-select
-                v-model="selectedItem"
+                v-model="SelectedWord"
                 :label="$t('Locale2Translate')"
-                
+                :items="words"
+                @change="getTranslatedWord"
               />
             </v-col>
             <v-spacer></v-spacer>
@@ -38,6 +39,7 @@
         <v-spacer></v-spacer>
       </v-card-actions>
     </v-card>
+    <!-- App Translation part -->
     <v-card>
       <v-card-title>Edit App {{ localeCode }} Translation</v-card-title>
       <v-card-text>
@@ -88,21 +90,26 @@
 </template>
 
 <script>
+import languageStore from '@/store/languageStore';
 import { call, get } from "vuex-pathify";
 
 export default {
   data() {
     return {
+      SelectedWord: "",
       selectedItem: "",
       saving: false
     }
   },
   async created() {
     await this.loadLanguages();
+    await this.fillWords();
   },
   methods: {
+    // getTranslatedWord: //TODO  ,
     loadLanguages: call("languageStore/loadLanguages"),
     ...call("languageStore", ["saveSomething"]),
+    fillWords : call("languageStore/fillWords"),
     async saveMe() {
       this.saving = true;
 
@@ -117,7 +124,9 @@ export default {
   computed: {
     languages: get("languageStore/languages"),
     ...get("languageStore"),
-    localeCode: get("languageStore/selectedLocaleCode")
+    localeCode: get("languageStore/selectedLocaleCode"),
+    // fills words in combo box in invoice translation
+    words: get("languageStore/words")
   },
 };
 </script>
