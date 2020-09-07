@@ -4,7 +4,7 @@
 //import { messages } from '@/i18n';
 import axios from 'axios';
 import { make } from "vuex-pathify";
-
+import enData from "@/i18n/LanguageFileEN.json"
 
 interface LanguageByCode {
   name: string;
@@ -16,14 +16,18 @@ interface LanguageState {
   nativeLanguages: LanguageByCode[];
   selectedLocaleCode: string;
   fromLanguageComboBox: string;
+  appComponentLanguages: {};
+
 
 }
 
 const state: LanguageState = {
   languages: [],
   nativeLanguages:[],
+  appComponentLanguages:  enData,
   selectedLocaleCode: "en",
-  fromLanguageComboBox: "From:"
+  fromLanguageComboBox: "From:",
+
      
 }
 
@@ -43,12 +47,13 @@ const actions = {
   async loadAppComponentLocale({ commit, state} ) {  
  
     const url = 
-    `https://einvoicetranslatorweb.azurewebsites.net/api/locale/gettranslatedlocale/?LanguageCode=${state.selectedLocaleCode}`
+    `https://localhost:44390/api/locale/gettranslatedlocale/?LanguageCode=${state.selectedLocaleCode}`
     const { data } = await axios.get(url);
-   //TODO update the locale -> 
-   //const $i18n.messages=`${state.selectedLocaleCode} + ":"+ ${data}`";
-   
-    //commit("SET_APP_COMPONENT_LANGUAGES", data)
+    
+    commit("SET_APP_COMPONENT_LANGUAGES", data);
+    //this.$i18n.locale=this.state.selectedLocaleCode;
+    //this.i18n.messages=data;
+    console.log(`App languages set for ${state.selectedLocaleCode}` )
   },
 
 
@@ -65,11 +70,23 @@ const actions = {
     commit("SET_SELECTED_LOCALE_CODE", code);
   },
   saveSomething({ commit },  data) {
+    console.log("data:" + data)
     const nroute="api/fileapi/savesomething/";
     return axios.post(`https://localhost:44390/${nroute}`, data
     
     );
+  },
+  async testTranslation({ commit },  request) {
+    console.log("data:" + request)
+    
+    const nroute="api/translate/testpage/";
+    console.log("route: " + nroute)
+
+    const response = await axios.post(`https://localhost:44390/${nroute}`, request )
+    return response.data
+    
   }
+  
 }
 
 export default {
