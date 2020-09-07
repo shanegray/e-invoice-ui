@@ -47,7 +47,7 @@ const actions = {
   async loadAppComponentLocale({ commit, state} ) {  
  
     const url = 
-    `https://localhost:44390/api/locale/gettranslatedlocale/?LanguageCode=${state.selectedLocaleCode}`
+    `https://localhost:44390/api/locale/gettranslatedlocalev2/?LanguageCode=${state.selectedLocaleCode}`
     const { data } = await axios.get(url);
     
     commit("SET_APP_COMPONENT_LANGUAGES", data);

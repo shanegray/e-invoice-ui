@@ -53,7 +53,7 @@
               large
               outlined
               color="black"
-             
+            
             >{{translatedText}}</v-chip>
           </v-col>
         </v-card-text>
@@ -107,11 +107,11 @@ export default {
       const FromLanguageCode=this.fromLanguageCode;
       const TextToTranslate =this.textToTranslate;
        const data = {ToLanguage, FromLanguage, ToLanguageCode,FromLanguageCode,TextToTranslate}; 
-       console.log("data: " + data)
+      // console.log("data: " + data)
       try {
         this.translatedText = await this.testTranslation(data)
         
-        console.log("translation:" + this.translatedText)
+        //console.log("translation:" + this.translatedText)
       }
       finally {
         this.saving = false;
