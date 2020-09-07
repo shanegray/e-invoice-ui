@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card class="mb-8">
-      <v-card-title>Text To Translate</v-card-title>
+      <v-card-title>{{ $t('Text2Translate') }}</v-card-title>
       <v-card-text>
          <v-col cols="12" sm="6" md="8">
           <v-text-field
@@ -17,26 +17,26 @@
         <v-container class="pa-0">
           <v-row>
             <v-col cols="12" sm="6" md="4">
-              <v-select label="From" 
+              <v-select :label="$t('FromLanguage')" 
               :items="languages"
               item-text="name"
               item-value="code"
                  />
             </v-col>
+            <v-spacer />
             <v-col cols="12" sm="6" md="4">
               <v-select 
                 v-model="selectedItem"
-                label="To" 
+                :label="$t('ToLanguage')" 
                 :items="languages"
                 item-text="name"
                 item-value="code"  />
             </v-col>
-            <v-spacer></v-spacer>
           </v-row>
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="green" dark>Translate</v-btn>
+        <v-btn color="green" dark>{{ $t('TranslateButton') }}</v-btn>
       </v-card-actions>
     </v-card>
     <v-card>
@@ -44,7 +44,7 @@
       <v-card-title>Translation Display</v-card-title>
       <v-card-text>
          <v-col cols="12" sm="8" md="12">
-          <v-chip label large outlined color="black">Translation Is Displayed Here.</v-chip>
+          <v-chip label large outlined color="black">{{ $t('TranslatedTextBox') }}</v-chip>
         </v-col>
       </v-card-text>
     </v-card>

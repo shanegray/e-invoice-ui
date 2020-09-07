@@ -6,16 +6,16 @@
         <v-container class="pa-0">
           <v-row>
             <v-col cols="12" sm="6" md="4">
-              <v-select label="Select Language" 
-              :items="languages"
-              item-text="name"
+              <v-select :label="$t('LanguageLabel')" 
+                :items="languages"
+                item-text="name"
                 item-value="code"
-                 />
+              />
             </v-col>
             <v-col cols="12" sm="6" md="4">
               <v-select
                 v-model="selectedItem"
-                label="Select A Word/Phrase To Re-Translate"
+                :label="$t('Locale2Translate')"
                 
               />
             </v-col>
@@ -27,14 +27,14 @@
         <v-col cols="12" sm="6" md="8">
           <br>
           <v-text-field
-           placeholder="Replace With" 
+           :placeholder="$t('Label4Translate')" 
            filled
           ></v-text-field>
         </v-col>
 
-        <v-btn class="ml-6" x-large color="green" dark>Save</v-btn>
+        <v-btn class="ml-6" x-large color="green" dark>{{ $t('btnSave') }}</v-btn>
         <v-spacer></v-spacer>
-        <v-btn x-large color="primary"> Download XLT</v-btn>
+        <v-btn x-large color="primary"> {{ $t('btnDownload') }}</v-btn>
         <v-spacer></v-spacer>
       </v-card-actions>
     </v-card>
@@ -44,7 +44,7 @@
         <v-container class="pa-0">
           <v-row>
             <v-col cols="12" sm="6" md="4">
-              <v-select label="Select Language" 
+              <v-select :label="$t('LanguageLabel')" 
               :items="languages"
                 item-text="name"
                 item-value="code"
@@ -53,7 +53,7 @@
             <v-col cols="12" sm="6" md="4">
               <v-select
                 v-model="selectedItem"
-                label="Select A Word/Phrase To Re-Translate"
+                :label="$t('Locale2Translate')"
                 
               />
             </v-col>
@@ -66,8 +66,8 @@
           <br>
           <v-text-field
             name="txtReTranslation"
-           placeholder="Replace With" 
-           filled
+            :placeholder="$t('Label4Translate')" 
+            filled
           ></v-text-field>
         </v-col>
         
@@ -79,7 +79,7 @@
           color="green" 
           dark 
           @click="saveMe">
-          Save
+          {{ $t('btnSave') }}
         </v-btn>
         
       </v-card-actions>

@@ -2,7 +2,7 @@
   <div>
     <v-card class="mb-8">
       <v-card-actions>
-        <v-btn class="ml-6" x-large color="green" dark>{{$t('UploadXMLTxt')}}</v-btn>
+        <v-btn class="ml-6" x-large color="green" dark> {{ $t('UploadXMLTxt') }} </v-btn>
         <v-spacer></v-spacer>
         <v-col cols="12" sm="4" md="8">
           <v-chip label large outlined color="black">XML File Name Goes Here</v-chip>          
@@ -26,7 +26,7 @@
             <v-col cols="12" sm="6" md="4">
               <v-select
                 v-model="toSelectedItem"
-                label="To"
+                :label="$t('ToLanguage')"
                 :items="languages"
                 item-text="name"
                 item-value="code"
@@ -36,17 +36,17 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="primary">Create Invoice</v-btn>
+        <v-btn color="primary"> {{ $t('btnCreateInvoiceTxt') }} </v-btn>
       </v-card-actions>
     </v-card>
     <v-card>
       <v-card-actions>
       <v-spacer />
-      <v-btn  color="primary">Download XML</v-btn>
+      <v-btn  color="primary">{{ $t('btnSave_XML') }}</v-btn>
       <v-spacer />
       <v-btn  color="primary">Download PDF</v-btn>
       <v-spacer />
-      <v-btn  color="primary">Download XSLT</v-btn>
+      <v-btn  color="primary">{{ $t('btnSaveXSLT') }}</v-btn>
       <v-spacer />
       </v-card-actions>
     </v-card>
