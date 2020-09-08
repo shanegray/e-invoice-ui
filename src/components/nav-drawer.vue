@@ -22,8 +22,9 @@ export default {
       items: [
         { title: 'Create', icon: 'mdi-file-edit-outline', url: "/" },
         { title: 'Test', icon: 'mdi-file-document-outline', url: "/test" },
-        { title: 'Settings', icon: 'mdi-cog-outline', url: "/settings" },
-        //{ title: 'Example', icon: 'mdi-cog-outline', url: "/example" },
+        { title: 'Invoice Settings', icon: 'mdi-cog-outline', url: "/invoicesettings" },
+        { title: 'App Settings', icon: 'mdi-cog-outline', url: "/appsettings" },
+        //{ title: 'App Settings', icon: 'mdi-cog-outline', url: "/app-settings" },
       ]
     }
   },
