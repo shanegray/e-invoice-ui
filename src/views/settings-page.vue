@@ -28,8 +28,11 @@
         <v-col cols="12" sm="6" md="8">
           <br>
           <v-text-field
-           :placeholder="$t('Label4Translate')" 
-           filled
+            v-model="SelectedWord"
+            :items="words"
+            :placeholder="$t('Label4Translate')" 
+            filled
+
           ></v-text-field>
         </v-col>
 
@@ -106,7 +109,7 @@ export default {
     await this.fillWords();
   },
   methods: {
-    // getTranslatedWord: //TODO  ,
+    // getTranslatedWord: get("selectedWord")  ,
     loadLanguages: call("languageStore/loadLanguages"),
     ...call("languageStore", ["saveSomething"]),
     fillWords : call("languageStore/fillWords"),

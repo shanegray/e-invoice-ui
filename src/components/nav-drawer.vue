@@ -23,6 +23,7 @@ export default {
         { title: 'Create', icon: 'mdi-file-edit-outline', url: "/" },
         { title: 'Test', icon: 'mdi-file-document-outline', url: "/test" },
         { title: 'Settings', icon: 'mdi-cog-outline', url: "/settings" },
+        //{ title: 'Example', icon: 'mdi-cog-outline', url: "/example" },
       ]
     }
   },

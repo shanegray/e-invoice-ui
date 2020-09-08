@@ -4,6 +4,7 @@ import VueRouter, { RouteConfig } from 'vue-router'
 import HomePage from '@/views/home-page.vue';
 import TestPage from '@/views/test-page.vue';
 import SettingsPage from '@/views/settings-page.vue';
+import ExamplePage from '@/views/exampl-page.vue';
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,10 @@ const routes: Array<RouteConfig> = [
   {
     path: '/settings',
     component: SettingsPage
+  },
+  {
+    path: '/example',
+    component: ExamplePage
   }
 ]
 
