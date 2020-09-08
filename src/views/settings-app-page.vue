@@ -14,8 +14,13 @@
                 item-value="code"
               />
             </v-col>
+            <!-- :items="localewords" -->
             <v-col cols="12" sm="6" md="4">
-              <v-select v-model="selectedItem" :label="$t('Locale2Translate')" />
+                <v-select
+                    v-model="SelectedWord"
+                    
+                    :label="$t('Locale2Translate')"
+                />
             </v-col>
             <v-spacer></v-spacer>
           </v-row>
@@ -39,3 +44,45 @@
     </v-card>
   </div>
 </template>
+<script>
+import languageStore from '@/store/languageStore';
+import { call, get } from "vuex-pathify";
+
+export default {
+  data() {
+    return {
+      SelectedWord: "",
+      selectedItem: "",
+      saving: false
+    }
+  },
+  async created() {
+    await this.loadLanguages();
+    await this.fillLocaleWords();
+  },
+  methods: {
+    // getTranslatedWord: get("selectedWord")  ,
+    loadLanguages: call("languageStore/loadLanguages"),
+    ...call("languageStore", ["saveSomething"]),
+    //TODO fix list coming back properly
+    fillLocaleWords : call("languageStore/fillLocaleWords"),
+    async saveMe() {
+      this.saving = true;
+
+      try {
+        await this.saveSomething({FileContents: "this is OK", FileName:"test.txt"},"api/fileapi/savesomething/");
+      }
+      finally {
+        this.saving = false;
+      }
+    }
+  },
+  computed: {
+    languages: get("languageStore/languages"),
+    ...get("languageStore"),
+    localeCode: get("languageStore/selectedLocaleCode"),
+    // fills words in combo box in app translation (Needs to be fixed)
+    localewords: get("languageStore/localeWords")
+  },
+};
+</script>

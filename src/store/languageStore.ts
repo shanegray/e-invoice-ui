@@ -19,10 +19,12 @@ interface LanguageState {
   languages: LanguageByCode[];
   nativeLanguages: LanguageByCode[];
   selectedLocaleCode: string;
+  localeLanguageComboBox: string;
   fromLanguageComboBox: string;
   appComponentLanguages: {};
 
   words: [];
+  localeWords: [];
 }
 
 const state: LanguageState = {
@@ -31,8 +33,10 @@ const state: LanguageState = {
   appComponentLanguages:  enData,
   selectedLocaleCode: "en",
   fromLanguageComboBox: "From:",
+  localeLanguageComboBox: "English",
 
   words: [],
+  localeWords: [],
 }
 
 const mutations = make.mutations(state);
@@ -55,6 +59,16 @@ const actions = {
     const { data } = await axios.get(url);
     
     commit("SET_WORDS", data)
+    console.log("data: " + data )
+  },
+
+  async fillLocaleWords({ commit, state } ) {  
+    //TODO fix words coming back as [object object] might have to make a v2 version
+    const url = 
+    `https://einvoicetranslatorweb.azurewebsites.net/api/locale/getlocaleTranslation/?Language=${state.localeLanguageComboBox}`
+    const { data } = await axios.get(url);
+    
+    commit("SET_LOCALE_WORDS", data)
     console.log("data: " + data )
   },
 
