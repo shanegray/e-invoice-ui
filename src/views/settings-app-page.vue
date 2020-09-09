@@ -17,8 +17,8 @@
             <!-- :items="localewords" -->
             <v-col cols="12" sm="6" md="4">
                 <v-select
-                    v-model="SelectedWord"
-                    
+                    v-model="selectedLocaleWord"
+                    :items="localewords"
                     :label="$t('Locale2Translate')"
                 />
             </v-col>
@@ -51,7 +51,7 @@ import { call, get } from "vuex-pathify";
 export default {
   data() {
     return {
-      SelectedWord: "",
+      selectedLocaleWord: "",
       selectedItem: "",
       saving: false
     }

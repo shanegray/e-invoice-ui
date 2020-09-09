@@ -65,7 +65,8 @@ const actions = {
   async fillLocaleWords({ commit, state } ) {  
     //TODO fix words coming back as [object object] might have to make a v2 version
     const url = 
-    `https://einvoicetranslatorweb.azurewebsites.net/api/locale/getlocaleTranslation/?Language=${state.localeLanguageComboBox}`
+    `https://einvoicetranslatorweb.azurewebsites.net/api/locale/getlocaletranslationv2/?languageCode=${state.selectedLocaleCode}`
+    console.log("url: " + url )
     const { data } = await axios.get(url);
     
     commit("SET_LOCALE_WORDS", data)
