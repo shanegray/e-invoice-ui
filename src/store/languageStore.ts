@@ -114,7 +114,17 @@ const actions = {
     const response = await axios.post(`https://localhost:44390/${nroute}`, request )
     return response.data
     
-  }
+  },
+
+  async fillTranslation({ commit }, data ) {  
+    console.log("data:" + data)
+    
+    const nroute="api/translate/gettranslation";
+    console.log("route: " + nroute)
+
+    const response = await axios.post(`https://localhost:44390/${nroute}`, data )
+    return response.data
+  },
   
 }
 

@@ -6,7 +6,7 @@
         <v-container class="pa-0">
           <v-row>
             <v-col cols="12" sm="6" md="4">
-              <v-select :label="$t('LanguageLabel')" 
+              <v-select class="ToLanguage" :label="$t('LanguageLabel')" 
                 :items="languages"
                 item-text="name"
                 item-value="code"
@@ -17,7 +17,7 @@
                 v-model="SelectedWord"
                 :label="$t('Locale2Translate')"
                 :items="words"
-                
+                @change="Translation()"
               />
             </v-col>
             <v-spacer></v-spacer>
@@ -31,7 +31,7 @@
             v-model="SelectedWord"            
             :placeholder="$t('Label4Translate')" 
             filled
-
+            @change="Translation()"
           ></v-text-field>
         </v-col>
 
@@ -63,9 +63,10 @@ export default {
   },
   methods: {
     // getTranslatedWord: get("selectedWord")  ,
+    fillWords : call("languageStore/fillWords"),  
     loadLanguages: call("languageStore/loadLanguages"),
-    ...call("languageStore", ["saveSomething"]),
-    fillWords : call("languageStore/fillWords"),
+
+    ...call("languageStore", ["saveSomething"]),     
     async saveMe() {
       this.saving = true;
 
@@ -75,14 +76,26 @@ export default {
       finally {
         this.saving = false;
       }
-    }
+    },
+     ...call("languageStore", ["fillTranslation"]),
+     async Translation() {
+
+      try {
+        //TODO Fix so it sends actual word, language and language code 
+        await this.fillTranslation({TextToTranslate: 'Address', ToLanguage:'French', ToLanguageCode: 'fr'},"api/translate/gettranslation/");
+      }
+      finally {
+        this.saving = false;
+      }
+      
+     }
   },
   computed: {
     languages: get("languageStore/languages"),
     ...get("languageStore"),
     localeCode: get("languageStore/selectedLocaleCode"),
     // fills words in combo box in invoice translation
-    words: get("languageStore/words")
+    words: get("languageStore/words"),
   },
 };
 </script>
