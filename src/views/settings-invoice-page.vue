@@ -78,11 +78,11 @@ export default {
       }
     },
      ...call("languageStore", ["fillTranslation"]),
-     async Translation() {
+     async Translation(SelectedWord, name, code) {
 
       try {
-        //TODO Fix so it sends actual word, language and language code 
-        await this.fillTranslation({TextToTranslate: 'Address', ToLanguage:'French', ToLanguageCode: 'fr'},"api/translate/gettranslation/");
+        //TODO Fix so it sends actual language and language code 
+        await this.fillTranslation({TextToTranslate: `${this.SelectedWord}`, ToLanguage: `${this.name}`, ToLanguageCode: `${this.code}`},"api/translate/gettranslation/");
       }
       finally {
         this.saving = false;
