@@ -36,7 +36,9 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="primary"> {{ $t('btnCreateInvoiceTxt') }} </v-btn>
+        <v-btn color="primary"
+        @click="CreateInvoice()">
+           {{ $t('btnCreateInvoiceTxt') }} </v-btn>
       </v-card-actions>
     </v-card>
     <v-card>
@@ -67,8 +69,18 @@ export default {
     await this.loadLanguages();
   },
   methods: {
-    loadLanguages: call("languageStore/loadLanguages"),
-    
+    async CreateInvoice() {
+      this.saving = true;
+
+      try {
+        await this.CreateInvoice({ToLanguage: "", FromLanguage: "", ToLanguageCode: "", FromLanguageCode: "", TextToTranslate: ""});
+      }
+      finally {
+        this.saving = false;
+      }
+    },
+
+    loadLanguages: call("languageStore/loadLanguages"),    
   },
   computed: {
     localeCode: get("languageStore/selectedLocaleCode"),

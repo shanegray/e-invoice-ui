@@ -6,7 +6,8 @@
         <v-container class="pa-0">
           <v-row>
             <v-col cols="12" sm="6" md="4">
-              <v-select class="ToLanguage" :label="$t('LanguageLabel')" 
+              <v-select name="ToLanguage" :label="$t('LanguageLabel')"
+                v-model="toLanguageCode" 
                 :items="languages"
                 item-text="name"
                 item-value="code"
@@ -53,7 +54,7 @@ export default {
   data() {
     return {
       SelectedWord: "",
-      selectedItem: "",
+      toLanguageCode: "",
       saving: false
     }
   },
@@ -71,18 +72,18 @@ export default {
       this.saving = true;
 
       try {
-        await this.saveSomething({FileContents: "this is OK", FileName:"test.txt"},"api/fileapi/savesomething/");
+        await this.saveSomething({FileContents: "this is OK", FileName:"test.txt"});
       }
       finally {
         this.saving = false;
       }
     },
      ...call("languageStore", ["fillTranslation"]),
-     async Translation(SelectedWord, name, code) {
+     async Translation() {
 
       try {
         //TODO Fix so it sends actual language and language code 
-        await this.fillTranslation({TextToTranslate: `${this.SelectedWord}`, ToLanguage: `${this.name}`, ToLanguageCode: `${this.code}`},"api/translate/gettranslation/");
+        await this.fillTranslation({TextToTranslate: `${this.SelectedWord}`, ToLanguage: "", ToLanguageCode: `${this.toLanguageCode}`, FromLanguageCode: "en", FromLanguage: "English" });
       }
       finally {
         this.saving = false;

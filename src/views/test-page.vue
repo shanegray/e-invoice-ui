@@ -7,6 +7,7 @@
           <v-text-field
            placeholder="Enter In Text" 
            filled
+           v-model="textToTranslate"
           ></v-text-field>
          </v-col>
       </v-card-text>

@@ -22,9 +22,11 @@ interface LanguageState {
   localeLanguageComboBox: string;
   fromLanguageComboBox: string;
   appComponentLanguages: {};
+  Translation: string;
 
   words: [];
   localeWords: [];
+  invoiceTranslatedLanguages: [];
 }
 
 const state: LanguageState = {
@@ -34,6 +36,7 @@ const state: LanguageState = {
   selectedLocaleCode: "en",
   fromLanguageComboBox: "From:",
   localeLanguageComboBox: "English",
+  Translation: "",
 
   words: [],
   localeWords: [],
@@ -46,6 +49,16 @@ const actions = {
  
     const url = 
     `https://einvoicetranslatorweb.azurewebsites.net/api/locale/getLanguageNamesByCodev2?LanguageCode=${state.selectedLocaleCode}`
+    const { data } = await axios.get(url);
+    
+    commit("SET_LANGUAGES", data)
+    //console.log("languages set" )
+  },
+
+  async loadInvoiceTranslatedLanguages({ commit } ) {  
+ 
+    const url = 
+    `https://einvoicetranslatorweb.azurewebsites.net/api/fileapi/gettranslatedlanguages`
     const { data } = await axios.get(url);
     
     commit("SET_LANGUAGES", data)
@@ -105,13 +118,22 @@ const actions = {
     
     );
   },
-  async testTranslation({ commit },  request) {
+
+  async invoiceCreate({ commit },  data) {
+    console.log("data:" + data)
+    const nroute="api/translate/convertxml2html";
+    const response = await axios.post(`https://localhost:44390/${nroute}`, data);
+    return response.data
+  },
+
+  async testTranslation({ commit, state},  request) {
     console.log("data:" + request)
     
     const nroute="api/translate/testpage/";
     console.log("route: " + nroute)
 
     const response = await axios.post(`https://localhost:44390/${nroute}`, request )
+    console.log("response.data:" + response.data)
     return response.data
     
   },
@@ -119,7 +141,7 @@ const actions = {
   async fillTranslation({ commit }, data ) {  
     console.log("data:" + data)
     
-    const nroute="api/translate/gettranslation";
+    const nroute="api/translate/gettranslationv2";
     console.log("route: " + nroute)
 
     const response = await axios.post(`https://localhost:44390/${nroute}`, data )
