@@ -1,6 +1,6 @@
 <!-- I'm using this page for examples and how they -->
 <template>
-  <v-form ref="form" method="post" enctype="multipart/form-data" action="https://einvoicetranslatorweb.azurewebsites.net/api/translate/convertxml2htmlv2">
+  <v-form ref="form" target="_blank" method="post" enctype="multipart/form-data" action="https://einvoicetranslatorweb.azurewebsites.net/api/translate/convertxml2htmlv2">
     <v-card>
       <v-card-text>
         <v-container>
