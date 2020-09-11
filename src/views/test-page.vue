@@ -50,7 +50,11 @@
       <v-card-title>Translation Display</v-card-title>
       <v-card-text>
          <v-col cols="12" sm="8" md="12">
-          <v-chip label large outlined color="black">{{ $t('TranslatedTextBox') }}</v-chip>
+          <v-text-field readonly 
+           :label="$t('TranslatedTextBox')"
+           large outlined color="black" 
+           v-model="translation">
+          </v-text-field>
         </v-col>
       </v-card-text>
     </v-card>        
@@ -69,7 +73,6 @@ export default {
       textToTranslate: "",
       saving: false,
       translatedText: "Translated text here"
-      
     }
   },
   async created() {
@@ -117,9 +120,7 @@ export default {
   computed: {
     languages: get("languageStore/languages"),
     ...get("languageStore"),
-    translation: get("languageStore/testTranslation")
-
-    
-}
+    translation: get("languageStore/Translation")   
+  }
 }
 </script>

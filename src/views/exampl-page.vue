@@ -1,60 +1,54 @@
 <!-- I'm using this page for examples and how they -->
 <template>
-  <v-card>
-    <v-container fluid>
-      <v-row
-        align="center"
-      >
-        <v-col cols="12" sm="6">
-          <v-select
-            v-model="value"
-            :items="items"
-            attach
-            chips
-            label="Chips"
-            multiple
-          ></v-select>
-        </v-col>
-        <v-col cols="12" sm="6">
-          <v-select
-            v-model="value"
-            :items="items"
-            filled
-            chips
-            label="Chips"
-            multiple
-          ></v-select>
-        </v-col>
-        <v-col cols="12" sm="6">
-          <v-select
-            v-model="value"
-            :items="items"
-            chips
-            label="Chips"
-            multiple
-            outlined
-          ></v-select>
-        </v-col>
-        <v-col cols="12" sm="6">
-          <v-select
-            v-model="value"
-            :items="items"
-            chips
-            label="Chips"
-            multiple
-            solo
-          ></v-select>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-card>
+  <v-form ref="form">
+    <v-select
+      v-model="fromSelectedItem"
+      :label="$t('FromLanguage')"
+      :items="languages"
+      item-text="name"
+      item-value="code"
+    />
+
+    <v-select
+      v-model="toSelectedItem"
+      :label="$t('ToLanguage')"
+      :items="languages"
+      item-text="name"
+      item-value="code"
+    />
+
+    <v-card-text>
+      <v-col cols="12" sm="6" md="8">
+        <v-text-field placeholder="Enter in new file name" filled></v-text-field>
+      </v-col>
+    </v-card-text>
+
+    <v-btn class="mr-4">submit</v-btn>
+    <v-btn>clear</v-btn>
+  </v-form>
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      items: ['foo', 'bar', 'fizz', 'buzz'],
-      value: ['foo', 'bar', 'fizz', 'buzz'],
-    }),
-  }
+import { call, get } from "vuex-pathify";
+
+export default {
+  data() {
+    return {
+      fromSelectedItem: "",
+      toSelectedItem: "",
+    };
+  },
+  async created() {
+    await this.loadLanguages();
+  },
+  methods: {
+    loadLanguages: call("languageStore/loadLanguages"),
+  },
+  computed: {
+    localeCode: get("languageStore/selectedLocaleCode"),
+    languages: get("languageStore/languages"),
+    fromLanguageComboBox: get("languageStore/fromLanguageComboBox"),
+    ...get("languageStore"),
+  },
+};
 </script>
