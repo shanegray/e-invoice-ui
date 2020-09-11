@@ -5,7 +5,7 @@
         <v-btn class="ml-6" x-large color="green" dark> {{ $t('UploadXMLTxt') }} </v-btn>
         <v-spacer></v-spacer>
         <v-col cols="12" sm="4" md="8">
-          <v-chip label large outlined color="black">XML File Name Goes Here</v-chip>          
+          <v-file-input prepend-icon="" placeholder="XML File Name Goes Here"></v-file-input>          
         </v-col>
       </v-card-actions>
     </v-card>

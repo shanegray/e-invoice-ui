@@ -1,30 +1,73 @@
 <!-- I'm using this page for examples and how they -->
 <template>
-  <v-form ref="form">
-    <v-select
-      v-model="fromSelectedItem"
-      :label="$t('FromLanguage')"
-      :items="languages"
-      item-text="name"
-      item-value="code"
-    />
+  <v-form ref="form" method="post" enctype="multipart/form-data" action="https://localhost:44390/api/translate/convertxml2htmlv2">
+    <v-card>
+      <v-card-text>
+        <v-container>
+          <v-row>
+            <v-col cols="12" sm="6" md="4">
+              <v-select
+                name="FromLanguageCode"
+                v-model="fromSelectedItem"
+                :label="$t('FromLanguage')"
+                :items="languages"
+                item-text="name"
+                item-value="code"
+              />
+            </v-col>
+            <v-spacer />
+            <v-col cols="12" sm="6" md="4">
+              <v-select
+                name="ToLanguageCode"
+                v-model="toSelectedItem"
+                :label="$t('ToLanguage')"
+                :items="languages"
+                item-text="name"
+                item-value="code"
+              />
+            </v-col>
+            <v-spacer />
+          </v-row>
+        </v-container>
+      </v-card-text>
 
-    <v-select
-      v-model="toSelectedItem"
-      :label="$t('ToLanguage')"
-      :items="languages"
-      item-text="name"
-      item-value="code"
-    />
+      <v-card-text>
+        <v-container>
+          <v-row>            
+            <!-- <input type="file" class="mt-4" x-large /> 
+            <v-spacer /> -->
+            <v-col cols="12" sm="4" md="6">
+              <v-file-input prepend-icon="" placeholder="Click To Upload"></v-file-input>
+            </v-col>
+            <v-spacer />
 
-    <v-card-text>
-      <v-col cols="12" sm="6" md="8">
-        <v-text-field placeholder="Enter in new file name" filled></v-text-field>
-      </v-col>
-    </v-card-text>
+            
+          </v-row>
+        </v-container>
+      </v-card-text>
 
-    <v-btn class="mr-4">submit</v-btn>
-    <v-btn>clear</v-btn>
+      <v-card-text>
+        <v-container ml-4>
+          <v-row>
+            <input type="submit" value="Send" class="mr-4" color="green" dark/>
+            <!-- <v-btn color="red darken-2" dark>clear</v-btn> -->
+            <v-spacer />
+          </v-row>
+        </v-container>
+      </v-card-text>
+    </v-card>
+
+    <v-card class="mt-5">
+      <v-card-actions>
+      <v-spacer />
+      <v-btn  color="primary">{{ $t('btnSave_XML') }}</v-btn>
+      <v-spacer />
+      <v-btn  color="primary">Download PDF</v-btn>
+      <v-spacer />
+      <v-btn  color="primary">{{ $t('btnSaveXSLT') }}</v-btn>
+      <v-spacer />
+      </v-card-actions>
+    </v-card>
   </v-form>
 </template>
 
