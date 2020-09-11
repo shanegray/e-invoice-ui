@@ -40,6 +40,7 @@ const state: LanguageState = {
 
   words: [],
   localeWords: [],
+  invoiceTranslatedLanguages: [],
 }
 
 const mutations = make.mutations(state);
@@ -126,7 +127,7 @@ const actions = {
     return response.data
   },
 
-  async testTranslation({ commit, state},  request) {
+  async testTranslation({ commit},  request) {
     console.log("data:" + request)
     
     const nroute="api/translate/testpage/";
