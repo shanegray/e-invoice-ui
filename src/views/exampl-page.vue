@@ -1,6 +1,6 @@
 <!-- I'm using this page for examples and how they -->
 <template>
-  <v-form ref="form" method="post" enctype="multipart/form-data" action="https://localhost:44390/api/translate/convertxml2htmlv2">
+  <v-form ref="form" method="post" enctype="multipart/form-data" action="https://einvoicetranslatorweb.azurewebsites.net/api/translate/convertxml2htmlv2">
     <v-card>
       <v-card-text>
         <v-container>
@@ -37,7 +37,7 @@
             <!-- <input type="file" class="mt-4" x-large /> 
             <v-spacer /> -->
             <v-col cols="12" sm="4" md="6">
-              <v-file-input prepend-icon="" placeholder="Click To Upload"></v-file-input>
+              <v-file-input name="attachment" prepend-icon="" placeholder="Click To Upload"></v-file-input>
             </v-col>
             <v-spacer />
 
@@ -49,7 +49,8 @@
       <v-card-text>
         <v-container ml-4>
           <v-row>
-            <input type="submit" value="Send" class="mr-4" color="green" dark/>
+            <!-- <input type="submit" value="Send" class="mr-4" color="green" dark/> -->
+            <v-btn type="submit" color="green darken-2" dark>Convert to HTML</v-btn>
             <!-- <v-btn color="red darken-2" dark>clear</v-btn> -->
             <v-spacer />
           </v-row>
