@@ -86,7 +86,7 @@ export default {
       const FromLanguageCode = this.fromLanguageCode;
       const TextToTranslate = this.textToTranslate;
 
-      const nroute = "api/translate/testpage/";
+     // const nroute = "api/translate/testpage/";
       const data = {
         ToLanguage,
         FromLanguage,

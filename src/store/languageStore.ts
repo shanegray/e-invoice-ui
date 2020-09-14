@@ -20,13 +20,13 @@ interface LanguageState {
   nativeLanguages: LanguageByCode[];
   selectedLocaleCode: string;
   localeLanguageComboBox: string;
-  fromLanguageComboBox: string;
+ // fromLanguageComboBox: string;
  
   Translation: string;
 
   words: [];
   localeWords: [];
-  invoiceTranslatedLanguages: [];
+ // invoiceTranslatedLanguages: [];
 }
 
 const state: LanguageState = {
@@ -34,13 +34,13 @@ const state: LanguageState = {
   nativeLanguages:[],
   
   selectedLocaleCode: "en",
-  fromLanguageComboBox: "From:",
+ // fromLanguageComboBox: "From:",
   localeLanguageComboBox: "English",
   Translation: "",
 
   words: [],
   localeWords: [],
-  invoiceTranslatedLanguages: [],
+ // invoiceTranslatedLanguages: [],
 }
 
 const mutations = make.mutations(state);
@@ -56,7 +56,7 @@ const actions = {
     //console.log("languages set" )
   },
 
-  async loadInvoiceTranslatedLanguages({ commit } ) {  
+  /* async loadInvoiceTranslatedLanguages({ commit } ) {  
  
     const url = 
     `https://einvoicetranslatorweb.azurewebsites.net/api/fileapi/gettranslatedlanguages`
@@ -64,7 +64,7 @@ const actions = {
     
     commit("SET_LANGUAGES", data)
     //console.log("languages set" )
-  },
+  }, */
 
   async fillWords({ commit } ) {  
  
@@ -140,7 +140,7 @@ const actions = {
     return response.data    
   },
 
-  async fillTranslation({ commit }, data ) {  
+  /* async fillTranslation({ commit }, data ) {  
     console.log("data:" + data)
     
     const nroute="api/translate/gettranslationv2";
@@ -148,7 +148,7 @@ const actions = {
 
     const response = await axios.post(`https://einvoicetranslatorweb.azurewebsites.net/${nroute}`, data )
     return response.data
-  },
+  }, */
   
 }
 
