@@ -17,7 +17,7 @@
                   class="ml-3"
                   name="FromLanguageCode"
                   v-model="fromSelectedItem"
-                  :label="$t('FromLanguage')"
+                  :label="localeWords['FromLanguage']"
                   :items="languages"
                   item-text="name"
                   item-value="code"
