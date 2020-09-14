@@ -94,7 +94,7 @@ export default {
   computed: {
     localeCode: get("languageStore/selectedLocaleCode"),
     languages: get("languageStore/languages"),
-    fromLanguageComboBox: get("languageStore/fromLanguageComboBox"),
+   // fromLanguageComboBox: get("languageStore/fromLanguageComboBox"),
     ...get("languageStore"),
   },
 };
