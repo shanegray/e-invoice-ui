@@ -9,7 +9,8 @@
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
         <span class="hidden-sm-and-down">E-Invoice Translator</span>
       </v-toolbar-title>
-      <v-col cols="12" sm="4" md="6">
+        <v-spacer />
+      <v-col cols="5" sm="3" md="3">
         <v-select
           flat
           solo-inverted

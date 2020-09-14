@@ -7,12 +7,12 @@
       enctype="multipart/form-data"
       action="https://einvoicetranslatorweb.azurewebsites.net/api/translate/convertxml2htmlv2"
     >
-      <v-card class="mb-8">
+      <v-card>
         <v-card-title>Translate Invoice from {{fromSelectedItem}} to {{toSelectedItem}}</v-card-title>
         <v-card-text>
           <v-container class="pa-0">
             <v-row>
-              <v-col cols="12" sm="6" md="4">
+              <v-col cols="12" sm="4" md="6">
                 <v-select 
                   class="ml-3"
                   name="FromLanguageCode"
@@ -24,8 +24,8 @@
                 />
               </v-col>
               <v-spacer />
-              <v-col cols="12" sm="6" md="4">
-                <v-select
+              <v-col cols="12" sm="4" md="6">
+                <v-select class="ml-3"
                   name="ToLanguageCode"
                   v-model="toSelectedItem"
                   :label="$t('ToLanguage')"
@@ -44,7 +44,6 @@
               <v-col cols="12" sm="4" md="6">
                 <v-file-input v-model="XMLFile" name="attachment" prepend-icon placeholder="Click To Upload"></v-file-input>
               </v-col>
-              <v-spacer />
             </v-row>
           </v-container>
         </v-card-text>
@@ -59,8 +58,9 @@
         </v-card-text>
       </v-card>
 
-      <v-card>
-        <v-card-actions>
+      <v-card v-show="HTMLdownloaded">
+        <v-card-title ><v-spacer />Download Files Created<v-spacer /></v-card-title>
+        <v-card-actions>          
           <v-spacer />
           <v-btn color="primary">Get XML</v-btn>
           <v-spacer />
@@ -84,6 +84,7 @@ export default {
       toSelectedItem: "",
       saving: false,
       XMLFile: null,
+      HTMLdownloaded: false,
     };
   },
   async created() {
@@ -106,7 +107,7 @@ export default {
       try{
       this.$refs.form.$el.submit()
       console.log("The form Data ", this.XMLFile.FileName)
-
+      this.HTMLdownloaded = true;
       }
       finally{
         this.saving = false;
