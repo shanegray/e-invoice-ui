@@ -19,13 +19,14 @@ interface LanguageState {
   languages: LanguageByCode[];
   nativeLanguages: LanguageByCode[];
   selectedLocaleCode: string;
-  localeLanguageComboBox: string;
+  //localeLanguageComboBox: string;
  // fromLanguageComboBox: string;
  
   Translation: string;
 
-  words: [];
-  localeWords: [];
+  invoiceWords: [];
+  localeWordDict: [];
+  localeWordArray: [];
  // invoiceTranslatedLanguages: [];
 }
 
@@ -35,11 +36,12 @@ const state: LanguageState = {
   
   selectedLocaleCode: "en",
  // fromLanguageComboBox: "From:",
-  localeLanguageComboBox: "English",
+  //localeLanguageComboBox: "English",
   Translation: "",
 
-  words: [],
-  localeWords: [],
+  invoiceWords: [],
+  localeWordDict: [],
+  localeWordArray: [],
  // invoiceTranslatedLanguages: [],
 }
 
@@ -66,24 +68,25 @@ const actions = {
     //console.log("languages set" )
   }, */
 
-  async fillWords({ commit } ) {  
- 
+  async fillInvoiceWords({ commit } ) {  
+   console.log("fillInvoiceWords")
     const url = 
     `https://einvoicetranslatorweb.azurewebsites.net/api/fileapi/getWords`
     const { data } = await axios.get(url);
+    console.log("data: " + data)
+    console.log("first invoice word: " + data[4])
+    commit("SET_INVOICE_WORDS", data)
     
-    commit("SET_WORDS", data)
-    console.log("data: " + data )
   },
 
-  async fillLocaleWords({ commit, state } ) {  
+  async fillLocaleWords({ commit } ) {  
     //TODO fix words coming back as [object object] might have to make a v2 version
     const url = 
     `https://einvoicetranslatorweb.azurewebsites.net/api/locale/getlocaletranslationv2/?languageCode=${state.selectedLocaleCode}`
     
     const { data } = await axios.get(url);
     
-    commit("SET_LOCALE_WORDS", data)
+    commit("SET_LOCALE_WORD_DICT", data)
    
     console.log("fromLabel :" + data['fromLabel'])
   },
@@ -109,17 +112,35 @@ const actions = {
     commit("SET_SELECTED_LOCALE_CODE", code);
    // console.log("Local code = " + code );
   },
+  async SetLocaleWordArray({ commit }, languageCode) {
+    console.log("running SetLocaleWordArray()")
 
+    const url = 
+    `https://einvoicetranslatorweb.azurewebsites.net/api/locale/getlocaletranslationv2/?languageCode=${languageCode}`
+    
+    const { data } = await axios.get(url);
+    
+ 
+      const LocaleWords=[];
+      const lw = data
+                      
+      console.log("lw: " + lw);
+     Object.values(lw).forEach(function(value){
+        console.log("value: " + value)
+        LocaleWords.push(value);
+    })
+    commit("SET_LOCALE_WORD_ARRAY", LocaleWords)
+  },
   selectDefaultLocale({ commit }, code) {
     commit("SET_SELECTED_LOCALE_CODE", code);
   },
-  saveSomething({ commit },  data) {
+  /* saveSomething({ commit },  data) {
     console.log("data:" + data)
     const nroute="api/fileapi/savesomething/";
     return axios.post(`https://einvoicetranslatorweb.azurewebsites.net/${nroute}`, data
     
     );
-  },
+  }, */
 
   async invoiceCreate({ commit },  data) {
     console.log("data:" + data)

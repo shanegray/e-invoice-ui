@@ -51,6 +51,7 @@ export default {
   }),
   async created() {
     await this.loadNativeLanguages();
+    await this.localeCodeSelected()
     await this.fillLocaleWords();
   },
   mounted() {

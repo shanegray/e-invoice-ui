@@ -8,6 +8,7 @@
             <v-col cols="12" sm="6" md="4">
               <v-select name="ToLanguage" :label="$t('LanguageLabel')"
                 v-model="toLanguageCode" 
+                 @change="SetInvoiceWords"
                 :items="languages"
                 item-text="name"
                 item-value="code"
@@ -18,8 +19,8 @@
               <v-select
                 v-model="SelectedWord"
                 :label="$t('Locale2Translate')"
-                :items="words"
-                @change="Translation()"
+                :items="invoicewords"
+               
               />
             </v-col>
           </v-row>
@@ -29,14 +30,17 @@
         <v-col cols="12" sm="6" md="8">
           <br>
           <v-text-field
-            v-model="SelectedWord"            
             :placeholder="$t('Label4Translate')" 
             filled
-            @change="Translation()"
           ></v-text-field>
         </v-col>
 
-        <v-btn class="ml-6" x-large color="green" dark>{{ $t('btnSave') }}</v-btn>
+        <v-btn 
+         @click="Translation()"
+        class="ml-6" 
+        x-large color="green" 
+        dark
+        >{{ $t('btnSave') }}</v-btn>
         <v-spacer></v-spacer>
         <v-btn x-large color="primary"> {{ $t('btnDownload') }}</v-btn>
       </v-card-actions>
@@ -58,14 +62,18 @@ export default {
     }
   },
   async created() {
-    await this.loadLanguages();
-    await this.fillWords();
+    //await this.loadLanguages();
+    //await this.fillInvoiceWords();
   },
   methods: {
     // getTranslatedWord: get("selectedWord")  ,
-    localeCode: get("languageStore/selectedLocaleCode"),
-    fillWords : call("languageStore/fillWords"),  
-    loadLanguages: call("languageStore/loadLanguages"),
+    // localeCode: get("languageStore/selectedLocaleCode"),
+    ...call("languageStore", ["fillInvoiceWords"]),
+    
+     async SetInvoiceWords(){
+      await this.fillInvoiceWords();
+    },
+    //loadLanguages: call("languageStore/loadLanguages"),
 
     ...call("languageStore", ["saveSomething"]),     
     async saveMe() {
@@ -93,9 +101,9 @@ export default {
   },
   computed: {
     languages: get("languageStore/languages"),
-    ...get("languageStore"),
-    // fills words in combo box in invoice translation
-    words: get("languageStore/words"),
+    //...get("languageStore"),
+    // fills invoice words in combo box in invoice translation
+    invoicewords: get("languageStore/invoiceWords"),
   },
 };
 </script>

@@ -2,24 +2,26 @@
 <template>
   <div>
     <v-card>
-      <v-card-title>Edit App {{ localeCode }} Translation</v-card-title>
+      <v-card-title>Edit App Translation</v-card-title>
       <v-card-text>
         <v-container class="pa-0">
           <v-row>
             <v-col cols="12" sm="6" md="4">
               <v-select
+                v-model="selectedLocaleWord"
                 :label="$t('LanguageLabel')"
                 :items="languages"
                 item-text="name"
                 item-value="code"
+                @change="SetStoreLocaleWordArray"
               />
             </v-col>
             <v-spacer/>
-            <!-- :items="localewords" -->
+            
             <v-col cols="12" sm="6" md="4">
                 <v-select
-                    v-model="selectedLocaleWord"
-                    :items="localewords"
+                    v-model="wordToTranslate"
+                    :items="GetLocaleWordArray"
                     :label="$t('Locale2Translate')"
                 />
             </v-col>
@@ -38,7 +40,7 @@
           x-large
           color="green"
           dark
-          @click="saveMe"
+         
         >{{ $t('btnSave') }}</v-btn>
       </v-card-actions>
     </v-card>
@@ -52,21 +54,29 @@ export default {
   data() {
     return {
       selectedLocaleWord: "",
-      selectedItem: "",
-      saving: false
+      wordToTranslate:"",
+     // selectedItem: "",
+      saving: false,
+      localeWordArray:[]
     }
   },
   async created() {
-    await this.loadLanguages();
-    await this.fillLocaleWords();
+    //await this.loadLanguages();
+    //await this.fillLocaleWords();
+    //this.GetLocaleWordArray();
   },
   methods: {
-    // getTranslatedWord: get("selectedWord")  ,
+
+     
     loadLanguages: call("languageStore/loadLanguages"),
-    ...call("languageStore", ["saveSomething"]),
+    ...call("languageStore", ["SetLocaleWordArray"]),
     //TODO fix list coming back properly
-    fillLocaleWords : call("languageStore/fillLocaleWords"),
-    async saveMe() {
+    async SetStoreLocaleWordArray(){
+      await this.SetLocaleWordArray(this.selectedLocaleWord);
+    }
+    
+    //fillLocaleWords : call("languageStore/fillLocaleWords"),
+    /* async saveMe() {
       this.saving = true;
 
       try {
@@ -75,14 +85,16 @@ export default {
       finally {
         this.saving = false;
       }
-    }
-  },
+    }*/
+  }, 
   computed: {
+   
     languages: get("languageStore/languages"),
-    ...get("languageStore"),
-    localeCode: get("languageStore/selectedLocaleCode"),
+    //...get("languageStore"),
+    //localeCode: get("languageStore/selectedLocaleCode"),
     // fills words in combo box in app translation (Needs to be fixed)
-    localewords: get("languageStore/localeWords")
+    GetLocaleWordArray: get("languageStore/localeWordArray")
+    
   },
 };
 </script>
