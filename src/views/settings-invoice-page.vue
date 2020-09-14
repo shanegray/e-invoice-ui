@@ -13,6 +13,7 @@
                 item-value="code"
               />
             </v-col>
+            <v-spacer/>
             <v-col cols="12" sm="6" md="4">
               <v-select
                 v-model="SelectedWord"
@@ -21,7 +22,6 @@
                 @change="Translation()"
               />
             </v-col>
-            <v-spacer></v-spacer>
           </v-row>
         </v-container>
       </v-card-text>
@@ -39,7 +39,6 @@
         <v-btn class="ml-6" x-large color="green" dark>{{ $t('btnSave') }}</v-btn>
         <v-spacer></v-spacer>
         <v-btn x-large color="primary"> {{ $t('btnDownload') }}</v-btn>
-        <v-spacer></v-spacer>
       </v-card-actions>
     </v-card>
     
@@ -64,6 +63,7 @@ export default {
   },
   methods: {
     // getTranslatedWord: get("selectedWord")  ,
+    localeCode: get("languageStore/selectedLocaleCode"),
     fillWords : call("languageStore/fillWords"),  
     loadLanguages: call("languageStore/loadLanguages"),
 
@@ -94,7 +94,6 @@ export default {
   computed: {
     languages: get("languageStore/languages"),
     ...get("languageStore"),
-    localeCode: get("languageStore/selectedLocaleCode"),
     // fills words in combo box in invoice translation
     words: get("languageStore/words"),
   },

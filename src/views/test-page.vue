@@ -123,6 +123,7 @@ export default {
     },
   },
   computed: {
+    localeCode: get("languageStore/selectedLocaleCode"),
     languages: get("languageStore/languages"),
     ...get("languageStore"),
     translation: get("languageStore/Translation"),

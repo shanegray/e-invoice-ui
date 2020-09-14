@@ -14,6 +14,7 @@
                 item-value="code"
               />
             </v-col>
+            <v-spacer/>
             <!-- :items="localewords" -->
             <v-col cols="12" sm="6" md="4">
                 <v-select
@@ -22,7 +23,6 @@
                     :label="$t('Locale2Translate')"
                 />
             </v-col>
-            <v-spacer></v-spacer>
           </v-row>
         </v-container>
       </v-card-text>
