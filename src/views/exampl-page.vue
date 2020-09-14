@@ -50,7 +50,7 @@
         <v-container ml-4>
           <v-row>
             <!-- <input type="submit" value="Send" class="mr-4" color="green" dark/> -->
-            <v-btn type="submit" color="green darken-2" dark>Convert to HTML</v-btn>
+            <v-btn @click="submit" color="green darken-2" dark>Convert to HTML</v-btn>
             <!-- <v-btn color="red darken-2" dark>clear</v-btn> -->
             <v-spacer />
           </v-row>
@@ -87,6 +87,9 @@ export default {
   },
   methods: {
     loadLanguages: call("languageStore/loadLanguages"),
+    submit : function(){
+      this.$refs.form.$el.submit()
+    }
   },
   computed: {
     localeCode: get("languageStore/selectedLocaleCode"),

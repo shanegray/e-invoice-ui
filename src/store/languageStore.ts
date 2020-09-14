@@ -90,7 +90,7 @@ const actions = {
   async loadAppComponentLocale({ commit, state} ) {  
  
     const url = 
-    `https://localhost:44390/api/locale/gettranslatedlocalev2/?LanguageCode=${state.selectedLocaleCode}`
+    `https://einvoicetranslatorweb.azurewebsites.net//api/locale/gettranslatedlocalev2/?LanguageCode=${state.selectedLocaleCode}`
     const { data } = await axios.get(url);
     
     commit("SET_APP_COMPONENT_LANGUAGES", data);
@@ -115,7 +115,7 @@ const actions = {
   saveSomething({ commit },  data) {
     console.log("data:" + data)
     const nroute="api/fileapi/savesomething/";
-    return axios.post(`https://localhost:44390/${nroute}`, data
+    return axios.post(`https://einvoicetranslatorweb.azurewebsites.net/${nroute}`, data
     
     );
   },
@@ -123,7 +123,7 @@ const actions = {
   async invoiceCreate({ commit },  data) {
     console.log("data:" + data)
     const nroute="api/translate/convertxml2html";
-    const response = await axios.post(`https://localhost:44390/${nroute}`, data);
+    const response = await axios.post(`https://einvoicetranslatorweb.azurewebsites.net/${nroute}`, data);
     return response.data
   },
 
@@ -133,7 +133,7 @@ const actions = {
     const nroute="api/translate/testpage/";
     console.log("route: " + nroute)
 
-    const response = await axios.post(`https://localhost:44390/${nroute}`, request )
+    const response = await axios.post(`https://einvoicetranslatorweb.azurewebsites.net/${nroute}`, request )
     console.log("response.data:" + response.data)
     commit("SET_TRANSLATION", response.data);
     return response.data    
@@ -145,7 +145,7 @@ const actions = {
     const nroute="api/translate/gettranslationv2";
     console.log("route: " + nroute)
 
-    const response = await axios.post(`https://localhost:44390/${nroute}`, data )
+    const response = await axios.post(`https://einvoicetranslatorweb.azurewebsites.net/${nroute}`, data )
     return response.data
   },
   
