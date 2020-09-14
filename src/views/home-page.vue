@@ -17,7 +17,7 @@
             <v-col cols="12" sm="6" md="4">
               <v-select v-model="fromSelectedItem" 
               
-              :label="$t('FromLanguage')"
+              :label="localeWords['FromLanguage']"
               :items="languages" 
               item-text="name" 
               item-value="code" />
@@ -83,6 +83,7 @@ export default {
     loadLanguages: call("languageStore/loadLanguages"),    
   },
   computed: {
+    localeWords: get("languageStore/localeWords"),
     localeCode: get("languageStore/selectedLocaleCode"),
     languages: get("languageStore/languages"),
     fromLanguageComboBox: get("languageStore/fromLanguageComboBox"),

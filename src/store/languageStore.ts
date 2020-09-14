@@ -4,7 +4,7 @@
 //import { messages } from '@/i18n';
 import axios from 'axios';
 import { make } from "vuex-pathify";
-import enData from "@/i18n/LanguageFileEN.json"
+//import enData from "@/i18n/LanguageFileEN.json"
 
 interface LanguageByCode {
   name: string;
@@ -21,7 +21,7 @@ interface LanguageState {
   selectedLocaleCode: string;
   localeLanguageComboBox: string;
   fromLanguageComboBox: string;
-  appComponentLanguages: {};
+ 
   Translation: string;
 
   words: [];
@@ -32,7 +32,7 @@ interface LanguageState {
 const state: LanguageState = {
   languages: [],
   nativeLanguages:[],
-  appComponentLanguages:  enData,
+  
   selectedLocaleCode: "en",
   fromLanguageComboBox: "From:",
   localeLanguageComboBox: "English",
@@ -80,14 +80,15 @@ const actions = {
     //TODO fix words coming back as [object object] might have to make a v2 version
     const url = 
     `https://einvoicetranslatorweb.azurewebsites.net/api/locale/getlocaletranslationv2/?languageCode=${state.selectedLocaleCode}`
-    console.log("url: " + url )
+    
     const { data } = await axios.get(url);
     
     commit("SET_LOCALE_WORDS", data)
-    console.log("data: " + data )
+   
+    console.log("fromLabel :" + data['fromLabel'])
   },
 
-  async loadAppComponentLocale({ commit, state} ) {  
+  /* async loadAppComponentLocale({ commit, state} ) {  
  
     const url = 
     `https://einvoicetranslatorweb.azurewebsites.net//api/locale/gettranslatedlocalev2/?LanguageCode=${state.selectedLocaleCode}`
@@ -97,7 +98,7 @@ const actions = {
     //this.$i18n.locale=this.state.selectedLocaleCode;
     //this.i18n.messages=data;
     console.log(`App languages set for ${state.selectedLocaleCode}` )
-  },
+  }, */
 
 
   async loadNativeLanguages({ commit }) {

@@ -14,7 +14,7 @@
           flat
           solo-inverted
           hide-details
-          v-model="$i18n.locale"
+          v-model="selectedLocaleCode"
           label="Select App Language"
           :items="nativelanguages"
           item-text="name"
@@ -46,21 +46,28 @@ export default {
   },
   data: () => ({
     drawer: null,     
-   // LOCALES, defaultLocale    
+    selectedLocaleCode:""    
   }),
   async created() {
     await this.loadNativeLanguages();
+    await this.fillLocaleWords();
+  },
+  mounted() {
+    if (localStorage.localeCode) {
+      this.selectedLocaleCode = localStorage.localeCode;
+    }
   },
   methods: {
  
-  ...call("languageStore", [ "loadNativeLanguages","selectLocaleCode","loadLanguages","loadAppComponentLocale"]),
+  ...call("languageStore", [ "loadNativeLanguages","selectLocaleCode","loadLanguages","fillLocaleWords"]),
    
    async localeCodeSelected() {
        
-       await this.selectLocaleCode(this.$i18n.locale)
+       await this.selectLocaleCode(this.selectedLocaleCode)
        , 
        await this.loadLanguages()
-       await this.loadAppComponentLocale()
+       await this.fillLocaleWords()
+       localStorage["localeCode"]=this.selectedLocaleCode
        
     }
     },
