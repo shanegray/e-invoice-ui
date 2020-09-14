@@ -2,7 +2,7 @@
 <template>
   <div>
     <v-card>
-      <v-card-title>Edit App Translation</v-card-title>
+      <v-card-title>Edit App text</v-card-title>
       <v-card-text>
         <v-container class="pa-0">
           <v-row>
@@ -64,12 +64,15 @@ export default {
     //await this.loadLanguages();
     //await this.fillLocaleWords();
     //this.GetLocaleWordArray();
+    if (localStorage.localeCode) {
+      this.selectedLocaleWord = localStorage.localeCode;
+    }
   },
   methods: {
 
      
     loadLanguages: call("languageStore/loadLanguages"),
-    ...call("languageStore", ["SetLocaleWordArray"]),
+    ...call("languageStore", ["SetLocaleWordArray","selectedLocaleCode"]),
     //TODO fix list coming back properly
     async SetStoreLocaleWordArray(){
       await this.SetLocaleWordArray(this.selectedLocaleWord);
@@ -91,7 +94,7 @@ export default {
    
     languages: get("languageStore/languages"),
     //...get("languageStore"),
-    //localeCode: get("languageStore/selectedLocaleCode"),
+    localeCode: get("languageStore/selectedLocaleCode"),
     // fills words in combo box in app translation (Needs to be fixed)
     GetLocaleWordArray: get("languageStore/localeWordArray")
     
