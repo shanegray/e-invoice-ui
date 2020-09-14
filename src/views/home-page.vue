@@ -62,11 +62,11 @@
       <v-card>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="primary">{{ $t('btnSave_XML') }}</v-btn>
+          <v-btn color="primary">Get XML</v-btn>
           <v-spacer />
-          <v-btn color="primary">Download PDF</v-btn>
+          <v-btn color="primary">Get PDF</v-btn>
           <v-spacer />
-          <v-btn color="primary">{{ $t('btnSaveXSLT') }}</v-btn>
+          <v-btn color="primary">Get XSLT</v-btn>
           <v-spacer />
         </v-card-actions>
       </v-card>

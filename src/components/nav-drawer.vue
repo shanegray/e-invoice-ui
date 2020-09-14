@@ -21,10 +21,10 @@ export default {
     return {
       items: [
         { title: 'Create', icon: 'mdi-file-edit-outline', url: "/" },
-        { title: 'Test', icon: 'mdi-file-document-outline', url: "/test" },
+        { title: 'Test Translation', icon: 'mdi-file-document-outline', url: "/test" },
         { title: 'Invoice Settings', icon: 'mdi-cog-outline', url: "/invoicesettings" },
         { title: 'App Settings', icon: 'mdi-cogs', url: "/appsettings" },
-        { title: 'example', icon: 'mdi-cog-outline', url: "/example" },
+        // { title: 'example', icon: 'mdi-cog-outline', url: "/example" },
       ]
     }
   },
