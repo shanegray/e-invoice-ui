@@ -117,7 +117,7 @@ export default {
     loadLanguages: call("languageStore/loadLanguages"),
   },
   computed: {
-    localeWords: get("languageStore/localeWords"),
+    localeWords: get("languageStore/localeWordDict"),
     localeCode: get("languageStore/selectedLocaleCode"),
     languages: get("languageStore/languages"),
     //fromLanguageComboBox: get("languageStore/fromLanguageComboBox"),
