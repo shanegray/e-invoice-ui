@@ -3,6 +3,7 @@ import { Locales } from "./locales";
 import en from "./LanguageFileEN.json";
 import fr from "./thisistheFrenchFile.json";
 import es from "./LanguageFileES.json";
+import ga from "./ga-LanguageNames.json"
 
 export const messages = {
   [Locales.EN]: en,
