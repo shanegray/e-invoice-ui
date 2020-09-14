@@ -53,8 +53,14 @@ export default {
     await this.fillLocaleWords();
   },
   mounted() {
+    console.log("Browser Language = " + navigator.language.substr(0,2))
     if (localStorage.localeCode) {
       this.selectedLocaleCode = localStorage.localeCode;
+    }
+    else
+    {
+      //get browser locale
+      this.selectedLocaleCode =  navigator.language.substr(0,2)
     }
   },
   methods: {
