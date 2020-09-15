@@ -67,6 +67,7 @@ export default {
     if (localStorage.localeCode) {
       this.selectedLocaleWord = localStorage.localeCode;
     }
+    await this.SetLocaleWordArray(this.selectedLocaleWord);
   },
   methods: {
 
