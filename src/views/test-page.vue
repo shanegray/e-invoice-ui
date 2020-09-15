@@ -3,7 +3,7 @@
     <v-card class="mb-8">
       <v-card-text>
         <v-col cols="12" sm="6" md="8">
-          <v-text-field :placeholder="$t('Text2Translate')" filled v-model="textToTranslate"></v-text-field>
+          <v-text-field :placeholder="localeWords['TxtToTranslate']" filled v-model="textToTranslate"></v-text-field>
         </v-col>
       </v-card-text>
 
@@ -14,7 +14,7 @@
               <v-select
                 class="ml-4"
                 v-model="fromLanguageCode"
-                :label="$t('FromLanguage')"
+                :label="localeWords['FromLanguage']"
                 :items="languages"
                 item-text="name"
                 item-value="code"
@@ -23,7 +23,7 @@
             <v-spacer />
             <v-col cols="12" sm="6" md="4">
               <v-select
-                :label="$t('ToLanguage')"
+                :label="localeWords['ToLanguage']"
                 v-model="toLanguageCode"
                 :items="languages"
                 item-text="name"
@@ -40,7 +40,7 @@
           @click="translateClick"
           color="green"
           dark
-        >{{ $t('TranslateButton') }}</v-btn>
+        >{{ localeWords['btnTranslate'] }}</v-btn>
       </v-card-actions>
     </v-card>
     <v-card>
@@ -48,7 +48,7 @@
         <v-col cols="12" sm="8" md="12">
           <v-text-field
             readonly
-            :label="$t('TranslatedTextBox')"
+            :label="localeWords['TxtTranslationDisplayed']"
             large
             outlined
             color="black"
@@ -124,6 +124,7 @@ export default {
   },
   computed: {
     localeCode: get("languageStore/selectedLocaleCode"),
+    localeWords: get("languageStore/localeWordDict"),
     languages: get("languageStore/languages"),
     ...get("languageStore"),
     translation: get("languageStore/Translation"),

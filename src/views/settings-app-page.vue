@@ -2,14 +2,14 @@
 <template>
   <div>
     <v-card>
-      <v-card-title>Edit App text</v-card-title>
+      <v-card-title>{{localeWords['AppTitle']}}</v-card-title>
       <v-card-text>
         <v-container class="pa-0">
           <v-row>
             <v-col cols="12" sm="6" md="4">
               <v-select
                 v-model="selectedLocaleWord"
-                :label="$t('LanguageLabel')"
+                :label="localeWords['labelSelectLang']"
                 :items="languages"
                 item-text="name"
                 item-value="code"
@@ -22,7 +22,7 @@
                 <v-select
                     v-model="wordToTranslate"
                     :items="GetLocaleWordArray"
-                    :label="$t('Locale2Translate')"
+                    :label="localeWords['Cmb4ReTranslate']"
                 />
             </v-col>
           </v-row>
@@ -31,7 +31,7 @@
       <v-card-actions>
         <v-col cols="12" sm="6" md="8">
           <br />
-          <v-text-field name="txtReTranslation" :placeholder="$t('Label4Translate')" filled></v-text-field>
+          <v-text-field name="txtReTranslation" :placeholder="localeWords['txtReplace']" filled></v-text-field>
         </v-col>
 
         <v-btn
@@ -41,7 +41,7 @@
           color="green"
           dark
          
-        >{{ $t('btnSave') }}</v-btn>
+        >{{ localeWords['btnSave'] }}</v-btn>
       </v-card-actions>
     </v-card>
   </div>
@@ -94,6 +94,7 @@ export default {
   computed: {
    
     languages: get("languageStore/languages"),
+    localeWords: get("languageStore/localeWordDict"),
     //...get("languageStore"),
     localeCode: get("languageStore/selectedLocaleCode"),
     // fills words in combo box in app translation (Needs to be fixed)

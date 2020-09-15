@@ -28,7 +28,7 @@
                 <v-select class="ml-3"
                   name="ToLanguageCode"
                   v-model="toSelectedItem"
-                  :label="$t('ToLanguage')"
+                  :label="localeWords['ToLanguage']"
                   :items="languages"
                   item-text="name"
                   item-value="code"
@@ -42,7 +42,7 @@
           <v-container>
             <v-row>
               <v-col cols="12" sm="4" md="6">
-                <v-file-input v-model="XMLFile" name="attachment" prepend-icon placeholder="Click To Upload"></v-file-input>
+                <v-file-input v-model="XMLFile" name="attachment" prepend-icon :placeholder="localeWords['inptUpload']"></v-file-input>
               </v-col>
             </v-row>
           </v-container>
@@ -51,7 +51,7 @@
         <v-card-text>
           <v-container class="ml-3">
             <v-row>
-              <v-btn :loading="saving" @click="submit" color="green darken-2" dark>Convert to HTML</v-btn>
+              <v-btn :loading="saving" @click="submit" color="green darken-2" dark>{{localeWords['btnConvert']}}</v-btn>
               <v-spacer />
             </v-row>
           </v-container>
@@ -59,10 +59,10 @@
       </v-card>
 
       <v-card v-show="HTMLdownloaded">
-        <v-card-title ><v-spacer />Download Files Created<v-spacer /></v-card-title>
+        <v-card-title ><v-spacer />{{localeWords['DownloadTitle']}}<v-spacer /></v-card-title>
         <v-card-actions>          
           <v-spacer />
-          <v-btn color="primary">Get XML</v-btn>
+          <v-btn color="primary">{{ localeWords['btnGetXML']}}</v-btn>
           <v-spacer />
           <v-btn color="primary">Get PDF</v-btn>
           <v-spacer />

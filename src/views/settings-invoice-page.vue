@@ -1,12 +1,12 @@
 <template>
   <div>
     <v-card class="mb-8">
-      <v-card-title>Edit Invoice Translations</v-card-title>
+      <v-card-title>{{localeWords['InvoiceTitle']}}</v-card-title>
       <v-card-text>
         <v-container class="pa-0">
           <v-row>
             <v-col cols="12" sm="6" md="4">
-              <v-select name="ToLanguage" :label="$t('LanguageLabel')"
+              <v-select name="ToLanguage" :label="localeWords['labelSelectLang']"
                 v-model="toLanguageCode" 
                  @change="SetInvoiceWords"
                 :items="languages"
@@ -18,7 +18,7 @@
             <v-col cols="12" sm="6" md="4">
               <v-select
                 v-model="SelectedWord"
-                :label="$t('Locale2Translate')"
+                :label="localeWords['Cmb4ReTranslate']"
                 :items="invoicewords"
                
               />
@@ -30,7 +30,7 @@
         <v-col cols="12" sm="6" md="8">
           <br>
           <v-text-field
-            :placeholder="$t('Label4Translate')" 
+            :placeholder="localeWords['TxtReplace']" 
             filled
           ></v-text-field>
         </v-col>
@@ -40,9 +40,9 @@
         class="ml-6" 
         x-large color="green" 
         dark
-        >{{ $t('btnSave') }}</v-btn>
+        >{{ localeWords['btnSave'] }}</v-btn>
         <v-spacer></v-spacer>
-        <v-btn x-large color="primary"> {{ $t('btnDownload') }}</v-btn>
+        <v-btn x-large color="primary"> {{ localeWords['btnGetXSLT'] }}</v-btn>
       </v-card-actions>
     </v-card>
     
@@ -101,6 +101,7 @@ export default {
   },
   computed: {
     languages: get("languageStore/languages"),
+    localeWords: get("languageStore/localeWordDict"),
     //...get("languageStore"),
     // fills invoice words in combo box in invoice translation
     invoicewords: get("languageStore/invoiceWords"),
