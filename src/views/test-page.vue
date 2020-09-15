@@ -48,7 +48,7 @@
         <v-col cols="12" sm="8" md="12">
           <v-text-field
             readonly
-            :label="localeWords['TxtTranslationDisplayed']"
+            :label="localeWords['txtTranslationDisplayed']"
             large
             outlined
             color="black"

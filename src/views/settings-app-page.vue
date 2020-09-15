@@ -31,7 +31,7 @@
       <v-card-actions>
         <v-col cols="12" sm="6" md="8">
           <br />
-          <v-text-field name="txtReTranslation" :placeholder="localeWords['txtReplace']" filled></v-text-field>
+          <v-text-field name="txtReTranslation" :placeholder="localeWords['TxtReplace']" filled></v-text-field>
         </v-col>
 
         <v-btn
