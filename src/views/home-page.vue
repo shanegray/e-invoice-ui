@@ -80,7 +80,7 @@ import { call, get } from "vuex-pathify";
 export default {
   data() {
     return {
-      fromSelectedItem: "",
+      fromSelectedItem: "xx",
       toSelectedItem: "",
       saving: false,
       XMLFile: null,
@@ -88,6 +88,7 @@ export default {
     };
   },
   async created() {
+    this.toSelectedItem=this.localeCode;
     //await this.loadLanguages();
   },
   methods: {

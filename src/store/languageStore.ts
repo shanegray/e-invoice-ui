@@ -19,15 +19,14 @@ interface LanguageState {
   languages: LanguageByCode[];
   nativeLanguages: LanguageByCode[];
   selectedLocaleCode: string;
-  //localeLanguageComboBox: string;
- // fromLanguageComboBox: string;
- 
+
+  menuItems: [object,object,object,object];
   Translation: string;
 
   invoiceWords: [];
   localeWordDict: [];
   localeWordArray: [];
- // invoiceTranslatedLanguages: [];
+
 }
 
 const state: LanguageState = {
@@ -35,14 +34,19 @@ const state: LanguageState = {
   nativeLanguages:[],
   
   selectedLocaleCode: "en",
- // fromLanguageComboBox: "From:",
-  //localeLanguageComboBox: "English",
+ 
+  menuItems: [
+    { title: 'Create', icon: 'mdi-file-edit-outline', url: "/" },
+    { title: 'Test Translation', icon: 'mdi-file-document-outline', url: "/test" },
+    { title: 'Invoice Settings', icon: 'mdi-cog-outline', url: "/invoicesettings" },
+    { title: 'App Settings', icon: 'mdi-cogs', url: "/appsettings" },
+    // { title: 'example', icon: 'mdi-cog-outline', url: "/example" },
+  ],
   Translation: "",
 
   invoiceWords: [],
   localeWordDict: [],
-  localeWordArray: [],
- // invoiceTranslatedLanguages: [],
+  localeWordArray: []
 }
 
 const mutations = make.mutations(state);
@@ -58,16 +62,6 @@ const actions = {
     //console.log("languages set" )
   },
 
-  /* async loadInvoiceTranslatedLanguages({ commit } ) {  
- 
-    const url = 
-    `https://einvoicetranslatorweb.azurewebsites.net/api/fileapi/gettranslatedlanguages`
-    const { data } = await axios.get(url);
-    
-    commit("SET_LANGUAGES", data)
-    //console.log("languages set" )
-  }, */
-
   async fillInvoiceWords({ commit } ) {  
    console.log("fillInvoiceWords")
     const url = 
@@ -80,29 +74,22 @@ const actions = {
   },
 
   async fillLocaleWords({ commit } ) {  
-    //TODO fix words coming back as [object object] might have to make a v2 version
+    
     const url = 
     `https://einvoicetranslatorweb.azurewebsites.net/api/locale/getlocaletranslationv2/?languageCode=${state.selectedLocaleCode}`
     
     const { data } = await axios.get(url);
     
     commit("SET_LOCALE_WORD_DICT", data)
+    commit("SET_MENU_ITEMS",
+    [
+      { title: state.localeWordDict['navbarCreate'], icon: 'mdi-file-edit-outline', url: "/" },
+      { title: state.localeWordDict['navbarTest'], icon: 'mdi-file-document-outline', url: "/test" },
+      { title: state.localeWordDict['navbarInvoice'], icon: 'mdi-cog-outline', url: "/invoicesettings" },
+      { title: state.localeWordDict['navbarApp'], icon: 'mdi-cogs', url: "/appsettings" }
+    ])
    
-    console.log("fromLabel :" + data['fromLabel'])
   },
-
-  /* async loadAppComponentLocale({ commit, state} ) {  
- 
-    const url = 
-    `https://einvoicetranslatorweb.azurewebsites.net//api/locale/gettranslatedlocalev2/?LanguageCode=${state.selectedLocaleCode}`
-    const { data } = await axios.get(url);
-    
-    commit("SET_APP_COMPONENT_LANGUAGES", data);
-    //this.$i18n.locale=this.state.selectedLocaleCode;
-    //this.i18n.messages=data;
-    console.log(`App languages set for ${state.selectedLocaleCode}` )
-  }, */
-
 
   async loadNativeLanguages({ commit }) {
     const { data } = await axios.get("https://einvoicetranslatorweb.azurewebsites.net/api/locale/getNativeLanguageNamesFilev2/");
@@ -161,16 +148,6 @@ const actions = {
     return response.data    
   },
 
-  /* async fillTranslation({ commit }, data ) {  
-    console.log("data:" + data)
-    
-    const nroute="api/translate/gettranslationv2";
-    console.log("route: " + nroute)
-
-    const response = await axios.post(`https://einvoicetranslatorweb.azurewebsites.net/${nroute}`, data )
-    return response.data
-  }, */
-  
 }
 
 export default {

@@ -1,7 +1,7 @@
 <template>
   <v-list dense nav>
     <v-list-item 
-      v-for="item in items" 
+      v-for="item in localeMenuItems" 
       :key="item.title" 
       :to="item.url"
       link>
@@ -16,17 +16,25 @@
 </template>
 
 <script>
+
+import {  get } from "vuex-pathify";
 export default {
   data() {
     return {
-      items: [
+      /* items: [
         { title: 'Create', icon: 'mdi-file-edit-outline', url: "/" },
         { title: 'Test Translation', icon: 'mdi-file-document-outline', url: "/test" },
         { title: 'Invoice Settings', icon: 'mdi-cog-outline', url: "/invoicesettings" },
         { title: 'App Settings', icon: 'mdi-cogs', url: "/appsettings" },
         // { title: 'example', icon: 'mdi-cog-outline', url: "/example" },
-      ]
+      ] */
     }
+  },
+ 
+  
+  computed: {
+    localeMenuItems: get("languageStore/menuItems"),
+  
   },
 };
 </script>
