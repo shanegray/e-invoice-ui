@@ -8,7 +8,7 @@
       action="https://einvoicetranslatorweb.azurewebsites.net/api/translate/convertxml2htmlv2"
     >
       <v-card>
-        <v-card-title>Translate Invoice from {{fromSelectedItem}} to {{toSelectedItem}}</v-card-title>
+        <v-card-title>{{localeWords['CreateInvoiceTitle']}}</v-card-title>
         <v-card-text>
           <v-container class="pa-0">
             <v-row>
