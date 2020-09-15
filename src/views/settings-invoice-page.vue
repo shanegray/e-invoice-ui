@@ -1,11 +1,11 @@
 <template>
   <div>
     <v-card class="mb-8">
-      <v-card-title>{{localeWords['InvoiceTitle']}}</v-card-title>
+      <v-card-title class="ml-4">{{localeWords['InvoiceTitle']}}</v-card-title>
       <v-card-text>
         <v-container class="pa-0">
           <v-row>
-            <v-col cols="12" sm="6" md="4">
+            <!-- <v-col cols="12" sm="6" md="4">
               <v-select name="ToLanguage" :label="localeWords['labelSelectLang']"
                 v-model="toLanguageCode" 
                  @change="SetInvoiceWords"
@@ -14,9 +14,9 @@
                 item-value="code"
               />
             </v-col>
-            <v-spacer/>
+            <v-spacer/> -->
             <v-col cols="12" sm="6" md="4">
-              <v-select
+              <v-select class="ml-4"
                 v-model="SelectedWord"
                 :label="localeWords['Cmb4ReTranslate']"
                 :items="invoicewords"

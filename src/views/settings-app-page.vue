@@ -2,11 +2,11 @@
 <template>
   <div>
     <v-card>
-      <v-card-title>{{localeWords['AppTitle']}}</v-card-title>
+      <v-card-title class="ml-4">{{localeWords['AppTitle']}}</v-card-title>
       <v-card-text>
         <v-container class="pa-0">
           <v-row>
-            <v-col cols="12" sm="6" md="4">
+            <!-- <v-col cols="12" sm="6" md="4">
               <v-select
                 v-model="selectedLocaleWord"
                 :label="localeWords['labelSelectLang']"
@@ -16,10 +16,10 @@
                 @change="SetStoreLocaleWordArray"
               />
             </v-col>
-            <v-spacer/>
+            <v-spacer/> -->
             
             <v-col cols="12" sm="6" md="4">
-                <v-select
+                <v-select class="ml-4"
                     v-model="wordToTranslate"
                     :items="GetLocaleWordArray"
                     :label="localeWords['Cmb4ReTranslate']"
