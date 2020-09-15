@@ -75,7 +75,7 @@ export default {
     };
   },
   async created() {
-    await this.loadLanguages();
+    //await this.loadLanguages();
   },
   methods: {
     loadLanguages: call("languageStore/loadLanguages"),

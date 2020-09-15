@@ -88,7 +88,7 @@ export default {
     };
   },
   async created() {
-    await this.loadLanguages();
+    //await this.loadLanguages();
   },
   methods: {
     async saveMe() {
