@@ -22,7 +22,7 @@
             </v-col>
             <v-spacer />
             <v-col cols="12" sm="6" md="4">
-              <v-select
+              <v-select class="ml-4"
                 :label="localeWords['ToLanguage']"
                 v-model="toLanguageCode"
                 :items="languages"
