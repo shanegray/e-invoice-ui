@@ -66,8 +66,8 @@ export default {
   async created() {
     //await this.loadLanguages();
     //await this.fillInvoiceWords();
-    this.toLanguageCode = this.localeCode;
-    await this.SetLocaleWordArray(this.selectedWord);
+    // this.toLanguageCode = this.localeCode;
+    // await this.SetLocaleWordArray(this.selectedWord);
   },
   methods: {
     // getTranslatedWord: get("selectedWord")  ,
@@ -77,24 +77,15 @@ export default {
     async SetInvoiceWords() {
       await this.fillInvoiceWords();
     },
-    async SetStoreLocaleWordArray(){
-      await this.SetLocaleWordArray(this.selectedWord);
-    },
+    // async SetStoreLocaleWordArray(){
+    //   await this.SetLocaleWordArray(this.selectedWord);
+    // },
     //loadLanguages: call("languageStore/loadLanguages"),
 
-    ...call("languageStore", ["saveSomething"]),
-    async saveMe() {
-      this.saving = true;
+    // ...call("languageStore", ["saveSomething"]),
+    // async saveMe() {
+    //   this.saving = true;
 
-      try {
-        await this.saveSomething({
-          FileContents: "this is OK",
-          FileName: "test.txt",
-        });
-      } finally {
-        this.saving = false;
-      }
-    },
     ...call("languageStore", ["UpdateInvoiceTranslation"]),
     async updateTranslation() {
       const translateObject={SelectedWord: this.selectedWord, TranslatedWord: this.replacementWord }
@@ -109,7 +100,7 @@ export default {
   computed: {
     //languages: get("languageStore/languages"),
     localeWords: get("languageStore/localeWordDict"),
-    localeCode: get("languageStore/selectedLocaleCode"),
+    //localeCode: get("languageStore/selectedLocaleCode"),
     //...get("languageStore"),
     // fills invoice words in combo box in invoice translation
     invoicewords: get("languageStore/invoiceWords"),
