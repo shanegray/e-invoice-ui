@@ -97,7 +97,7 @@ const actions = {
   },
   selectLocaleCode({ commit }, code) {
     commit("SET_SELECTED_LOCALE_CODE", code);
-   // console.log("Local code = " + code );
+    console.log("SelectedLocaleCode: " + state.selectedLocaleCode );
   },
   async SetLocaleWordArray({ commit }) {
     console.log("running SetLocaleWordArray()")
@@ -106,21 +106,24 @@ const actions = {
     `https://einvoicetranslatorweb.azurewebsites.net/api/locale/getlocaletranslationv2/?languageCode=${state.selectedLocaleCode}`
     
     const { data } = await axios.get(url);
-    
+      console.log("Locale code: " + state.selectedLocaleCode)
  
       const LocaleWords=[];
       const lw = data
                       
-      console.log("lw: " + lw);
+      //console.log("lw: " + lw);
      Object.values(lw).forEach(function(value){
-        console.log("value: " + value)
+        //console.log("value: " + value)
         LocaleWords.push(value);
+        
     })
+    console.log("LocaleWords:" + LocaleWords[0])
     commit("SET_LOCALE_WORD_ARRAY", LocaleWords)
+    
   },
-  selectDefaultLocale({ commit }, code) {
-    commit("SET_SELECTED_LOCALE_CODE", code);
-  },
+  // selectDefaultLocale({ commit }, code) {
+  //   commit("SET_SELECTED_LOCALE_CODE", code);
+  // },
   /* saveSomething({ commit },  data) {
     console.log("data:" + data)
     const nroute="api/fileapi/savesomething/";

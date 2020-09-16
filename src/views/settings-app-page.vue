@@ -13,7 +13,7 @@
                 :items="languages"
                 item-text="name"
                 item-value="code"
-                @change="SetStoreLocaleWordArray"
+                @change="SetStoreLocaleWordArray" 
               />
             </v-col>
             <v-spacer/> -->
@@ -64,15 +64,13 @@ export default {
     //await this.loadLanguages();
     //await this.fillLocaleWords();
     //this.GetLocaleWordArray();
-    if (localStorage.localeCode) {
-      this.selectedLocaleWord = localStorage.localeCode;
-    }
-    await this.SetLocaleWordArray(this.selectedLocaleWord);
+   
+    await this.SetLocaleWordArray();
   },
   methods: {
 
      
-    loadLanguages: call("languageStore/loadLanguages"),
+    //loadLanguages: call("languageStore/loadLanguages"),
     ...call("languageStore", ["SetLocaleWordArray","selectedLocaleCode"]),
     //TODO fix list coming back properly
     async SetStoreLocaleWordArray(){
@@ -93,7 +91,7 @@ export default {
   }, 
   computed: {
    
-    languages: get("languageStore/languages"),
+    //languages: get("languageStore/languages"),
     localeWords: get("languageStore/localeWordDict"),
     //...get("languageStore"),
     localeCode: get("languageStore/selectedLocaleCode"),

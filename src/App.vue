@@ -53,14 +53,14 @@ export default {
     await this.setLocalCode();
     await this.loadNativeLanguages();
     await this.localeCodeSelected()
-
+    
     
   },
   
   methods: {
 
     async setLocalCode(){
-       //console.log("Browser Language = " + navigator.language.substr(0,2))
+       console.log("Browser Language = " + navigator.language.substr(0,2))
     if (localStorage.localeCode) {
       this.selectedLocaleCode = localStorage.localeCode;
     }
@@ -69,7 +69,12 @@ export default {
       //get browser locale
       this.selectedLocaleCode =  navigator.language.substr(0,2)
     }
-
+      console.log("This selected code: " + this.selectedLocaleCode)
+    },
+    ...call("languageStore", ["fillInvoiceWords"]),
+    
+     async SetInvoiceWords(){
+      await this.fillInvoiceWords();
     },
  
   ...call("languageStore", [ "loadNativeLanguages","selectLocaleCode","loadLanguages","fillLocaleWords"]),
