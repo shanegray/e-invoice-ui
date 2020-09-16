@@ -8,8 +8,8 @@
             <v-col cols="12" sm="6" md="6">
               <v-select
                 class="ml-4"
-                @click="SetInvoiceWords"
-                v-model="SelectedWord"
+               
+                v-model="selectedWord"
                 :label="localeWords['Cmb4ReTranslate']"
                 :items="invoicewords"
               />
@@ -32,11 +32,13 @@
       <v-card-actions>
         <v-col cols="12" sm="6" md="8">
           <br />
-          <v-text-field :placeholder="localeWords['TxtReplace']" filled></v-text-field>
+          <v-text-field 
+          v-model="replacementWord"
+          :placeholder="localeWords['TxtReplace']" filled></v-text-field>
         </v-col>
 
         <v-btn
-          @click="Translation()"
+          @click="updateTranslation()"
           class="ml-6"
           x-large
           color="green"
@@ -56,8 +58,8 @@ import { call, get } from "vuex-pathify";
 export default {
   data() {
     return {
-      SelectedWord: "",
-      toLanguageCode: "",
+      selectedWord: "",
+      replacementWord: "",
       saving: false,
     };
   },
@@ -93,24 +95,19 @@ export default {
         this.saving = false;
       }
     },
-    ...call("languageStore", ["fillTranslation"]),
-    async Translation() {
+    ...call("languageStore", ["UpdateInvoiceTranslation"]),
+    async updateTranslation() {
+      const translateObject={SelectedWord: this.selectedWord, TranslatedWord: this.replacementWord }
       try {
-        //TODO Fix so it sends actual language and language code
-        await this.fillTranslation({
-          TextToTranslate: `${this.SelectedWord}`,
-          ToLanguage: "",
-          ToLanguageCode: `${this.toLanguageCode}`,
-          FromLanguageCode: "en",
-          FromLanguage: "English",
-        });
+        this.saving = true;
+        await this.UpdateInvoiceTranslation(translateObject);
       } finally {
         this.saving = false;
       }
     },
   },
   computed: {
-    languages: get("languageStore/languages"),
+    //languages: get("languageStore/languages"),
     localeWords: get("languageStore/localeWordDict"),
     localeCode: get("languageStore/selectedLocaleCode"),
     //...get("languageStore"),

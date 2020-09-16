@@ -124,13 +124,12 @@ const actions = {
   // selectDefaultLocale({ commit }, code) {
   //   commit("SET_SELECTED_LOCALE_CODE", code);
   // },
-  /* saveSomething({ commit },  data) {
+   async UpdateInvoiceTranslation({ commit }, translateObject) {
+    const data = {"LanguageCode": state.selectedLocaleCode,  "Language": "xxxxxx",  "SelectedWord": translateObject.selectedWord, "TranslatedWord": translateObject.replacementWord}
     console.log("data:" + data)
-    const nroute="api/fileapi/savesomething/";
-    return axios.post(`https://einvoicetranslatorweb.azurewebsites.net/${nroute}`, data
-    
-    );
-  }, */
+    const nroute="api/translate/updateInvoicetranslation/";
+    return axios.post(`https://einvoicetranslatorweb.azurewebsites.net/${nroute}`, data);
+  }, 
 
   async invoiceCreate(  data) {
     console.log("data:" + data)
