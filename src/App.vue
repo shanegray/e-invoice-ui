@@ -52,9 +52,7 @@ export default {
   async created() {
     await this.setLocalCode();
     await this.loadNativeLanguages();
-    await this.localeCodeSelected()
-    
-    
+    await this.localeCodeSelected();
   },
   
   methods: {
@@ -77,16 +75,16 @@ export default {
       await this.fillInvoiceWords();
     },
  
-  ...call("languageStore", [ "loadNativeLanguages","selectLocaleCode","loadLanguages","fillLocaleWords"]),
+  ...call("languageStore", [ "loadNativeLanguages","selectLocaleCode","loadLanguages","fillLocaleWords", "SetLocaleWordArray"]),
    
    async localeCodeSelected() {
        
-       await this.selectLocaleCode(this.selectedLocaleCode)
-       , 
-       await this.loadLanguages()
-       await this.fillLocaleWords()
-      localStorage["localeCode"]=this.selectedLocaleCode
-       
+    await this.selectLocaleCode(this.selectedLocaleCode), 
+    await this.loadLanguages()
+    await this.fillLocaleWords()
+    await this.SetLocaleWordArray();
+
+    localStorage["localeCode"]=this.selectedLocaleCode       
     }
     },
 

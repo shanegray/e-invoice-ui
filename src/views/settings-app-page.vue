@@ -53,7 +53,7 @@ import { call, get } from "vuex-pathify";
 export default {
   data() {
     return {
-      selectedLocaleWord: "",
+      // selectedLocaleWord: "",
       wordToTranslate:"",
      // selectedItem: "",
       saving: false,
@@ -65,36 +65,36 @@ export default {
     //await this.fillLocaleWords();
     //this.GetLocaleWordArray();
    
-    await this.SetLocaleWordArray();
+    // await this.SetLocaleWordArray();
   },
   methods: {
 
      
-    //loadLanguages: call("languageStore/loadLanguages"),
-    ...call("languageStore", ["SetLocaleWordArray","selectedLocaleCode"]),
-    //TODO fix list coming back properly
-    async SetStoreLocaleWordArray(){
-      await this.SetLocaleWordArray(this.selectedLocaleWord);
-    }
+    // //loadLanguages: call("languageStore/loadLanguages"),
+    // ...call("languageStore", ["SetLocaleWordArray","selectedLocaleCode"]),
+    // //TODO fix list coming back properly
+    // async SetStoreLocaleWordArray(){
+    //   await this.SetLocaleWordArray(this.selectedLocaleCode);
+    // }
     
-    //fillLocaleWords : call("languageStore/fillLocaleWords"),
-    /* async saveMe() {
-      this.saving = true;
+    // //fillLocaleWords : call("languageStore/fillLocaleWords"),
+    // /* async saveMe() {
+    //   this.saving = true;
 
-      try {
-        await this.saveSomething({FileContents: "this is OK", FileName:"test.txt"},"api/fileapi/savesomething/");
-      }
-      finally {
-        this.saving = false;
-      }
-    }*/
+    //   try {
+    //     await this.saveSomething({FileContents: "this is OK", FileName:"test.txt"},"api/fileapi/savesomething/");
+    //   }
+    //   finally {
+    //     this.saving = false;
+    //   }
+    // }*/
   }, 
   computed: {
    
     //languages: get("languageStore/languages"),
     localeWords: get("languageStore/localeWordDict"),
     //...get("languageStore"),
-    localeCode: get("languageStore/selectedLocaleCode"),
+    //localeCode: get("languageStore/selectedLocaleCode"),
     // fills words in combo box in app translation (Needs to be fixed)
     GetLocaleWordArray: get("languageStore/localeWordArray")
     
