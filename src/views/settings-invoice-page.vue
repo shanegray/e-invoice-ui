@@ -64,8 +64,8 @@ export default {
   async created() {
     //await this.loadLanguages();
     //await this.fillInvoiceWords();
-    this.toLanguageCode = this.localeCode;
-    await this.SetLocaleWordArray(this.selectedWord);
+    // this.toLanguageCode = this.localeCode;
+    // await this.SetLocaleWordArray(this.selectedWord);
   },
   methods: {
     // getTranslatedWord: get("selectedWord")  ,
@@ -75,44 +75,44 @@ export default {
     async SetInvoiceWords() {
       await this.fillInvoiceWords();
     },
-    async SetStoreLocaleWordArray(){
-      await this.SetLocaleWordArray(this.selectedWord);
-    },
+    // async SetStoreLocaleWordArray(){
+    //   await this.SetLocaleWordArray(this.selectedWord);
+    // },
     //loadLanguages: call("languageStore/loadLanguages"),
 
-    ...call("languageStore", ["saveSomething"]),
-    async saveMe() {
-      this.saving = true;
+    // ...call("languageStore", ["saveSomething"]),
+    // async saveMe() {
+    //   this.saving = true;
 
-      try {
-        await this.saveSomething({
-          FileContents: "this is OK",
-          FileName: "test.txt",
-        });
-      } finally {
-        this.saving = false;
-      }
-    },
-    ...call("languageStore", ["fillTranslation"]),
-    async Translation() {
-      try {
-        //TODO Fix so it sends actual language and language code
-        await this.fillTranslation({
-          TextToTranslate: `${this.SelectedWord}`,
-          ToLanguage: "",
-          ToLanguageCode: `${this.toLanguageCode}`,
-          FromLanguageCode: "en",
-          FromLanguage: "English",
-        });
-      } finally {
-        this.saving = false;
-      }
-    },
+    //   try {
+    //     await this.saveSomething({
+    //       FileContents: "this is OK",
+    //       FileName: "test.txt",
+    //     });
+    //   } finally {
+    //     this.saving = false;
+    //   }
+    // },
+    // ...call("languageStore", ["fillTranslation"]),
+    // async Translation() {
+    //   try {
+    //     //TODO Fix so it sends actual language and language code
+    //     await this.fillTranslation({
+    //       TextToTranslate: `${this.SelectedWord}`,
+    //       ToLanguage: "",
+    //       ToLanguageCode: `${this.toLanguageCode}`,
+    //       FromLanguageCode: "en",
+    //       FromLanguage: "English",
+    //     });
+    //   } finally {
+    //     this.saving = false;
+    //   }
+    // },
   },
   computed: {
-    languages: get("languageStore/languages"),
+    //languages: get("languageStore/languages"),
     localeWords: get("languageStore/localeWordDict"),
-    localeCode: get("languageStore/selectedLocaleCode"),
+    //localeCode: get("languageStore/selectedLocaleCode"),
     //...get("languageStore"),
     // fills invoice words in combo box in invoice translation
     invoicewords: get("languageStore/invoiceWords"),
