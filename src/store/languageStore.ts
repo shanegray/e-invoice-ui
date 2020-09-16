@@ -129,14 +129,14 @@ const actions = {
     );
   }, */
 
-  async invoiceCreate({ commit },  data) {
+  async invoiceCreate(  data) {
     console.log("data:" + data)
     const nroute="api/translate/convertxml2html";
     const response = await axios.post(`https://einvoicetranslatorweb.azurewebsites.net/${nroute}`, data);
     return response.data
   },
 
-  async testTranslation({ commit, state},  request) {
+  async testTranslation({ commit},  request) {
     console.log("data:" + request)
     
     const nroute="api/translate/testpage/";
