@@ -9,11 +9,27 @@
     >
       <v-card>
         <v-card-title class="ml-4">{{localeWords['CreateInvoiceTitle']}}</v-card-title>
+
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col cols="12" sm="4" md="6">
+                <v-file-input
+                  v-model="XMLFile"
+                  name="attachment"
+                  prepend-icon
+                  :placeholder="localeWords['inptUpload']"
+                ></v-file-input>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card-text>
+
         <v-card-text>
           <v-container class="pa-0">
             <v-row>
-              <v-col cols="12" sm="4" md="6">
-                <v-select 
+              <v-col cols="12" sm="3" md="4">
+                <v-select
                   class="ml-3"
                   name="FromLanguageCode"
                   v-model="fromSelectedItem"
@@ -24,8 +40,9 @@
                 />
               </v-col>
               <v-spacer />
-              <v-col cols="12" sm="4" md="6">
-                <v-select class="ml-3"
+              <v-col cols="12" sm="3" md="4">
+                <v-select
+                  class="ml-3"
                   name="ToLanguageCode"
                   v-model="toSelectedItem"
                   :label="localeWords['ToLanguage']"
@@ -37,21 +54,16 @@
             </v-row>
           </v-container>
         </v-card-text>
-        
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col cols="12" sm="4" md="6">
-                <v-file-input v-model="XMLFile" name="attachment" prepend-icon :placeholder="localeWords['inptUpload']"></v-file-input>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card-text>
 
         <v-card-text>
           <v-container class="ml-3">
             <v-row>
-              <v-btn :loading="saving" @click="submit" color="green darken-2" dark>{{localeWords['btnConvert']}}</v-btn>
+              <v-btn
+                :loading="saving"
+                @click="submit"
+                color="green darken-2"
+                dark
+              >{{localeWords['btnConvert']}}</v-btn>
               <v-spacer />
             </v-row>
           </v-container>
@@ -59,8 +71,12 @@
       </v-card>
 
       <v-card v-show="HTMLdownloaded">
-        <v-card-title ><v-spacer />{{localeWords['DownloadTitle']}}<v-spacer /></v-card-title>
-        <v-card-actions>          
+        <v-card-title>
+          <v-spacer />
+          {{localeWords['DownloadTitle']}}
+          <v-spacer />
+        </v-card-title>
+        <v-card-actions>
           <v-spacer />
           <v-btn color="primary">{{ localeWords['btnGetXML']}}</v-btn>
           <v-spacer />
@@ -88,7 +104,7 @@ export default {
     };
   },
   async created() {
-    this.toSelectedItem=this.localeCode;
+    this.toSelectedItem = this.localeCode;
     //await this.loadLanguages();
   },
   methods: {
@@ -96,21 +112,22 @@ export default {
       this.saving = true;
 
       try {
-        await this.saveSomething({FileContents: "this is OK", FileName:"test.txt"},"api/fileapi/savesomething/");
-      }
-      finally {
+        await this.saveSomething(
+          { FileContents: "this is OK", FileName: "test.txt" },
+          "api/fileapi/savesomething/"
+        );
+      } finally {
         this.saving = false;
       }
     },
 
-    submit : function(){
+    submit: function () {
       this.saving = true;
-      try{
-      this.$refs.form.$el.submit()
-      console.log("The form Data ", this.XMLFile.FileName)
-      this.HTMLdownloaded = true;
-      }
-      finally{
+      try {
+        this.$refs.form.$el.submit();
+        console.log("The form Data ", this.XMLFile.FileName);
+        this.HTMLdownloaded = true;
+      } finally {
         this.saving = false;
       }
     },
