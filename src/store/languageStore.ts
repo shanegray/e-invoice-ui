@@ -99,11 +99,11 @@ const actions = {
     commit("SET_SELECTED_LOCALE_CODE", code);
    // console.log("Local code = " + code );
   },
-  async SetLocaleWordArray({ commit }, languageCode) {
+  async SetLocaleWordArray({ commit }) {
     console.log("running SetLocaleWordArray()")
 
     const url = 
-    `https://einvoicetranslatorweb.azurewebsites.net/api/locale/getlocaletranslationv2/?languageCode=${languageCode}`
+    `https://einvoicetranslatorweb.azurewebsites.net/api/locale/getlocaletranslationv2/?languageCode=${state.selectedLocaleCode}`
     
     const { data } = await axios.get(url);
     
