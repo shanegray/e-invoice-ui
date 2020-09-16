@@ -14,21 +14,10 @@
                 :items="invoicewords"
               />
             </v-col>
-
-            <!-- <v-col cols="12" sm="6" md="6">
-              <v-select
-                name="ToLanguage"
-                :label="localeWords['labelSelectLang']"
-                v-model="toLanguageCode"
-                @change="SetInvoiceWords"
-                :items="languages"
-                item-text="name"
-                item-value="code"
-              />
-            </v-col> -->
           </v-row>
         </v-container>
       </v-card-text>
+
       <v-card-actions>
         <v-col cols="12" sm="6" md="8">
           <br />
@@ -47,6 +36,7 @@
         <v-spacer></v-spacer>
         <v-btn x-large color="primary">{{ localeWords['btnGetXSLT'] }}</v-btn>
       </v-card-actions>
+
     </v-card>
   </div>
 </template>
@@ -63,34 +53,14 @@ export default {
       saving: false,
     };
   },
-  async created() {
-    //await this.loadLanguages();
-    //await this.fillInvoiceWords();
-    // this.toLanguageCode = this.localeCode;
-    // await this.SetLocaleWordArray(this.selectedWord);
-  },
+ 
   methods: {
-    // getTranslatedWord: get("selectedWord")  ,
-    // localeCode: get("languageStore/selectedLocaleCode"),
-    ...call("languageStore", ["fillInvoiceWords"]),
-
-    async SetInvoiceWords() {
-      await this.fillInvoiceWords();
-    },
-    // async SetStoreLocaleWordArray(){
-    //   await this.SetLocaleWordArray(this.selectedWord);
-    // },
-    //loadLanguages: call("languageStore/loadLanguages"),
-
-    // ...call("languageStore", ["saveSomething"]),
-    // async saveMe() {
-    //   this.saving = true;
-
+   
     ...call("languageStore", ["UpdateInvoiceTranslation"]),
     async updateTranslation() {
-      const translateObject={SelectedWord: this.selectedWord, TranslatedWord: this.replacementWord }
+      this.saving = true;
+      const translateObject={SelectedWord: this.selectedWord, TranslatedWord: this.replacementWord };
       try {
-        this.saving = true;
         await this.UpdateInvoiceTranslation(translateObject);
       } finally {
         this.saving = false;
@@ -98,11 +68,9 @@ export default {
     },
   },
   computed: {
-    //languages: get("languageStore/languages"),
+    
     localeWords: get("languageStore/localeWordDict"),
-    //localeCode: get("languageStore/selectedLocaleCode"),
-    //...get("languageStore"),
-    // fills invoice words in combo box in invoice translation
+    
     invoicewords: get("languageStore/invoiceWords"),
   },
 };
