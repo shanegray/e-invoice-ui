@@ -7,13 +7,13 @@
       enctype="multipart/form-data"
       action="https://einvoicetranslatorweb.azurewebsites.net/api/translate/convertxml2htmlv2"
     >
-      <v-card>
+      <v-card class="mb-3">
         <v-card-title class="ml-4">{{localeWords['CreateInvoiceTitle']}}</v-card-title>
 
-        <v-card-text  class="py-0">
+        <v-card-text>
           <v-container class="py-0">
             <v-row>
-              <v-col cols="12" sm="4" md="6" class="pa-0">
+              <v-col cols="12" sm="4" md="6" class="pa-0, ml-3">
                 <v-file-input class="pa-0, ma-0"
                   v-model="XMLFile"
                   name="attachment"
@@ -28,8 +28,8 @@
         <v-card-text  class="py-0">
           <v-container class="py-0">
             <v-row>
-              <v-col cols="12" sm="3" md="4">
-                <v-select
+              <v-col hidden cols="12" sm="3" md="4">
+                <v-select 
                   class="ml-3"
                   name="FromLanguageCode"
                   v-model="fromSelectedItem"
@@ -39,7 +39,6 @@
                   item-value="code"
                 />
               </v-col>
-              <v-spacer />
               <v-col cols="12" sm="3" md="4">
                 <v-select
                   class="ml-3"
@@ -78,12 +77,11 @@
         </v-card-title>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="primary">{{ localeWords['btnGetXML']}}</v-btn>
+          <v-btn color="primary" class="mr-8"> <v-icon left>mdi-download</v-icon>{{ localeWords['btnGetXML']}}</v-btn>
+          <v-btn color="primary"> <v-icon left>mdi-download</v-icon>{{ localeWords['btnGetPDF']}}</v-btn>
           <v-spacer />
-          <v-btn color="primary">Get PDF</v-btn>
-          <v-spacer />
-          <v-btn color="primary">Get XSLT</v-btn>
-          <v-spacer />
+          <!-- <v-btn color="primary"> <v-icon left>mdi-download</v-icon>{{ localeWords['btnGetXSLT']}}</v-btn> -->
+          <!-- <v-spacer /> -->
         </v-card-actions>
       </v-card>
     </v-form>

@@ -67,8 +67,8 @@ const actions = {
     const url = 
     `https://einvoicetranslatorweb.azurewebsites.net/api/fileapi/getWords`
     const { data } = await axios.get(url);
-    console.log("data: " + data)
-    console.log("first invoice word: " + data[4])
+    //console.log("data: " + data)
+    //console.log("first invoice word: " + data[4])
     commit("SET_INVOICE_WORDS", data)
     
   },
@@ -117,7 +117,7 @@ const actions = {
         LocaleWords.push(value);
         
     })
-    console.log("LocaleWords:" + LocaleWords[0])
+    //console.log("LocaleWords:" + LocaleWords[0])
     commit("SET_LOCALE_WORD_ARRAY", LocaleWords)
     
   },
