@@ -68,7 +68,19 @@ export default {
       this.selectedLocaleCode =  navigator.language.substr(0,2)
     }
       console.log("This selected code: " + this.selectedLocaleCode)
+      let appId = 0
+      if (localStorage.appIdentifier) {
+      appId = localStorage.appIdentifier;
+       console.log("App Identifier in local storage " + localStorage.appIdentifier)
+    }
+    else
+    {
+       localStorage.appIdentifier = Math.floor(Math.random()*(100000000)+1)
+
+    }
+      console.log("App Identifier " + localStorage.appIdentifier)
     },
+    
     ...call("languageStore", ["fillInvoiceWords"]),
     
      async SetInvoiceWords(){

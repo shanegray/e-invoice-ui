@@ -10,11 +10,11 @@
       <v-card>
         <v-card-title class="ml-4">{{localeWords['CreateInvoiceTitle']}}</v-card-title>
 
-        <v-card-text>
-          <v-container>
+        <v-card-text  class="py-0">
+          <v-container class="py-0">
             <v-row>
-              <v-col cols="12" sm="4" md="6">
-                <v-file-input
+              <v-col cols="12" sm="4" md="6" class="pa-0">
+                <v-file-input class="pa-0, ma-0"
                   v-model="XMLFile"
                   name="attachment"
                   prepend-icon
@@ -25,8 +25,8 @@
           </v-container>
         </v-card-text>
 
-        <v-card-text>
-          <v-container class="pa-0">
+        <v-card-text  class="py-0">
+          <v-container class="py-0">
             <v-row>
               <v-col cols="12" sm="3" md="4">
                 <v-select

@@ -139,7 +139,7 @@ const actions = {
     console.log("data:" + translateLocale.SelectedWord)
     console.log("data:" + translateLocale.ReplacementWord)
     const nroute="api/locale/updatelocale/";
-    return axios.post(`https://localhost:44390/${nroute}`, Appdata);
+    return axios.post(`https://einvoicetranslatorweb.azurewebsites.net/${nroute}`, Appdata);
     
     // https://einvoicetranslatorweb.azurewebsites.net/
     // https://localhost:44390/

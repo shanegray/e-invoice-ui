@@ -5,19 +5,7 @@
       <v-card-title class="ml-4">{{localeWords['AppTitle']}}</v-card-title>
       <v-card-text>
         <v-container class="pa-0">
-          <v-row>
-            <!-- <v-col cols="12" sm="6" md="4">
-              <v-select
-                v-model="selectedLocaleWord"
-                :label="localeWords['labelSelectLang']"
-                :items="languages"
-                item-text="name"
-                item-value="code"
-                @change="SetStoreLocaleWordArray" 
-              />
-            </v-col>
-            <v-spacer/> -->
-            
+          <v-row>            
             <v-col cols="12" sm="4" md="6">
                 <v-select class="ml-4"
                     v-model="selectedLocaleWord"
@@ -55,9 +43,7 @@ export default {
     return {
       selectedLocaleWord: "",
       replacementLocaleWord: "",
-      // selectedLocaleWord: "",
       wordToTranslate:"",
-     // selectedItem: "",
       saving: false,
       localeWordArray:[]
     }
@@ -76,26 +62,12 @@ export default {
       this.saving = true;
       const translateLocale={SelectedWord: this.selectedLocaleWord, ReplacementWord: this.replacementLocaleWord };
       try {
-        // console.log("this.selectedWord: " + translateLocale.SelectedWord)
-        // console.log("translate Object: " + this.replacementWord)
         await this.UpdateAppTranslation(translateLocale);
         await this.SetLocaleWordArray();
       } finally {        
         this.saving = false;
       }
     },
-     
-    // //loadLanguages: call("languageStore/loadLanguages"),
-    // ...call("languageStore", ["SetLocaleWordArray","selectedLocaleCode"]),
-    // //TODO fix list coming back properly
-    // async SetStoreLocaleWordArray(){
-    //   await this.SetLocaleWordArray(this.selectedLocaleCode);
-    // }
-    
-    // //fillLocaleWords : call("languageStore/fillLocaleWords"),
-    // /* async saveMe() {
-    //   this.saving = true;
-
     //   try {
     //     await this.saveSomething({FileContents: "this is OK", FileName:"test.txt"},"api/fileapi/savesomething/");
     //   }
@@ -105,12 +77,8 @@ export default {
     // }*/
   }, 
   computed: {
-   
-    //languages: get("languageStore/languages"),
     localeWords: get("languageStore/localeWordDict"),
-    //...get("languageStore"),
-    //localeCode: get("languageStore/selectedLocaleCode"),
-    // fills words in combo box in app translation (Needs to be fixed)
+    // fills words in combo box in app translation (Needs to be fixed) p.s pretty sure it's fixed
     GetLocaleWordArray: get("languageStore/localeWordArray")
     
   },
