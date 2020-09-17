@@ -163,6 +163,40 @@ const actions = {
     commit("SET_TRANSLATION", response.data);
     return response.data    
   },
+  async Getpdf({ commit},userAppIdentification) {
+    console.log("userAppIdentification " + userAppIdentification)
+    axios({
+          url: `https://einvoicetranslatorweb.azurewebsites.net/api/fileapi/gettranslatedpdf/?userAppIdentification=${userAppIdentification}`,
+          method: 'GET',
+          responseType: 'blob',
+      }).then((response) => {
+           const fileURL = window.URL.createObjectURL(new Blob([response.data]));
+           const fileLink = document.createElement('a');
+
+           fileLink.href = fileURL;
+           fileLink.setAttribute('download', 'file.pdf');
+           document.body.appendChild(fileLink);
+
+           fileLink.click();
+      });
+},
+async Getxml({ commit},userAppIdentification) {
+  
+  axios({
+        url: `https://einvoicetranslatorweb.azurewebsites.net/api/fileapi/gettranslatedxml/?userAppIdentification=${userAppIdentification}`,
+        method: 'GET',
+        responseType: 'blob',
+    }).then((response) => {
+         const fileURL = window.URL.createObjectURL(new Blob([response.data]));
+         const fileLink = document.createElement('a');
+
+         fileLink.href = fileURL;
+         fileLink.setAttribute('download', 'file.xml');
+         document.body.appendChild(fileLink);
+
+         fileLink.click();
+    });
+},
 
 }
 

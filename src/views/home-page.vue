@@ -5,8 +5,9 @@
       target="_blank"
       method="post"
       enctype="multipart/form-data"
-      action="https://einvoicetranslatorweb.azurewebsites.net/api/translate/convertxml2htmlv2"
+      action="https://einvoicetranslatorweb.azurewebsites.net/api/translate/convertxml2htmlv3"
     >
+    <v-text-field hidden name="userAppIdentification" v-model="applicationIdentifier" />
       <v-card class="mb-3">
         <v-card-title class="ml-4">{{localeWords['CreateInvoiceTitle']}}</v-card-title>
 
@@ -78,12 +79,13 @@
         </v-card-title>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="primary" class="mr-8">
+          <v-btn color="primary" class="mr-8" @click="getXML">
             <v-icon left>mdi-download</v-icon>
             {{ localeWords['btnGetXML']}}
           </v-btn>
-          <v-btn color="primary">
+          <v-btn color="primary" @click="getPDF">
             <v-icon left>mdi-download</v-icon>
+            
             {{ localeWords['btnGetPDF']}}
           </v-btn>
           <v-spacer />
@@ -106,21 +108,42 @@ export default {
       saving: false,
       XMLFile: null,
       HTMLdownloaded: false,
+      applicationIdentifier: 0
     };
   },
   async created() {
     this.toSelectedItem = this.localeCode;
-    //await this.loadLanguages();
+    
+      if (localStorage.appIdentifier) 
+      {console.log("App Identifier found in storage " + localStorage.appIdentifier);}
+    else {
+          localStorage.appIdentifier = Math.floor(Math.random()*(100000000)+1)
+           console.log("App Identifier set in home page " + localStorage.appIdentifier);
+          }
+
+    this.applicationIdentifier = localStorage.appIdentifier;
+   
+    
   },
   methods: {
-    async saveMe() {
+     ...call("languageStore", ["Getpdf","Getxml"]),
+    async getPDF() {
       this.saving = true;
 
       try {
-        await this.saveSomething(
-          { FileContents: "this is OK", FileName: "test.txt" },
-          "api/fileapi/savesomething/"
-        );
+        console.log("this.applicationIdentifier " + this.applicationIdentifier)
+        await this.Getpdf(this.applicationIdentifier);
+      } finally {
+        this.saving = false;
+      }
+    },
+
+    async getXML() {
+      this.saving = true;
+
+      try {
+       
+        await this.Getxml(this.applicationIdentifier);
       } finally {
         this.saving = false;
       }

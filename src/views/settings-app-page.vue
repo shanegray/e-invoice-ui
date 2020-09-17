@@ -74,6 +74,7 @@ export default {
         ReplacementWord: this.replacementLocaleWord,
       };
       try {
+        
         await this.UpdateAppTranslation(translateLocale);
         await this.SetLocaleWordArray();
       } finally {
