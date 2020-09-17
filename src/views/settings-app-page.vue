@@ -20,7 +20,7 @@
             
             <v-col cols="12" sm="4" md="6">
                 <v-select class="ml-4"
-                    v-model="wordToTranslate"
+                    v-model="selectedLocaleWord"
                     :items="GetLocaleWordArray"
                     :label="localeWords['Cmb4ReTranslate']"
                 />
@@ -31,11 +31,11 @@
       <v-card-actions>
         <v-col cols="12" sm="6" md="8">
           <br />
-          <v-text-field name="txtReTranslation" :placeholder="localeWords['TxtReplace']" filled></v-text-field>
+          <v-text-field v-model="replacementLocaleWord" name="txtReTranslation" :placeholder="localeWords['TxtReplace']" filled></v-text-field>
         </v-col>
 
         <v-btn
-          :loading="saving"
+          @click="updateAppTranslation()"
           class="ml-6"
           x-large
           color="green"
@@ -53,6 +53,8 @@ import { call, get } from "vuex-pathify";
 export default {
   data() {
     return {
+      selectedLocaleWord: "",
+      replacementLocaleWord: "",
       // selectedLocaleWord: "",
       wordToTranslate:"",
      // selectedItem: "",
@@ -69,6 +71,19 @@ export default {
   },
   methods: {
 
+     ...call("languageStore", ["UpdateAppTranslation", "SetLocaleWordArray"]),
+    async updateAppTranslation() {
+      this.saving = true;
+      const translateLocale={SelectedWord: this.selectedLocaleWord, ReplacementWord: this.replacementLocaleWord };
+      try {
+        // console.log("this.selectedWord: " + translateLocale.SelectedWord)
+        // console.log("translate Object: " + this.replacementWord)
+        await this.UpdateAppTranslation(translateLocale);
+        await this.SetLocaleWordArray();
+      } finally {        
+        this.saving = false;
+      }
+    },
      
     // //loadLanguages: call("languageStore/loadLanguages"),
     // ...call("languageStore", ["SetLocaleWordArray","selectedLocaleCode"]),

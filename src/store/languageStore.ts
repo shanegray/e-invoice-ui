@@ -124,11 +124,25 @@ const actions = {
   // selectDefaultLocale({ commit }, code) {
   //   commit("SET_SELECTED_LOCALE_CODE", code);
   // },
-   async UpdateInvoiceTranslation({ commit }, translateObject) {
-    const data = {"LanguageCode": state.selectedLocaleCode,  "Language": "xxxxxx",  "SelectedWord": translateObject.selectedWord, "TranslatedWord": translateObject.replacementWord}
-    console.log("data:" + data)
+   async UpdateInvoiceTranslation({ commit }, translateInvoice) {
+    const data = {"LanguageCode": state.selectedLocaleCode,  "Language": "xxxxxx",  "SelectedWord": translateInvoice.SelectedWord, "TranslatedWord": translateInvoice.ReplacementWord}
+    console.log("data:" + translateInvoice.SelectedWord)
     const nroute="api/translate/updateInvoicetranslation/";
     return axios.post(`https://einvoicetranslatorweb.azurewebsites.net/${nroute}`, data);
+    
+    // https://einvoicetranslatorweb.azurewebsites.net/
+    // https://localhost:44390/
+  }, 
+
+  async UpdateAppTranslation({ commit }, translateLocale) {
+    const Appdata = {"LanguageCode": state.selectedLocaleCode,  "Language": "xxxxxx",  "SelectedWord": translateLocale.SelectedWord, "TranslatedWord": translateLocale.ReplacementWord}
+    console.log("data:" + translateLocale.SelectedWord)
+    console.log("data:" + translateLocale.ReplacementWord)
+    const nroute="api/locale/updatelocale/";
+    return axios.post(`https://localhost:44390/${nroute}`, Appdata);
+    
+    // https://einvoicetranslatorweb.azurewebsites.net/
+    // https://localhost:44390/
   }, 
 
   async invoiceCreate(  data) {

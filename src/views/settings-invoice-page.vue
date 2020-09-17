@@ -56,13 +56,16 @@ export default {
  
   methods: {
    
-    ...call("languageStore", ["UpdateInvoiceTranslation"]),
+    ...call("languageStore", ["UpdateInvoiceTranslation", "fillInvoiceWords"]),
     async updateTranslation() {
       this.saving = true;
-      const translateObject={SelectedWord: this.selectedWord, TranslatedWord: this.replacementWord };
+      const translateObject={SelectedWord: this.selectedWord, ReplacementWord: this.replacementWord };
       try {
+        console.log("this.selectedWord: " + this.selectedWord)
+        console.log("translate Object: " + translateObject.SelectedWord)
         await this.UpdateInvoiceTranslation(translateObject);
-      } finally {
+        await this.fillInvoiceWords();
+      } finally {        
         this.saving = false;
       }
     },

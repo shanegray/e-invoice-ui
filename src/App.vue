@@ -83,6 +83,7 @@ export default {
     await this.loadLanguages()
     await this.fillLocaleWords()
     await this.SetLocaleWordArray();
+    await this.fillInvoiceWords();
 
     localStorage["localeCode"]=this.selectedLocaleCode       
     }
