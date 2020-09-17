@@ -14,7 +14,8 @@
           <v-container class="py-0">
             <v-row>
               <v-col cols="12" sm="4" md="6" class="pa-0, ml-3">
-                <v-file-input class="pa-0, ma-0"
+                <v-file-input
+                  class="pa-0, ma-0"
                   v-model="XMLFile"
                   name="attachment"
                   prepend-icon
@@ -25,11 +26,11 @@
           </v-container>
         </v-card-text>
 
-        <v-card-text  class="py-0">
+        <v-card-text class="py-0">
           <v-container class="py-0">
             <v-row>
               <v-col hidden cols="12" sm="3" md="4">
-                <v-select 
+                <v-select
                   class="ml-3"
                   name="FromLanguageCode"
                   v-model="fromSelectedItem"
@@ -60,7 +61,7 @@
               <v-btn
                 :loading="saving"
                 @click="submit"
-                color="green darken-2"
+                color="green"
                 dark
               >{{localeWords['btnConvert']}}</v-btn>
               <v-spacer />
@@ -77,8 +78,14 @@
         </v-card-title>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="primary" class="mr-8"> <v-icon left>mdi-download</v-icon>{{ localeWords['btnGetXML']}}</v-btn>
-          <v-btn color="primary"> <v-icon left>mdi-download</v-icon>{{ localeWords['btnGetPDF']}}</v-btn>
+          <v-btn color="primary" class="mr-8">
+            <v-icon left>mdi-download</v-icon>
+            {{ localeWords['btnGetXML']}}
+          </v-btn>
+          <v-btn color="primary">
+            <v-icon left>mdi-download</v-icon>
+            {{ localeWords['btnGetPDF']}}
+          </v-btn>
           <v-spacer />
           <!-- <v-btn color="primary"> <v-icon left>mdi-download</v-icon>{{ localeWords['btnGetXSLT']}}</v-btn> -->
           <!-- <v-spacer /> -->
