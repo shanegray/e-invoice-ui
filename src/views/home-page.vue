@@ -72,18 +72,16 @@
       </v-card>
 
       <v-card v-show="HTMLdownloaded">
-        <v-card-title>
-          <v-spacer />
+        <v-card-title class="ml-6">
           {{localeWords['DownloadTitle']}}
           <v-spacer />
         </v-card-title>
         <v-card-actions>
-          <v-spacer />
-          <v-btn color="primary" class="mr-8" @click="getXML">
+          <v-btn color="primary" class="ml-8" @click="getXML">
             <v-icon left>mdi-download</v-icon>
             {{ localeWords['btnGetXML']}}
           </v-btn>
-          <v-btn color="primary" @click="getPDF">
+          <v-btn class="ml-8" color="primary" @click="getPDF">
             <v-icon left>mdi-download</v-icon>
             
             {{ localeWords['btnGetPDF']}}
