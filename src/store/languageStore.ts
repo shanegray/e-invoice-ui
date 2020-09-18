@@ -104,13 +104,8 @@ const actions = {
     `api/locale/getlocaletranslationv2/?languageCode=${state.selectedLocaleCode}`
     
     const { data } = await axios.get(url);
-<<<<<<< HEAD
-      //console.log("Locale code: " + state.selectedLocaleCode)
- 
-=======
       console.log("Locale code: " + state.selectedLocaleCode)
   */
->>>>>>> da46733e5f3abd1ae6aacbdaef6235082940572d
       const LocaleWords=[];
       const lw = state.localeWordDict;
                       
@@ -157,13 +152,8 @@ const actions = {
     const nroute="api/translate/testpage/";
     //console.log("route: " + nroute)
 
-<<<<<<< HEAD
     const response = await axios.post(`https://einvoicetranslatorweb.azurewebsites.net/${nroute}`, request )
     //console.log("response.data:" + response.data)
-=======
-    const response = await axios.post(`${nroute}`, request )
-    console.log("response.data:" + response.data)
->>>>>>> da46733e5f3abd1ae6aacbdaef6235082940572d
     commit("SET_TRANSLATION", response.data);
     return response.data    
   },
