@@ -51,7 +51,7 @@ const mutations = make.mutations(state);
 
 const actions = {
   async loadLanguages({ commit, state} ) {  
- 
+    console.log(`state.selectedLocaleCode for loadlanguages: ${state.selectedLocaleCode}` )
     const url = 
     `api/locale/getLanguageNamesByCodev2?LanguageCode=${state.selectedLocaleCode}`
     const { data } = await axios.get(url);
@@ -100,14 +100,14 @@ const actions = {
   async SetLocaleWordArray({ commit }) {
     console.log("running SetLocaleWordArray()")
 
-    const url = 
+    /* const url = 
     `api/locale/getlocaletranslationv2/?languageCode=${state.selectedLocaleCode}`
     
     const { data } = await axios.get(url);
       console.log("Locale code: " + state.selectedLocaleCode)
- 
+  */
       const LocaleWords=[];
-      const lw = data
+      const lw = state.localeWordDict;
                       
       //console.log("lw: " + lw);
      Object.values(lw).forEach(function(value){
