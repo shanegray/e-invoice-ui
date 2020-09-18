@@ -2,15 +2,15 @@
   <div>
     <v-card class="mb-8">
       <v-card-text>
-        <v-col cols="12" sm="6" md="8">
+        <v-col cols="12" sm="6" md="8" class="py-0">
           <v-text-field :placeholder="localeWords['TxtToTranslate']" filled v-model="textToTranslate"></v-text-field>
         </v-col>
       </v-card-text>
 
       <v-card-text>
-        <v-container class="pa-0">
+        <v-container class="py-0">
           <v-row>
-            <v-col cols="12" sm="6" md="4">
+            <v-col cols="12" sm="6" md="4" class="py-0">
               <v-select
                 class="ml-4"
                 v-model="fromLanguageCode"

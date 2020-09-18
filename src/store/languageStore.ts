@@ -2,8 +2,8 @@
 import axios from 'axios';
 import { make } from "vuex-pathify";
 
-axios.defaults.baseURL = "https://localhost:44390/" //https://einvoicetranslatorweb.azurewebsites.net/
-
+// axios.defaults.baseURL = "https://localhost:44390/" https://einvoicetranslatorweb.azurewebsites.net/
+axios.defaults.baseURL = "https://einvoicetranslatorweb.azurewebsites.net/"
 interface LanguageByCode {
   name: string;
   code: string;
