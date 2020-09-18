@@ -3,7 +3,7 @@
     <v-card class="mb-8">
       <v-card-text>
         <v-col cols="12" sm="6" md="8" class="py-0">
-          <v-text-field :placeholder="localeWords['TxtToTranslate']" filled v-model="textToTranslate"></v-text-field>
+          <v-text-field class="py-0" :placeholder="localeWords['TxtToTranslate']" filled v-model="textToTranslate"></v-text-field>
         </v-col>
       </v-card-text>
 
