@@ -1,10 +1,8 @@
-//import { messages } from '@/i18n';
-//import { VueI18n } from 'vue-i18n';
-//import { i18n } from '@/plugins/i18n';
-//import { messages } from '@/i18n';
+
 import axios from 'axios';
 import { make } from "vuex-pathify";
-//import enData from "@/i18n/LanguageFileEN.json"
+
+axios.defaults.baseURL = "https://localhost:44390/" //https://einvoicetranslatorweb.azurewebsites.net/
 
 interface LanguageByCode {
   name: string;
@@ -53,9 +51,9 @@ const mutations = make.mutations(state);
 
 const actions = {
   async loadLanguages({ commit, state} ) {  
- 
+    console.log(`state.selectedLocaleCode for loadlanguages: ${state.selectedLocaleCode}` )
     const url = 
-    `https://einvoicetranslatorweb.azurewebsites.net/api/locale/getLanguageNamesByCodev2?LanguageCode=${state.selectedLocaleCode}`
+    `api/locale/getLanguageNamesByCodev2?LanguageCode=${state.selectedLocaleCode}`
     const { data } = await axios.get(url);
     
     commit("SET_LANGUAGES", data)
@@ -65,7 +63,7 @@ const actions = {
   async fillInvoiceWords({ commit } ) {  
    //console.log("fillInvoiceWords")
     const url = 
-    `https://einvoicetranslatorweb.azurewebsites.net/api/fileapi/getWords`
+    `api/fileapi/getinvoiceWords/?languageCode=${state.selectedLocaleCode}`
     const { data } = await axios.get(url);
     //console.log("data: " + data)
     //console.log("first invoice word: " + data[4])
@@ -76,7 +74,7 @@ const actions = {
   async fillLocaleWords({ commit } ) {  
     
     const url = 
-    `https://einvoicetranslatorweb.azurewebsites.net/api/locale/getlocaletranslationv2/?languageCode=${state.selectedLocaleCode}`
+    `api/locale/getlocaletranslationv2/?languageCode=${state.selectedLocaleCode}`
     
     const { data } = await axios.get(url);
     
@@ -92,7 +90,7 @@ const actions = {
   },
 
   async loadNativeLanguages({ commit }) {
-    const { data } = await axios.get("https://einvoicetranslatorweb.azurewebsites.net/api/locale/getNativeLanguageNamesFilev2/");
+    const { data } = await axios.get("api/locale/getNativeLanguageNamesFilev2/");
     commit("SET_NATIVE_LANGUAGES", data)
   },
   selectLocaleCode({ commit }, code) {
@@ -102,14 +100,19 @@ const actions = {
   async SetLocaleWordArray({ commit }) {
     //console.log("running SetLocaleWordArray()")
 
-    const url = 
-    `https://einvoicetranslatorweb.azurewebsites.net/api/locale/getlocaletranslationv2/?languageCode=${state.selectedLocaleCode}`
+    /* const url = 
+    `api/locale/getlocaletranslationv2/?languageCode=${state.selectedLocaleCode}`
     
     const { data } = await axios.get(url);
+<<<<<<< HEAD
       //console.log("Locale code: " + state.selectedLocaleCode)
  
+=======
+      console.log("Locale code: " + state.selectedLocaleCode)
+  */
+>>>>>>> da46733e5f3abd1ae6aacbdaef6235082940572d
       const LocaleWords=[];
-      const lw = data
+      const lw = state.localeWordDict;
                       
       //console.log("lw: " + lw);
      Object.values(lw).forEach(function(value){
@@ -128,10 +131,8 @@ const actions = {
     const data = {"LanguageCode": state.selectedLocaleCode,  "Language": "xxxxxx",  "SelectedWord": translateInvoice.SelectedWord, "TranslatedWord": translateInvoice.ReplacementWord}
     console.log("data:" + translateInvoice.SelectedWord)
     const nroute="api/translate/updateInvoicetranslation/";
-    return axios.post(`https://einvoicetranslatorweb.azurewebsites.net/${nroute}`, data);
+    return axios.post(`${nroute}`, data);
     
-    // https://einvoicetranslatorweb.azurewebsites.net/
-    // https://localhost:44390/
   }, 
 
   async UpdateAppTranslation({ commit }, translateLocale) {
@@ -139,16 +140,14 @@ const actions = {
    // console.log("data:" + translateLocale.SelectedWord)
     //console.log("data:" + translateLocale.ReplacementWord)
     const nroute="api/locale/updatelocale/";
-    return axios.post(`https://einvoicetranslatorweb.azurewebsites.net/${nroute}`, Appdata);
-    
-    // https://einvoicetranslatorweb.azurewebsites.net/
-    // https://localhost:44390/
+    return axios.post(`${nroute}`, Appdata);
+   
   }, 
 
   async invoiceCreate(  data) {
     //console.log("data:" + data)
     const nroute="api/translate/convertxml2html";
-    const response = await axios.post(`https://einvoicetranslatorweb.azurewebsites.net/${nroute}`, data);
+    const response = await axios.post(`${nroute}`, data);
     return response.data
   },
 
@@ -158,15 +157,20 @@ const actions = {
     const nroute="api/translate/testpage/";
     //console.log("route: " + nroute)
 
+<<<<<<< HEAD
     const response = await axios.post(`https://einvoicetranslatorweb.azurewebsites.net/${nroute}`, request )
     //console.log("response.data:" + response.data)
+=======
+    const response = await axios.post(`${nroute}`, request )
+    console.log("response.data:" + response.data)
+>>>>>>> da46733e5f3abd1ae6aacbdaef6235082940572d
     commit("SET_TRANSLATION", response.data);
     return response.data    
   },
   async Getpdf({ commit},userAppIdentification) {
     //console.log("userAppIdentification " + userAppIdentification)
     axios({
-          url: `https://einvoicetranslatorweb.azurewebsites.net/api/fileapi/gettranslatedpdf/?userAppIdentification=${userAppIdentification}`,
+          url: `api/fileapi/gettranslatedpdf/?userAppIdentification=${userAppIdentification}`,
           method: 'GET',
           responseType: 'blob',
       }).then((response) => {
@@ -183,7 +187,7 @@ const actions = {
 async Getxml({ commit},userAppIdentification) {
   
   axios({
-        url: `https://einvoicetranslatorweb.azurewebsites.net/api/fileapi/gettranslatedxml/?userAppIdentification=${userAppIdentification}`,
+        url: `api/fileapi/gettranslatedxml/?userAppIdentification=${userAppIdentification}`,
         method: 'GET',
         responseType: 'blob',
     }).then((response) => {

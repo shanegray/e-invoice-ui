@@ -66,7 +66,7 @@ export default {
     // await this.SetLocaleWordArray();
   },
   methods: {
-    ...call("languageStore", ["UpdateAppTranslation", "SetLocaleWordArray"]),
+    ...call("languageStore", ["UpdateAppTranslation", "SetLocaleWordArray", "fillLocaleWords"]),
     async updateAppTranslation() {
       this.saving = true;
       const translateLocale = {
@@ -76,6 +76,7 @@ export default {
       try {
         
         await this.UpdateAppTranslation(translateLocale);
+        await this.fillLocaleWords();
         await this.SetLocaleWordArray();
       } finally {
         this.saving = false;

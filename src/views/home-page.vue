@@ -5,7 +5,7 @@
       target="_blank"
       method="post"
       enctype="multipart/form-data"
-      action="https://einvoicetranslatorweb.azurewebsites.net/api/translate/convertxml2htmlv3"
+      action="https://localhost:44390/api/translate/convertxml2htmlv3"
     >
     <v-text-field hidden name="userAppIdentification" v-model="applicationIdentifier" />
       <v-card class="mb-3">
