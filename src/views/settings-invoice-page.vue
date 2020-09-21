@@ -36,7 +36,7 @@
           <v-btn
             class="ml-8"
             @click="updateTranslation()"
-            color="green"
+            color="light-green"
           >{{ localeWords['btnSave'] }}</v-btn>
         </v-row>
       </v-card-actions>

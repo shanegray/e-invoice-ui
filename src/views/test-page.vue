@@ -44,7 +44,7 @@
           class="ml-5 mb-5"
           :loading="saving"
           @click="translateClick"
-          color="green"
+          color="light-green"
         >{{ localeWords['btnTranslate'] }}</v-btn>
       </v-card-actions>
     </v-card>
