@@ -5,7 +5,7 @@
       target="_blank"
       method="post"
       enctype="multipart/form-data"
-      action="https://localhost:44390/api/translate/convertxml2htmlv3"
+      action="https://einvoicetranslatorweb.azurewebsites.net/api/translate/convertxml2htmlv3"
     >
       <v-text-field hidden name="userAppIdentification" v-model="applicationIdentifier" />
       <v-card class="mb-3">
@@ -16,8 +16,7 @@
             <v-row>
               <v-col cols="12" sm="4" md="6" class="pa-0, ml-3">
                 <v-file-input
-                  @change="fileInputChanged"
-                  id="File"
+                  @change="tryEnableSubmitButton"
                   class="pa-0, ma-0"
                   v-model="XMLFile"
                   name="attachment"
@@ -161,7 +160,7 @@ export default {
       }
     },
 
-    fileInputChanged() {
+    tryEnableSubmitButton() {
       this.fileSelected = event.target.files != null && event.target.files.length > 0;
       console.log(event.target.files);
     },

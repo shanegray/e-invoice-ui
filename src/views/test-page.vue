@@ -4,6 +4,7 @@
       <v-card-text>
         <v-col cols="12" sm="6" md="8" class="py-0">
           <v-text-field
+            @change="tryEnableTranslateButton"
             class="py-0"
             :placeholder="localeWords['TxtToTranslate']"
             filled
@@ -17,6 +18,7 @@
           <v-row>
             <v-col cols="12" sm="6" md="4" class="py-0">
               <v-select
+                @change="tryEnableTranslateButton"
                 class="ml-4"
                 v-model="fromLanguageCode"
                 :label="localeWords['FromLanguage']"
@@ -28,6 +30,7 @@
             <v-spacer />
             <v-col cols="12" sm="6" md="4">
               <v-select
+                @change="tryEnableTranslateButton"
                 class="ml-4"
                 :label="localeWords['ToLanguage']"
                 v-model="toLanguageCode"
@@ -41,6 +44,7 @@
       </v-card-text>
       <v-card-actions>
         <v-btn
+          :disabled="!ready2Translate"
           class="ml-5 mb-5"
           :loading="saving"
           @click="translateClick"
@@ -73,10 +77,13 @@ export default {
   data() {
     return {
       toLanguageCode: "",
-      fromLanguageCode: "",
+      fromLanguageCode: "xx",
       textToTranslate: "",
       saving: false,
       translatedText: "Translated text here",
+      ready2Translate: false,
+      // toLanguage: false,
+      // fromLanguage: false,
     };
   },
   async created() {
@@ -122,6 +129,10 @@ export default {
       } finally {
         this.saving = false;
       }
+    },
+     tryEnableTranslateButton() {
+      this.ready2Translate = this.textToTranslate != "" && this.toLanguageCode != "" && this.fromLanguageCode != "";
+      console.log(this.TextToTranslate);
     },
   },
   computed: {
