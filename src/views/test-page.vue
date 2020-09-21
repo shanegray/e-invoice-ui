@@ -112,11 +112,9 @@ export default {
         FromLanguageCode,
         TextToTranslate,
       };
-      // console.log("data: " + data)
       try {
         this.translatedText = await this.testTranslation(data);
 
-        //console.log("translation:" + this.translatedText)
       } finally {
         this.saving = false;
       }

@@ -92,7 +92,6 @@ export default {
   },
   computed: {
     localeWords: get("languageStore/localeWordDict"),
-    // fills words in combo box in app translation (Needs to be fixed) p.s pretty sure it's fixed
     GetLocaleWordArray: get("languageStore/localeWordArray"),
   },
 };

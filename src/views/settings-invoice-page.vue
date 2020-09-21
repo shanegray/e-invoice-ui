@@ -62,8 +62,7 @@ export default {
         ReplacementWord: this.replacementWord,
       };
       try {
-        //console.log("this.selectedWord: " + this.selectedWord);
-        //console.log("translate Object: " + translateObject.SelectedWord);
+       
         await this.UpdateInvoiceTranslation(translateObject);
         await this.fillInvoiceWords();
       } finally {
