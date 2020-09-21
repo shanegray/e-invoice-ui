@@ -33,7 +33,11 @@
 
       <v-card-actions>
         <v-row>
-          <v-btn class="ml-8" @click="updateTranslation()" color="green" dark>{{ localeWords['btnSave'] }}</v-btn>
+          <v-btn
+            class="ml-8"
+            @click="updateTranslation()"
+            color="green"
+          >{{ localeWords['btnSave'] }}</v-btn>
         </v-row>
       </v-card-actions>
     </v-card>
@@ -62,7 +66,6 @@ export default {
         ReplacementWord: this.replacementWord,
       };
       try {
-       
         await this.UpdateInvoiceTranslation(translateObject);
         await this.fillInvoiceWords();
       } finally {

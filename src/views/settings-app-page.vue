@@ -38,7 +38,6 @@
             @click="updateAppTranslation()"
             class="ml-8"
             color="green"
-            dark
           >{{ localeWords['btnSave'] }}</v-btn>
         </v-row>
       </v-card-actions>
@@ -66,7 +65,11 @@ export default {
     // await this.SetLocaleWordArray();
   },
   methods: {
-    ...call("languageStore", ["UpdateAppTranslation", "SetLocaleWordArray", "fillLocaleWords"]),
+    ...call("languageStore", [
+      "UpdateAppTranslation",
+      "SetLocaleWordArray",
+      "fillLocaleWords",
+    ]),
     async updateAppTranslation() {
       this.saving = true;
       const translateLocale = {
@@ -74,7 +77,6 @@ export default {
         ReplacementWord: this.replacementLocaleWord,
       };
       try {
-        
         await this.UpdateAppTranslation(translateLocale);
         await this.fillLocaleWords();
         await this.SetLocaleWordArray();

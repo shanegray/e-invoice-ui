@@ -16,6 +16,8 @@
             <v-row>
               <v-col cols="12" sm="4" md="6" class="pa-0, ml-3">
                 <v-file-input
+                  @change="fileInputChanged"
+                  id="File"
                   class="pa-0, ma-0"
                   v-model="XMLFile"
                   name="attachment"
@@ -32,7 +34,7 @@
             <v-row>
               <v-col hidden cols="12" sm="3" md="4">
                 <v-select
-                  class="ml-3"
+                  class="d-flex ml-3"
                   name="FromLanguageCode"
                   v-model="fromSelectedItem"
                   :label="localeWords['FromLanguage']"
@@ -60,10 +62,10 @@
           <v-container class="ml-3">
             <v-row>
               <v-btn
+                :disabled="!fileSelected"
                 :loading="saving"
                 @click="submit"
-                color="green"
-                dark
+                color="green"                
               >{{localeWords['btnConvert']}}</v-btn>
               <v-spacer />
             </v-row>
@@ -106,6 +108,7 @@ export default {
       XMLFile: null,
       HTMLdownloaded: false,
       applicationIdentifier: 0,
+      fileSelected: false,
     };
   },
   async created() {
@@ -158,6 +161,11 @@ export default {
       }
     },
 
+    fileInputChanged() {
+      this.fileSelected = event.target.files != null && event.target.files.length > 0;
+      console.log(event.target.files);
+    },
+
     loadLanguages: call("languageStore/loadLanguages"),
   },
   computed: {
@@ -165,6 +173,7 @@ export default {
     localeCode: get("languageStore/selectedLocaleCode"),
     languages: get("languageStore/languages"),
     ...get("languageStore"),
+      
   },
 };
 </script>
