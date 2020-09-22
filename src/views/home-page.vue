@@ -65,7 +65,7 @@
                 :disabled="!fileSelected"
                 :loading="saving"
                 @click="submit"
-                color="green accent-4"                
+                color="light-green"                
               >{{localeWords['btnConvert']}}</v-btn>
               <v-spacer />
             </v-row>
