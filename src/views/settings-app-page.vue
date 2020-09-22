@@ -22,6 +22,7 @@
           <v-col cols="12" sm="6" md="8">
             <br />
             <v-text-field
+              clearable
               class="ml-4"
               v-model="replacementLocaleWord"
               name="txtReTranslation"

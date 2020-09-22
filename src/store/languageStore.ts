@@ -151,7 +151,8 @@ const actions = {
     
     const nroute="api/translate/testpage/";
     //console.log("route: " + nroute)
-
+    //https://einvoicetranslatorweb.azurewebsites.net/
+    //https://localhost:44390/
     const response = await axios.post(`https://einvoicetranslatorweb.azurewebsites.net/${nroute}`, request )
     //console.log("response.data:" + response.data)
     commit("SET_TRANSLATION", response.data);
