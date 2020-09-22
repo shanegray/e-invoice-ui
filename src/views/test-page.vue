@@ -13,34 +13,34 @@
         </v-col>
       </v-card-text>
 
-      <v-card-text>
-        <v-container class="py-0">
-          <v-row>
-            <v-col cols="12" sm="6" md="4" class="py-0">
-              <v-select
-                @change="tryEnableTranslateButton"
-                class="ml-4"
-                v-model="fromLanguageCode"
-                :label="localeWords['FromLanguage']"
-                :items="languages"
-                item-text="name"
-                item-value="code"
-              />
-            </v-col>
-            <v-spacer />
-            <v-col cols="12" sm="6" md="4">
-              <v-select
-                @change="tryEnableTranslateButton"
-                class="ml-4"
-                :label="localeWords['ToLanguage']"
-                v-model="toLanguageCode"
-                :items="languages"
-                item-text="name"
-                item-value="code"
-              />
-            </v-col>
-          </v-row>
-        </v-container>
+      <v-card-text class="py-0">
+        <!-- <v-container class="py-0"> -->
+        <v-row>
+          <v-col cols="12" sm="3" md="4" class="py-0">
+            <v-select
+              @change="tryEnableTranslateButton"
+              class="ml-4"
+              v-model="fromLanguageCode"
+              :label="localeWords['FromLanguage']"
+              :items="languages"
+              item-text="name"
+              item-value="code"
+            />
+          </v-col>
+          <v-spacer />
+          <v-col cols="12" sm="3" md="4">
+            <v-select
+              @change="tryEnableTranslateButton"
+              class="ml-4"
+              :label="localeWords['ToLanguage']"
+              v-model="toLanguageCode"
+              :items="languages"
+              item-text="name"
+              item-value="code"
+            />
+          </v-col>
+        </v-row>
+        <!-- </v-container> -->
       </v-card-text>
       <v-card-actions>
         <v-btn
@@ -130,8 +130,11 @@ export default {
         this.saving = false;
       }
     },
-     tryEnableTranslateButton() {
-      this.ready2Translate = this.textToTranslate != "" && this.toLanguageCode != "" && this.fromLanguageCode != "";
+    tryEnableTranslateButton() {
+      this.ready2Translate =
+        this.textToTranslate != "" &&
+        this.toLanguageCode != "" &&
+        this.fromLanguageCode != "";
       console.log(this.TextToTranslate);
     },
   },

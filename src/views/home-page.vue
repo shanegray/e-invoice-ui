@@ -14,7 +14,7 @@
         <v-card-text>
           <v-container class="py-0">
             <v-row>
-              <v-col cols="12" sm="4" md="6" class="pa-0, ml-3">
+              <v-col cols="12" sm="3" md="5" class="pa-0, ml-3">
                 <v-file-input
                   @change="tryEnableSubmitButton"
                   class="pa-0, ma-0"
@@ -29,7 +29,7 @@
         </v-card-text>
 
         <v-card-text class="py-0">
-          <v-container class="py-0">
+          <!-- <v-container class="py-0"> -->
             <v-row>
               <v-col hidden cols="12" sm="3" md="4">
                 <v-select
@@ -42,9 +42,9 @@
                   item-value="code"
                 />
               </v-col>
-              <v-col cols="12" sm="3" md="4">
+              <v-col cols="12" sm="3" md="5">
                 <v-select
-                  class="ml-3"
+                  class="ml-6"
                   name="ToLanguageCode"
                   v-model="toSelectedItem"
                   :label="localeWords['ToLanguage']"
@@ -54,7 +54,7 @@
                 />
               </v-col>
             </v-row>
-          </v-container>
+          <!-- </v-container> -->
         </v-card-text>
 
         <v-card-text>
