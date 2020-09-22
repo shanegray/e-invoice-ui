@@ -31,7 +31,7 @@
           <v-col cols="12" sm="3" md="4">
             <v-select
               @change="tryEnableTranslateButton"
-              class="ml-4"
+              class="px-4"
               :label="localeWords['ToLanguage']"
               v-model="toLanguageCode"
               :items="languages"

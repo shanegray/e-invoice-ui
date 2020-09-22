@@ -11,29 +11,30 @@
       <v-card class="mb-3">
         <v-card-title class="ml-4">{{localeWords['CreateInvoiceTitle']}}</v-card-title>
 
-        <v-card-text>
-          <v-container class="py-0">
+        <v-card-text class="py-0">
+          <!-- <v-container class="py-0"> -->
             <v-row>
-              <v-col cols="12" sm="3" md="5" class="pa-0, ml-3">
+              <v-col cols="11" sm="3" md="5" class="ml-6">
                 <v-file-input
                   @change="tryEnableSubmitButton"
                   class="pa-0, ma-0"
                   v-model="XMLFile"
                   name="attachment"
+                  accept=".xml"
                   prepend-icon
                   :placeholder="localeWords['inptUpload']"
                 ></v-file-input>
               </v-col>
             </v-row>
-          </v-container>
+          <!-- </v-container> -->
         </v-card-text>
 
         <v-card-text class="py-0">
           <!-- <v-container class="py-0"> -->
             <v-row>
-              <v-col hidden cols="12" sm="3" md="4">
+              <v-col hidden cols="11" sm="3" md="5">
                 <v-select
-                  class="d-flex ml-3"
+                  class="ml-3"
                   name="FromLanguageCode"
                   v-model="fromSelectedItem"
                   :label="localeWords['FromLanguage']"
@@ -42,7 +43,7 @@
                   item-value="code"
                 />
               </v-col>
-              <v-col cols="12" sm="3" md="5">
+              <v-col cols="11" sm="3" md="5">
                 <v-select
                   class="ml-6"
                   name="ToLanguageCode"
