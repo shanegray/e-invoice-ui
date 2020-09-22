@@ -69,6 +69,7 @@ export default {
       try {
         await this.UpdateInvoiceTranslation(translateObject);
         await this.fillInvoiceWords();
+        this.replacementWord = "";
       } finally {
         this.saving = false;
       }

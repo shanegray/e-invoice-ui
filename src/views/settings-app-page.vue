@@ -81,6 +81,7 @@ export default {
         await this.UpdateAppTranslation(translateLocale);
         await this.fillLocaleWords();
         await this.SetLocaleWordArray();
+        this.replacementLocaleWord = "";
       } finally {
         this.saving = false;
       }
