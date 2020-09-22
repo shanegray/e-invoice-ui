@@ -11,6 +11,7 @@
                 v-model="selectedWord"
                 :label="localeWords['Cmb4ReTranslate']"
                 :items="invoicewords"
+                @change="tryEnableSaveButton"
               />
             </v-col>
           </v-row>
@@ -26,6 +27,7 @@
               class="ml-4"
               v-model="replacementWord"
               :placeholder="localeWords['TxtReplace']"
+              @change="tryEnableSaveButton"
               filled
             ></v-text-field>
           </v-col>
@@ -35,6 +37,7 @@
       <v-card-actions>
         <v-row>
           <v-btn
+            :disabled="!ready2Save"
             class="ml-8"
             @click="updateTranslation()"
             color="light-green"
@@ -55,6 +58,7 @@ export default {
       selectedWord: "",
       replacementWord: "",
       saving: false,
+      ready2Save: false,
     };
   },
 
@@ -73,6 +77,11 @@ export default {
       } finally {
         this.saving = false;
       }
+    },
+    tryEnableSaveButton() {
+      this.ready2Save =
+        this.selectedWord != "" && this.replacementWord != "";
+      //console.log(this.replacementLocaleWord);
     },
   },
   computed: {

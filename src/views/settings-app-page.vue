@@ -5,16 +5,17 @@
       <v-card-title class="ml-4">{{localeWords['AppTitle']}}</v-card-title>
       <v-card-text class="py-0">
         <!-- <v-container class="py-0"> -->
-          <v-row>
-            <v-col cols="12" sm="4" md="6">
-              <v-select
-                class="ml-4"
-                v-model="selectedLocaleWord"
-                :items="GetLocaleWordArray"
-                :label="localeWords['Cmb4ReTranslate']"
-              />
-            </v-col>
-          </v-row>
+        <v-row>
+          <v-col cols="12" sm="4" md="6">
+            <v-select
+              class="ml-4"
+              v-model="selectedLocaleWord"
+              :items="GetLocaleWordArray"
+              :label="localeWords['Cmb4ReTranslate']"
+              @change="tryEnableSaveButton"
+            />
+          </v-col>
+        </v-row>
         <!-- </v-container> -->
       </v-card-text>
       <v-card-actions>
@@ -27,6 +28,7 @@
               v-model="replacementLocaleWord"
               name="txtReTranslation"
               :placeholder="localeWords['TxtReplace']"
+              @change="tryEnableSaveButton"
               filled
             ></v-text-field>
           </v-col>
@@ -36,6 +38,7 @@
       <v-card-actions>
         <v-row>
           <v-btn
+            :disabled="!ready2Save"
             @click="updateAppTranslation()"
             class="ml-8"
             color="light-green"
@@ -57,6 +60,7 @@ export default {
       wordToTranslate: "",
       saving: false,
       localeWordArray: [],
+      ready2Save: false,
     };
   },
   async created() {
@@ -85,6 +89,11 @@ export default {
       } finally {
         this.saving = false;
       }
+    },
+    tryEnableSaveButton() {
+      this.ready2Save =
+        this.replacementLocaleWord != "" && this.selectedLocaleWord != "";
+      //console.log(this.replacementLocaleWord);
     },
     //   try {
     //     await this.saveSomething({FileContents: "this is OK", FileName:"test.txt"},"api/fileapi/savesomething/");
