@@ -87,6 +87,7 @@ export default {
     };
   },
   async created() {
+    this.toLanguageCode = this.localeCode;
     //await this.loadLanguages();
   },
   methods: {
