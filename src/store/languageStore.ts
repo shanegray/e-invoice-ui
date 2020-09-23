@@ -57,14 +57,24 @@ const mutations = make.mutations(state);
 
 const actions = {
   async loadLanguages({ commit, state }) {
-    console.log(
-      `state.selectedLocaleCode for loadlanguages: ${state.selectedLocaleCode}`
-    );
-    const url = `api/locale/getLanguageNamesByCodev2?LanguageCode=${state.selectedLocaleCode}`;
-    const { data } = await axios.get(url);
-
-    commit("SET_LANGUAGES", data);
-    //console.log("languages set" )
+    try{
+      console.log(
+        `state.selectedLocaleCode for loadlanguages: ${state.selectedLocaleCode}`
+      );
+      const url = `api/locale/getLanguageNamesByCodev2?LanguageCode=${state.selectedLocaleCode}`;
+      const { data } = await axios.get(url);
+  
+      commit("SET_LANGUAGES", data);
+      //console.log("languages set" )
+    }catch (e){
+      if(e.response.status===400)
+      {
+        commit("SET_LANGUAGES", state.localeWordDict['ErrorNoData']);
+      }
+      else
+      commit("SET_LANGUAGES", e);
+    }
+    
   },
 
   async fillInvoiceWords({ commit }) {
@@ -126,14 +136,15 @@ const actions = {
     //console.log("SelectedLocaleCode: " + state.selectedLocaleCode );
   },
   async SetLocaleWordArray({ commit }) {
-    //console.log("running SetLocaleWordArray()")
+    try {
+      //console.log("running SetLocaleWordArray()")
 
     /* const url = 
     `api/locale/getlocaletranslationv2/?languageCode=${state.selectedLocaleCode}`
     
     const { data } = await axios.get(url);
       console.log("Locale code: " + state.selectedLocaleCode)
-  */
+   */
     const LocaleWords = [];
     const lw = state.localeWordDict;
 
@@ -144,6 +155,16 @@ const actions = {
     });
     //console.log("LocaleWords:" + LocaleWords[0])
     commit("SET_LOCALE_WORD_ARRAY", LocaleWords);
+    } catch (e) {
+      console.log("error response: " + e.response.status);
+      if(e.response.status===400)
+      {
+        commit("SET_LOCALE_WORD_ARRAY", state.localeWordDict['ErrorNoData']);
+      }
+      else
+      commit("SET_LOCALE_WORD_ARRAY", e);
+    }
+    
   },
   // selectDefaultLocale({ commit }, code) {
   //   commit("SET_SELECTED_LOCALE_CODE", code);
