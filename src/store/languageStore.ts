@@ -78,7 +78,7 @@ const actions = {
       console.log("error response: " + e.response.status);
       if(e.response.status===400)
       {
-        commit("SET_INVOICE_WORDS", state.localeWordDict['errornodata']);
+        commit("SET_INVOICE_WORDS", state.localeWordDict['ErrorNoData']);
       }
       else
       commit("SET_INVOICE_WORDS", e);
