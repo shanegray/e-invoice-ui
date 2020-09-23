@@ -2,12 +2,12 @@
   <div>
     <v-card class="mb-8">
       <v-card-title class="ml-4">{{localeWords['InvoiceTitle']}}</v-card-title>
-      <v-card-text class="pa-0">
+      <v-card-text class="py-0">
         <!-- <v-container class="pa-0"> -->
           <v-row>
-            <v-col cols="12" sm="6" md="6">
+            <v-col cols="12" sm="4" md="6">
               <v-select
-                class="ml-8"
+                class="ml-4"
                 v-model="selectedWord"
                 :label="localeWords['Cmb4ReTranslate']"
                 :items="invoicewords"

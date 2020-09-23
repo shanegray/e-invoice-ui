@@ -9,12 +9,12 @@
     >
       <v-text-field hidden name="userAppIdentification" v-model="applicationIdentifier" />
       <v-card class="mb-3">
-        <v-card-title class="ml-4">{{localeWords['CreateInvoiceTitle']}}</v-card-title>
+        <v-card-title class="ml-3">{{localeWords['CreateInvoiceTitle']}}</v-card-title>
 
         <v-card-text class="py-0">
           <!-- <v-container class="py-0"> -->
             <v-row>
-              <v-col cols="11" sm="3" md="5" class="ml-6">
+              <v-col cols="11" sm="3" md="5" class="ml-5">
                 <v-file-input
                   @change="tryEnableSubmitButton"
                   class="pa-0, ma-0"
@@ -45,7 +45,7 @@
               </v-col>
               <v-col cols="11" sm="3" md="5">
                 <v-select
-                  class="ml-6"
+                  class="ml-5"
                   name="ToLanguageCode"
                   v-model="toSelectedItem"
                   :label="localeWords['ToLanguage']"
