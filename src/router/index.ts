@@ -3,7 +3,10 @@ import VueRouter, { RouteConfig } from 'vue-router'
 
 import HomePage from '@/views/home-page.vue';
 import TestPage from '@/views/test-page.vue';
-import SettingsPage from '@/views/settings-page.vue';
+import SettingsPage from '@/views/settings-invoice-page.vue';
+import ExamplePage from '@/views/exampl-page.vue';
+import AppSettings from '@/views/settings-app-page.vue';
+
 
 Vue.use(VueRouter)
 
@@ -18,8 +21,16 @@ const routes: Array<RouteConfig> = [
     component: TestPage
   },
   {
-    path: '/settings',
+    path: '/invoicesettings',
     component: SettingsPage
+  },
+  {
+    path: '/appsettings',
+    component: AppSettings
+  },
+  {
+    path: '/example',
+    component: ExamplePage
   }
 ]
 

@@ -9,19 +9,23 @@
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
         <span class="hidden-sm-and-down">E-Invoice Translator</span>
       </v-toolbar-title>
-      <v-col cols="12" sm="4" md="6">
+        <v-spacer />
+      <v-col cols="5" sm="3" md="3">
         <v-select
           flat
           solo-inverted
-          hide-details          
+          hide-details
+          v-model="selectedLocaleCode"
           label="Select App Language"
           :items="nativelanguages"
-                item-text="name"
-                item-value="code"
+          item-text="name"
+          item-value="code"
+          @change="localeCodeSelected"
         ></v-select>
       </v-col>
     </v-app-bar>
     <v-main>
+      <!--<v-label>{{$t('UploadXMLTxt')}}</v-label>-->
       <v-container fluid>
         <router-view />
       </v-container>
@@ -34,23 +38,73 @@
 import NavDrawer from "@/components/nav-drawer";
 import { call, get } from "vuex-pathify";
 
+//import { LOCALES, Locales } from "@/i18n/locales";
+//import { defaultLocale } from "@/i18n";
+
 export default {
   components: {
     NavDrawer,
   },
   data: () => ({
     drawer: null,     
-    selectedItem: "",    
+    selectedLocaleCode:""    
   }),
   async created() {
+    await this.setLocalCode();
     await this.loadNativeLanguages();
+    await this.localeCodeSelected();
   },
+  
   methods: {
-    loadNativeLanguages: call("nativelanguages/loadNativeLanguages")
-  },
+
+    async setLocalCode(){
+       console.log("Browser Language = " + navigator.language.substr(0,2))
+    if (localStorage.localeCode) {
+      this.selectedLocaleCode = localStorage.localeCode;
+    }
+    else
+    {
+      //get browser locale
+      this.selectedLocaleCode =  navigator.language.substr(0,2)
+    }
+      console.log("This selected code: " + this.selectedLocaleCode)
+      let appId = 0
+      if (localStorage.appIdentifier) {
+      appId = localStorage.appIdentifier;
+       console.log("App Identifier in local storage " + localStorage.appIdentifier)
+    }
+    else
+    {
+       localStorage.appIdentifier = Math.floor(Math.random()*(100000000)+1)
+
+    }
+      console.log("App Identifier " + localStorage.appIdentifier)
+    },
+    
+    ...call("languageStore", ["fillInvoiceWords"]),
+    
+     async SetInvoiceWords(){
+      await this.fillInvoiceWords();
+    },
+ 
+  ...call("languageStore", [ "loadNativeLanguages","selectLocaleCode","loadLanguages","fillLocaleWords", "SetLocaleWordArray"]),
+   
+   async localeCodeSelected() {
+       
+    await this.selectLocaleCode(this.selectedLocaleCode), 
+    await this.loadLanguages()
+    await this.fillLocaleWords()
+    await this.SetLocaleWordArray();
+    await this.fillInvoiceWords();
+
+    localStorage["localeCode"]=this.selectedLocaleCode       
+    }
+    },
+
   computed: {
-    nativelanguages: get("nativelanguages/nativelanguages"),
-    ...get("nativeLanguages")
+    nativelanguages: get("languageStore/nativeLanguages"),
+    localeCode: get("languageStore/selectedLocaleCode"),
+    ...get("languageStore")
   },
 };
 </script>
