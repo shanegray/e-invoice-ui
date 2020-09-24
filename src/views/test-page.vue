@@ -4,6 +4,7 @@
       <v-card-text>
         <v-col cols="12" sm="6" md="8" class="py-0">
           <v-text-field
+            clearable
             @change="tryEnableTranslateButton"
             class="py-0"
             :placeholder="localeWords['TxtToTranslate']"
