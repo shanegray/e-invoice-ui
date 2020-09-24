@@ -7,54 +7,63 @@
       enctype="multipart/form-data"
       action="https://einvoicetranslatorweb.azurewebsites.net/api/translate/convertxml2htmlv3"
     >
-      <v-text-field hidden name="userAppIdentification" v-model="applicationIdentifier" />
+      <v-col hidden>
+        <v-text-field
+          hidden
+          name="userAppIdentification"
+          v-model="applicationIdentifier"
+        />
+      </v-col>
+
       <v-card class="mb-3">
-        <v-card-title class="ml-3">{{localeWords['CreateInvoiceTitle']}}</v-card-title>
+        <v-card-title class="ml-3">{{
+          localeWords["CreateInvoiceTitle"]
+        }}</v-card-title>
 
         <v-card-text class="py-0">
           <!-- <v-container class="py-0"> -->
-            <v-row>
-              <v-col cols="11" sm="3" md="5" class="ml-5">
-                <v-file-input
-                  @change="tryEnableSubmitButton"
-                  class="pa-0, ma-0"
-                  v-model="XMLFile"
-                  name="attachment"
-                  accept=".xml"
-                  prepend-icon
-                  :placeholder="localeWords['inptUpload']"
-                ></v-file-input>
-              </v-col>
-            </v-row>
+          <v-row>
+            <v-col cols="11" sm="3" md="5" class="ml-5">
+              <v-file-input
+                @change="tryEnableSubmitButton"
+                class="pa-0, ma-0"
+                v-model="XMLFile"
+                name="attachment"
+                accept=".xml"
+                prepend-icon
+                :placeholder="localeWords['inptUpload']"
+              ></v-file-input>
+            </v-col>
+          </v-row>
           <!-- </v-container> -->
         </v-card-text>
 
         <v-card-text class="py-0">
           <!-- <v-container class="py-0"> -->
-            <v-row>
-              <v-col hidden cols="11" sm="3" md="5">
-                <v-select
-                  class="ml-3"
-                  name="FromLanguageCode"
-                  v-model="fromSelectedItem"
-                  :label="localeWords['FromLanguage']"
-                  :items="languages"
-                  item-text="name"
-                  item-value="code"
-                />
-              </v-col>
-              <v-col cols="11" sm="3" md="5">
-                <v-select
-                  class="ml-5"
-                  name="ToLanguageCode"
-                  v-model="toSelectedItem"
-                  :label="localeWords['ToLanguage']"
-                  :items="languages"
-                  item-text="name"
-                  item-value="code"
-                />
-              </v-col>
-            </v-row>
+          <v-row>
+            <v-col hidden cols="11" sm="3" md="5">
+              <v-select
+                class="ml-3"
+                name="FromLanguageCode"
+                v-model="fromSelectedItem"
+                :label="localeWords['FromLanguage']"
+                :items="languages"
+                item-text="name"
+                item-value="code"
+              />
+            </v-col>
+            <v-col cols="11" sm="3" md="5">
+              <v-select
+                class="ml-5"
+                name="ToLanguageCode"
+                v-model="toSelectedItem"
+                :label="localeWords['ToLanguage']"
+                :items="languages"
+                item-text="name"
+                item-value="code"
+              />
+            </v-col>
+          </v-row>
           <!-- </v-container> -->
         </v-card-text>
 
@@ -65,8 +74,9 @@
                 :disabled="!fileSelected"
                 :loading="saving"
                 @click="submit"
-                color="light-green"                
-              >{{localeWords['btnConvert']}}</v-btn>
+                color="light-green"
+                >{{ localeWords["btnConvert"] }}</v-btn
+              >
               <v-spacer />
             </v-row>
           </v-container>
@@ -75,17 +85,17 @@
 
       <v-card v-show="HTMLdownloaded">
         <v-card-title class="ml-6">
-          {{localeWords['DownloadTitle']}}
+          {{ localeWords["DownloadTitle"] }}
           <v-spacer />
         </v-card-title>
         <v-card-actions>
           <v-btn color="primary" class="ml-8" @click="getXML">
             <v-icon left>mdi-download</v-icon>
-            {{ localeWords['btnGetXML']}}
+            {{ localeWords["btnGetXML"] }}
           </v-btn>
           <v-btn class="ml-8" color="primary" @click="getPDF">
             <v-icon left>mdi-download</v-icon>
-            {{ localeWords['btnGetPDF']}}
+            {{ localeWords["btnGetPDF"] }}
           </v-btn>
           <v-spacer />
           <!-- <v-btn color="primary"> <v-icon left>mdi-download</v-icon>{{ localeWords['btnGetXSLT']}}</v-btn> -->
@@ -162,7 +172,8 @@ export default {
     },
 
     tryEnableSubmitButton() {
-      this.fileSelected = event.target.files != null && event.target.files.length > 0;
+      this.fileSelected =
+        event.target.files != null && event.target.files.length > 0;
       console.log(event.target.files);
     },
 
@@ -173,7 +184,6 @@ export default {
     localeCode: get("languageStore/selectedLocaleCode"),
     languages: get("languageStore/languages"),
     ...get("languageStore"),
-      
   },
 };
 </script>
