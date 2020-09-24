@@ -50,7 +50,8 @@
           :loading="saving"
           @click="translateClick"
           color="light-green"
-        >{{ localeWords['btnTranslate'] }}</v-btn>
+          >{{ localeWords["btnTranslate"] }}</v-btn
+        >
       </v-card-actions>
     </v-card>
     <v-card>
@@ -134,6 +135,9 @@ export default {
     },
     tryEnableTranslateButton() {
       this.ready2Translate =
+        this.textToTranslate != null &&
+        this.toLanguageCode != null &&
+        this.fromLanguageCode != null &&
         this.textToTranslate != "" &&
         this.toLanguageCode != "" &&
         this.fromLanguageCode != "";
