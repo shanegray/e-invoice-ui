@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app ref="formContainer">
     <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app>
       <NavDrawer />
     </v-navigation-drawer>
@@ -37,6 +37,13 @@
 <script>
 import NavDrawer from "@/components/nav-drawer";
 import { call, get } from "vuex-pathify";
+import Vue from 'vue';
+// Import component
+import Loading from 'vue-loading-overlay';
+// Import stylesheet
+import 'vue-loading-overlay/dist/vue-loading.css';
+// Init plugin
+Vue.use(Loading);
 
 //import { LOCALES, Locales } from "@/i18n/locales";
 //import { defaultLocale } from "@/i18n";
@@ -47,12 +54,20 @@ export default {
   },
   data: () => ({
     drawer: null,     
-    selectedLocaleCode:""    
+    selectedLocaleCode:"",
+    fullPage: false   
   }),
   async created() {
+     const loader = this.$loading.show({
+                  // Optional parameters
+                  container: this.fullPage ? null : this.$refs.formContainer,
+                  canCancel: true,
+                  onCancel: this.onCancel,
+                });
     await this.setLocalCode();
     await this.loadNativeLanguages();
     await this.localeCodeSelected();
+    loader.hide()
   },
   
   methods: {
