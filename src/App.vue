@@ -121,7 +121,6 @@ export default {
 
     async localeCodeSelected() {
       const loader = this.$loading.show({
-        // Optional parameters
         loader: "bars",
         color: "#1565C0",
         width: 100,
