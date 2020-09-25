@@ -39,7 +39,7 @@
       <v-card-actions>
         <v-row>
           <v-btn
-            :disabled="disableSaveBtn"
+            :disabled="!ready2Save"
             @click="updateAppTranslation()"
             class="ml-8"
             color="light-green"
@@ -93,20 +93,20 @@ export default {
         this.saving = false;
       }
     },
-    // tryEnableSaveButton() {
-    //   this.ready2Save =
-    //     this.replacementLocaleWord != null &&
-    //     this.selectedLocaleWord != null &&
-    //     this.replacementLocaleWord != "" &&
-    //     this.selectedLocaleWord != "";
-    // },
     tryEnableSaveButton() {
-      this.disableSaveBtn =
-        this.replacementLocaleWord === null ||
-        this.replacementLocaleWord === "" ||
-        this.selectedLocaleWord === null||       
-        this.selectedLocaleWord === "";
+      this.ready2Save =
+      this.replacementLocaleWord != null &&
+      this.selectedLocaleWord != null &&
+      this.replacementLocaleWord != "" &&
+      this.selectedLocaleWord != "";
     },
+    // tryEnableSaveButton() {
+    //   this.disableSaveBtn =
+    //     this.replacementLocaleWord === null ||
+    //     this.replacementLocaleWord === "" ||
+    //     this.selectedLocaleWord === null||       
+    //     this.selectedLocaleWord === "";
+    // },
     //   try {
     //     await this.saveSomething({FileContents: "this is OK", FileName:"test.txt"},"api/fileapi/savesomething/");
     //   }

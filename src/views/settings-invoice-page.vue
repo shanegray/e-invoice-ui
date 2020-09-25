@@ -40,7 +40,7 @@
       <v-card-actions>
         <v-row>
           <v-btn
-            :disabled="disableSaveBtn"
+            :disabled="!ready2Save"
             class="ml-8"
             @click="updateTranslation()"
             color="light-green"
@@ -83,22 +83,22 @@ export default {
         this.saving = false;
       }
     },
+     tryEnableSaveButton() {
+       this.ready2Save =
+         this.selectedWord != null &&
+         this.replacementWord != null &&
+         this.selectedWord != "" &&
+         this.replacementWord != "";
+       //console.log(this.replacementLocaleWord);
+     },
     // tryEnableSaveButton() {
-    //   this.ready2Save =
-    //     this.selectedWord != null &&
-    //     this.replacementWord != null &&
-    //     this.selectedWord != "" &&
-    //     this.replacementWord != "";
+    //   this.disableSaveBtn =
+    //     this.selectedWord === null ||
+    //      this.selectedWord === "" ||
+    //     this.replacementWord === null ||      
+    //     this.replacementWord === "";
     //   //console.log(this.replacementLocaleWord);
     // },
-    tryEnableSaveButton() {
-      this.disableSaveBtn =
-        this.selectedWord === null ||
-         this.selectedWord === "" ||
-        this.replacementWord === null ||      
-        this.replacementWord === "";
-      //console.log(this.replacementLocaleWord);
-    },
   },
   computed: {
     localeWords: get("languageStore/localeWordDict"),
