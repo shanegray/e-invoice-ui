@@ -164,7 +164,7 @@ export default {
       this.saving = true;
       try {
         this.$refs.form.$el.submit();
-        console.log("The form Data ", this.XMLFile.FileName);
+        console.log("The form Data ", this.XMLFile.name);
         this.HTMLdownloaded = true;
       } finally {
         this.saving = false;

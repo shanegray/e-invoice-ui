@@ -120,16 +120,6 @@ export default {
     ]),
 
     async localeCodeSelected() {
-      const loader = this.$loading.show({
-      // Optional parameters
-      loader: "bars",
-      color: "#1565C0",
-      width: 100,
-      height: 75,
-      container: this.fullPage ? null : this.$refs.formContainer,
-      canCancel: true,
-      onCancel: this.onCancel,
-    });
       await this.selectLocaleCode(this.selectedLocaleCode),
         await this.loadLanguages();
       await this.fillLocaleWords();
@@ -137,7 +127,6 @@ export default {
       await this.fillInvoiceWords();
 
       localStorage["localeCode"] = this.selectedLocaleCode;
-      loader.hide();
     },
   },
 
