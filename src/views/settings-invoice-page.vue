@@ -83,19 +83,19 @@ export default {
         this.saving = false;
       }
     },
-     tryEnableSaveButton() {
-       this.ready2Save =
-         this.selectedWord != null &&
-         this.replacementWord != null &&
-         this.selectedWord != "" &&
-         this.replacementWord != "";
-       //console.log(this.replacementLocaleWord);
-     },
+    tryEnableSaveButton() {
+      this.ready2Save =
+        this.selectedWord != null &&
+        this.replacementWord != null &&
+        this.selectedWord != "" &&
+        this.replacementWord != "";
+      //console.log(this.replacementLocaleWord);
+    },
     // tryEnableSaveButton() {
     //   this.disableSaveBtn =
     //     this.selectedWord === null ||
     //      this.selectedWord === "" ||
-    //     this.replacementWord === null ||      
+    //     this.replacementWord === null ||
     //     this.replacementWord === "";
     //   //console.log(this.replacementLocaleWord);
     // },

@@ -148,9 +148,9 @@ export default {
       this.disableTranslateBtn =
         this.textToTranslate === null ||
         this.textToTranslate === "" ||
-        this.toLanguageCode === null ||               
+        this.toLanguageCode === null ||
         this.toLanguageCode === "" ||
-        this.fromLanguageCode === null || 
+        this.fromLanguageCode === null ||
         this.fromLanguageCode === "";
     },
   },

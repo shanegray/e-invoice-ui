@@ -95,16 +95,16 @@ export default {
     },
     tryEnableSaveButton() {
       this.ready2Save =
-      this.replacementLocaleWord != null &&
-      this.selectedLocaleWord != null &&
-      this.replacementLocaleWord != "" &&
-      this.selectedLocaleWord != "";
+        this.replacementLocaleWord != null &&
+        this.selectedLocaleWord != null &&
+        this.replacementLocaleWord != "" &&
+        this.selectedLocaleWord != "";
     },
     // tryEnableSaveButton() {
     //   this.disableSaveBtn =
     //     this.replacementLocaleWord === null ||
     //     this.replacementLocaleWord === "" ||
-    //     this.selectedLocaleWord === null||       
+    //     this.selectedLocaleWord === null||
     //     this.selectedLocaleWord === "";
     // },
     //   try {
