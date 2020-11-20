@@ -2,7 +2,7 @@ import axios from "axios";
 import { make } from "vuex-pathify";
 
  //axios.defaults.baseURL = "https://localhost:44390/"
-  axios.defaults.baseURL = "https://einvoicetranslatorweb.azurewebsites.net/"
+ axios.defaults.baseURL = "https://einvoicetranslatorweb.azurewebsites.net/"
 interface LanguageByCode {
   name: string;
   code: string;
@@ -196,7 +196,7 @@ const actions = {
 
   async invoiceCreate(data) {
     //console.log("data:" + data)
-    const nroute = "api/translate/convertxml2html";
+    const nroute = "api/translate/convertxml2htmlv3";
     const response = await axios.post(`${nroute}`, data);
     return response.data;
   },
