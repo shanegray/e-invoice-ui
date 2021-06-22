@@ -2,9 +2,8 @@
 <template>
   <div>
     <v-card>
-      <v-card-title class="ml-4">{{localeWords['AppTitle']}}</v-card-title>
+      <v-card-title class="ml-4">{{ localeWords["AppTitle"] }}</v-card-title>
       <v-card-text class="py-0">
-        <!-- <v-container class="py-0"> -->
         <v-row>
           <v-col cols="12" sm="4" md="6">
             <v-select
@@ -16,7 +15,6 @@
             />
           </v-col>
         </v-row>
-        <!-- </v-container> -->
       </v-card-text>
       <v-card-actions>
         <v-row>
@@ -42,7 +40,8 @@
             @click="updateAppTranslation()"
             class="ml-8"
             color="light-green"
-          >{{ localeWords['btnSave'] }}</v-btn>
+            >{{ localeWords["btnSave"] }}</v-btn
+          >
         </v-row>
       </v-card-actions>
     </v-card>

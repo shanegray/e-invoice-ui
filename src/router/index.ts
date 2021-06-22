@@ -5,8 +5,10 @@ import HomePage from '@/views/home-page.vue';
 import TestPage from '@/views/test-page.vue';
 import SettingsPage from '@/views/settings-invoice-page.vue';
 import ExamplePage from '@/views/exampl-page.vue';
+import LoginPage from '@/views/login-page.vue';
 import AppSettings from '@/views/settings-app-page.vue';
 
+import { authGuard } from "../auth/authGuard";
 
 Vue.use(VueRouter)
 
@@ -14,24 +16,34 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'Home',
-    component: HomePage
+    component: HomePage,
+    beforeEnter: authGuard
   },
   {
     path: '/test',
-    component: TestPage
+    component: TestPage,
+    beforeEnter: authGuard
   },
   {
     path: '/invoicesettings',
-    component: SettingsPage
+    component: SettingsPage,
+    beforeEnter: authGuard
   },
   {
     path: '/appsettings',
-    component: AppSettings
+    component: AppSettings,
+    beforeEnter: authGuard
   },
   {
     path: '/example',
-    component: ExamplePage
-  }
+    component: ExamplePage,
+    beforeEnter: authGuard
+  },
+  {
+    path: '/login',
+    name: 'LoginPage',
+    component: LoginPage
+  },
 ]
 
 const router = new VueRouter({

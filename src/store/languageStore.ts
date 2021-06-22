@@ -1,8 +1,8 @@
 import axios from "axios";
 import { make } from "vuex-pathify";
 
- //axios.defaults.baseURL = "https://localhost:44390/"
-  axios.defaults.baseURL = "https://einvoicetranslatorweb.azurewebsites.net/"
+axios.defaults.baseURL = "https://localhost:44390/"
+// axios.defaults.baseURL = "https://einvoicetranslatorweb.azurewebsites.net/"
 interface LanguageByCode {
   name: string;
   code: string;
@@ -68,7 +68,7 @@ const actions = {
   },
 
   async fillInvoiceWords({ commit }) {
-   
+
     try {
       const url = `api/fileapi/getinvoiceWords/?languageCode=${state.selectedLocaleCode}`;
       const { data } = await axios.get(url);
@@ -76,12 +76,11 @@ const actions = {
       commit("SET_INVOICE_WORDS", data);
     } catch (e) {
       console.log("error response: " + e.response.status);
-      if(e.response.status===400)
-      {
+      if (e.response.status === 400) {
         commit("SET_INVOICE_WORDS", state.localeWordDict['ErrorNoData']);
       }
       else
-      commit("SET_INVOICE_WORDS", e);
+        commit("SET_INVOICE_WORDS", e);
     }
   },
 
@@ -138,7 +137,7 @@ const actions = {
     const lw = state.localeWordDict;
 
     //console.log("lw: " + lw);
-    Object.values(lw).forEach(function(value) {
+    Object.values(lw).forEach(function (value) {
       //console.log("value: " + value)
       LocaleWords.push(value);
     });

@@ -14,7 +14,6 @@
       </v-card-text>
 
       <v-card-text class="py-0">
-        <!-- <v-container class="py-0"> -->
         <v-row>
           <v-col cols="12" sm="3" md="4" class="py-0">
             <v-select
@@ -40,7 +39,6 @@
             />
           </v-col>
         </v-row>
-        <!-- </v-container> -->
       </v-card-text>
       <v-card-actions>
         <v-btn
@@ -49,7 +47,8 @@
           :loading="saving"
           @click="translateClick"
           color="light-green"
-        >{{ localeWords['btnTranslate'] }}</v-btn>
+          >{{ localeWords["btnTranslate"] }}</v-btn
+        >
       </v-card-actions>
     </v-card>
     <v-card>
@@ -71,7 +70,6 @@
 
 <script>
 import { call, get } from "vuex-pathify";
-//import axios from 'axios';
 
 export default {
   data() {
@@ -82,8 +80,6 @@ export default {
       saving: false,
       translatedText: "Translated text here",
       ready2Translate: false,
-      // toLanguage: false,
-      // fromLanguage: false,
     };
   },
   async created() {

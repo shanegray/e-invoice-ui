@@ -1,21 +1,21 @@
 <template>
   <div>
     <v-card class="mb-8">
-      <v-card-title class="ml-4">{{localeWords['InvoiceTitle']}}</v-card-title>
+      <v-card-title class="ml-4">{{
+        localeWords["InvoiceTitle"]
+      }}</v-card-title>
       <v-card-text class="pa-0">
-        <!-- <v-container class="pa-0"> -->
-          <v-row>
-            <v-col cols="12" sm="6" md="6">
-              <v-select
-                class="ml-8"
-                v-model="selectedWord"
-                :label="localeWords['Cmb4ReTranslate']"
-                :items="invoicewords"
-                @change="tryEnableSaveButton"
-              />
-            </v-col>
-          </v-row>
-        <!-- </v-container> -->
+        <v-row>
+          <v-col cols="12" sm="6" md="6">
+            <v-select
+              class="ml-8"
+              v-model="selectedWord"
+              :label="localeWords['Cmb4ReTranslate']"
+              :items="invoicewords"
+              @change="tryEnableSaveButton"
+            />
+          </v-col>
+        </v-row>
       </v-card-text>
 
       <v-card-actions>
@@ -41,7 +41,8 @@
             class="ml-8"
             @click="updateTranslation()"
             color="light-green"
-          >{{ localeWords['btnSave'] }}</v-btn>
+            >{{ localeWords["btnSave"] }}</v-btn
+          >
         </v-row>
       </v-card-actions>
     </v-card>
@@ -79,9 +80,7 @@ export default {
       }
     },
     tryEnableSaveButton() {
-      this.ready2Save =
-        this.selectedWord != "" && this.replacementWord != "";
-      //console.log(this.replacementLocaleWord);
+      this.ready2Save = this.selectedWord != "" && this.replacementWord != "";
     },
   },
   computed: {
