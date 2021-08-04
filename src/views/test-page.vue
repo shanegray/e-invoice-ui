@@ -42,7 +42,7 @@
       </v-card-text>
       <v-card-actions>
         <v-btn
-          :disabled="!ready2Translate"
+          :disabled="disableTranslateBtn"
           class="ml-5 mb-5"
           :loading="saving"
           @click="translateClick"
@@ -80,6 +80,7 @@ export default {
       saving: false,
       translatedText: "Translated text here",
       ready2Translate: false,
+      disableTranslateBtn: true,
     };
   },
   async created() {
@@ -127,11 +128,13 @@ export default {
       }
     },
     tryEnableTranslateButton() {
-      this.ready2Translate =
-        this.textToTranslate != "" &&
-        this.toLanguageCode != "" &&
-        this.fromLanguageCode != "";
-      console.log(this.TextToTranslate);
+      this.disableTranslateBtn =
+        this.textToTranslate === null ||
+        this.textToTranslate === "" ||
+        this.toLanguageCode === null ||
+        this.toLanguageCode === "" ||
+        this.fromLanguageCode === null ||
+        this.fromLanguageCode === "";
     },
   },
   computed: {

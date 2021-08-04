@@ -80,7 +80,11 @@ export default {
       }
     },
     tryEnableSaveButton() {
-      this.ready2Save = this.selectedWord != "" && this.replacementWord != "";
+      this.ready2Save =
+        this.selectedWord != null &&
+        this.replacementWord != null &&
+        this.selectedWord != "" &&
+        this.replacementWord != "";
     },
   },
   computed: {

@@ -91,16 +91,11 @@ export default {
     },
     tryEnableSaveButton() {
       this.ready2Save =
-        this.replacementLocaleWord != "" && this.selectedLocaleWord != "";
-      //console.log(this.replacementLocaleWord);
+        this.replacementLocaleWord != null &&
+        this.selectedLocaleWord != null &&
+        this.replacementLocaleWord != "" &&
+        this.selectedLocaleWord != "";
     },
-    //   try {
-    //     await this.saveSomething({FileContents: "this is OK", FileName:"test.txt"},"api/fileapi/savesomething/");
-    //   }
-    //   finally {
-    //     this.saving = false;
-    //   }
-    // }*/
   },
   computed: {
     localeWords: get("languageStore/localeWordDict"),
