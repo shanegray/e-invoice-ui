@@ -99,7 +99,6 @@
 
 <script>
 import { call, get } from "vuex-pathify";
-
 export default {
   data() {
     return {
@@ -114,7 +113,6 @@ export default {
   },
   async created() {
     this.toSelectedItem = this.localeCode;
-
     if (localStorage.appIdentifier) {
       console.log(
         "App Identifier found in storage " + localStorage.appIdentifier
@@ -125,14 +123,12 @@ export default {
         "App Identifier set in home page " + localStorage.appIdentifier
       );
     }
-
     this.applicationIdentifier = localStorage.appIdentifier;
   },
   methods: {
     ...call("languageStore", ["Getpdf", "Getxml"]),
     async getPDF() {
       this.saving = true;
-
       try {
         console.log("this.applicationIdentifier " + this.applicationIdentifier);
         await this.Getpdf(this.applicationIdentifier);
@@ -140,17 +136,14 @@ export default {
         this.saving = false;
       }
     },
-
     async getXML() {
       this.saving = true;
-
       try {
         await this.Getxml(this.applicationIdentifier);
       } finally {
         this.saving = false;
       }
     },
-
     submit: function () {
       this.saving = true;
       try {
@@ -162,13 +155,11 @@ export default {
         this.saving = false;
       }
     },
-
     tryEnableSubmitButton() {
       this.fileSelected =
         event.target.files != null && event.target.files.length > 0;
       console.log(event.target.files);
     },
-
     loadLanguages: call("languageStore/loadLanguages"),
   },
   computed: {

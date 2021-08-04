@@ -1,4 +1,3 @@
-<!-- App Translation part -->
 <template>
   <div>
     <v-card>
@@ -7,7 +6,6 @@
         <v-row>
           <v-col cols="12" sm="4" md="6">
             <v-select
-              clearable
               class="ml-4"
               v-model="selectedLocaleWord"
               :items="GetLocaleWordArray"
@@ -51,7 +49,6 @@
 <script>
 import languageStore from "@/store/languageStore";
 import { call, get } from "vuex-pathify";
-
 export default {
   data() {
     return {
@@ -61,7 +58,6 @@ export default {
       saving: false,
       localeWordArray: [],
       ready2Save: false,
-      disableSaveBtn: true,
     };
   },
   async created() {

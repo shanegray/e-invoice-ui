@@ -60,7 +60,6 @@ import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 // Init plugin
 Vue.use(Loading);
-
 export default {
   components: {
     NavDrawer,
@@ -86,7 +85,6 @@ export default {
     await this.localeCodeSelected();
     loader.hide();
   },
-
   methods: {
     async setLocalCode() {
       console.log("Browser Language = " + navigator.language.substr(0, 2));
@@ -108,13 +106,10 @@ export default {
       }
       console.log("App Identifier " + localStorage.appIdentifier);
     },
-
     ...call("languageStore", ["fillInvoiceWords"]),
-
     async SetInvoiceWords() {
       await this.fillInvoiceWords();
     },
-
     ...call("languageStore", [
       "loadNativeLanguages",
       "selectLocaleCode",
@@ -122,7 +117,6 @@ export default {
       "fillLocaleWords",
       "SetLocaleWordArray",
     ]),
-
     async localeCodeSelected() {
       const loader = this.$loading.show({
         loader: "bars",
@@ -136,10 +130,8 @@ export default {
       await this.SetLocaleWordArray();
       await this.fillInvoiceWords();
       loader.hide();
-
       localStorage["localeCode"] = this.selectedLocaleCode;
     },
-
     login() {
       this.$auth.loginWithRedirect();
     },
@@ -149,12 +141,10 @@ export default {
       });
     },
   },
-
   computed: {
     nativelanguages: get("languageStore/nativeLanguages"),
     localeCode: get("languageStore/selectedLocaleCode"),
     ...get("languageStore"),
-
     showNav() {
       if (this.$auth && this.$auth.isAuthenticated) return true;
       return false;
@@ -162,8 +152,3 @@ export default {
   },
 };
 </script>
-<style>
-.v-main {
-  background-color: rgb(241, 241, 241);
-}
-</style>
