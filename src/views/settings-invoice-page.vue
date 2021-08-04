@@ -60,6 +60,7 @@ export default {
       replacementWord: "",
       saving: false,
       ready2Save: false,
+      disableSaveBtn: true,
     };
   },
 
@@ -86,6 +87,14 @@ export default {
         this.selectedWord != "" &&
         this.replacementWord != "";
     },
+    // tryEnableSaveButton() {
+    //   this.disableSaveBtn =
+    //     this.selectedWord === null ||
+    //      this.selectedWord === "" ||
+    //     this.replacementWord === null ||
+    //     this.replacementWord === "";
+    //   //console.log(this.replacementLocaleWord);
+    // },
   },
   computed: {
     localeWords: get("languageStore/localeWordDict"),

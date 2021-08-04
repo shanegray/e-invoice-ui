@@ -7,6 +7,7 @@
         <v-row>
           <v-col cols="12" sm="4" md="6">
             <v-select
+              clearable
               class="ml-4"
               v-model="selectedLocaleWord"
               :items="GetLocaleWordArray"
@@ -60,6 +61,7 @@ export default {
       saving: false,
       localeWordArray: [],
       ready2Save: false,
+      disableSaveBtn: true,
     };
   },
   async created() {

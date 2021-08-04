@@ -4,6 +4,7 @@
       <v-card-text>
         <v-col cols="12" sm="6" md="8" class="py-0">
           <v-text-field
+            clearable
             @change="tryEnableTranslateButton"
             class="py-0"
             :placeholder="localeWords['TxtToTranslate']"
@@ -84,6 +85,7 @@ export default {
     };
   },
   async created() {
+    this.toLanguageCode = this.localeCode;
     //await this.loadLanguages();
   },
   methods: {
@@ -125,6 +127,16 @@ export default {
         this.saving = false;
       }
     },
+    // tryEnableTranslateButton() {
+    //   this.ready2Translate =
+    //     this.textToTranslate != null &&
+    //     this.toLanguageCode != null &&
+    //     this.fromLanguageCode != null &&
+    //     this.textToTranslate != "" &&
+    //     this.toLanguageCode != "" &&
+    //     this.fromLanguageCode != "";
+    //   console.log(this.TextToTranslate);
+    // },
     tryEnableTranslateButton() {
       this.disableTranslateBtn =
         this.textToTranslate === null ||

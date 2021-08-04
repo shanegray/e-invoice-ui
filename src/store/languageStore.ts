@@ -122,7 +122,6 @@ const actions = {
     commit("SET_SELECTED_LOCALE_CODE", code);
   },
   async SetLocaleWordArray({ commit }) {
-
     const LocaleWords = [];
     const lw = state.localeWordDict;
 
@@ -130,7 +129,16 @@ const actions = {
       LocaleWords.push(value);
     });
     commit("SET_LOCALE_WORD_ARRAY", LocaleWords);
-  },
+  } catch(e) {
+    console.log("error response: " + e.response.status);
+    if (e.response.status === 400) {
+      commit("SET_LOCALE_WORD_ARRAY", state.localeWordDict['ErrorNoData']);
+    }
+    else
+      commit("SET_LOCALE_WORD_ARRAY", e);
+  }
+
+},
 
   async UpdateInvoiceTranslation({ commit }, translateInvoice) {
     const data = {
@@ -144,63 +152,63 @@ const actions = {
     return axios.post(`${nroute}`, data);
   },
 
-  async UpdateAppTranslation({ commit }, translateLocale) {
-    const Appdata = {
-      LanguageCode: state.selectedLocaleCode,
-      Language: "xxxxxx",
-      SelectedWord: translateLocale.SelectedWord,
-      TranslatedWord: translateLocale.ReplacementWord,
-    };
+    async UpdateAppTranslation({ commit }, translateLocale) {
+  const Appdata = {
+    LanguageCode: state.selectedLocaleCode,
+    Language: "xxxxxx",
+    SelectedWord: translateLocale.SelectedWord,
+    TranslatedWord: translateLocale.ReplacementWord,
+  };
 
-    const nroute = "api/locale/updatelocale/";
-    return axios.post(`${nroute}`, Appdata);
-  },
+  const nroute = "api/locale/updatelocale/";
+  return axios.post(`${nroute}`, Appdata);
+},
 
-  async invoiceCreate(data) {
-    const nroute = "api/translate/convertxml2htmlv3";
-    const response = await axios.post(`${nroute}`, data);
-    return response.data;
-  },
+async invoiceCreate(data) {
+  const nroute = "api/translate/convertxml2htmlv3";
+  const response = await axios.post(`${nroute}`, data);
+  return response.data;
+},
 
-  async testTranslation({ commit }, request) {
+async testTranslation({ commit }, request) {
 
-    const nroute = "api/translate/testpage/";
-    const response = await axios.post(`${nroute}`, request);
-    commit("SET_TRANSLATION", response.data);
-    return response.data;
-  },
-  async Getpdf({ commit }, userAppIdentification) {
-    axios({
-      url: `api/fileapi/gettranslatedpdf/?userAppIdentification=${userAppIdentification}`,
-      method: "GET",
-      responseType: "blob",
-    }).then((response) => {
-      const fileURL = window.URL.createObjectURL(new Blob([response.data]));
-      const fileLink = document.createElement("a");
+  const nroute = "api/translate/testpage/";
+  const response = await axios.post(`${nroute}`, request);
+  commit("SET_TRANSLATION", response.data);
+  return response.data;
+},
+async Getpdf({ commit }, userAppIdentification) {
+  axios({
+    url: `api/fileapi/gettranslatedpdf/?userAppIdentification=${userAppIdentification}`,
+    method: "GET",
+    responseType: "blob",
+  }).then((response) => {
+    const fileURL = window.URL.createObjectURL(new Blob([response.data]));
+    const fileLink = document.createElement("a");
 
-      fileLink.href = fileURL;
-      fileLink.setAttribute("download", "file.pdf");
-      document.body.appendChild(fileLink);
+    fileLink.href = fileURL;
+    fileLink.setAttribute("download", "file.pdf");
+    document.body.appendChild(fileLink);
 
-      fileLink.click();
-    });
-  },
-  async Getxml({ commit }, userAppIdentification) {
-    axios({
-      url: `api/fileapi/gettranslatedxml/?userAppIdentification=${userAppIdentification}`,
-      method: "GET",
-      responseType: "blob",
-    }).then((response) => {
-      const fileURL = window.URL.createObjectURL(new Blob([response.data]));
-      const fileLink = document.createElement("a");
+    fileLink.click();
+  });
+},
+async Getxml({ commit }, userAppIdentification) {
+  axios({
+    url: `api/fileapi/gettranslatedxml/?userAppIdentification=${userAppIdentification}`,
+    method: "GET",
+    responseType: "blob",
+  }).then((response) => {
+    const fileURL = window.URL.createObjectURL(new Blob([response.data]));
+    const fileLink = document.createElement("a");
 
-      fileLink.href = fileURL;
-      fileLink.setAttribute("download", "file.xml");
-      document.body.appendChild(fileLink);
+    fileLink.href = fileURL;
+    fileLink.setAttribute("download", "file.xml");
+    document.body.appendChild(fileLink);
 
-      fileLink.click();
-    });
-  },
+    fileLink.click();
+  });
+},
 };
 
 export default {
