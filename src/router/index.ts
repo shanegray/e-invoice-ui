@@ -4,7 +4,6 @@ import VueRouter, { RouteConfig } from 'vue-router'
 import HomePage from '@/views/home-page.vue';
 import TestPage from '@/views/test-page.vue';
 import SettingsPage from '@/views/settings-invoice-page.vue';
-import ExamplePage from '@/views/exampl-page.vue';
 import LoginPage from '@/views/login-page.vue';
 import AppSettings from '@/views/settings-app-page.vue';
 
@@ -34,11 +33,7 @@ const routes: Array<RouteConfig> = [
     component: AppSettings,
     beforeEnter: authGuard
   },
-  {
-    path: '/example',
-    component: ExamplePage,
-    beforeEnter: authGuard
-  },
+
   {
     path: '/login',
     name: 'LoginPage',
