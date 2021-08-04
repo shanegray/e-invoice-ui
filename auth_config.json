@@ -1,4 +1,5 @@
 {
   "domain": "e-invoicing.eu.auth0.com",
-  "clientId": "zPRkAeHajk21GRUpIcbQNzgdzdLyWiXA"
+  "clientId": "zPRkAeHajk21GRUpIcbQNzgdzdLyWiXA",
+  "audience": "https://reporting-tool.nebule.software"
 }

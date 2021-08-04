@@ -25,7 +25,7 @@
                 class="pa-0, ma-0"
                 v-model="XMLFile"
                 name="attachment"
-                accept=".xml"
+                accept="text/xml"
                 prepend-icon
                 :placeholder="localeWords['inptUpload']"
               ></v-file-input>
@@ -155,7 +155,8 @@ export default {
       this.saving = true;
       try {
         this.$refs.form.$el.submit();
-        console.log("The form Data ", this.XMLFile.FileName);
+        console.log("The form Data ", this.XMLFile.name);
+        console.log("File for upload", this.$refs.form.$el.fileForUpload);
         this.HTMLdownloaded = true;
       } finally {
         this.saving = false;
