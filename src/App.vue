@@ -42,7 +42,6 @@
       <v-btn color="primary" v-else @click="login">Login</v-btn>
     </v-app-bar>
     <v-main>
-      <!--<v-label>{{$t('UploadXMLTxt')}}</v-label>-->
       <v-container fluid>
         <router-view />
       </v-container>
@@ -61,9 +60,6 @@ import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 // Init plugin
 Vue.use(Loading);
-
-//import { LOCALES, Locales } from "@/i18n/locales";
-//import { defaultLocale } from "@/i18n";
 
 export default {
   components: {

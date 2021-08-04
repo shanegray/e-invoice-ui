@@ -95,7 +95,6 @@ export default {
       const FromLanguageCode = this.fromLanguageCode;
       const TextToTranslate = this.textToTranslate;
 
-      // const nroute = "api/translate/testpage/";
       const data = {
         ToLanguage,
         FromLanguage,
@@ -104,7 +103,6 @@ export default {
         TextToTranslate,
       };
       console.log(data);
-      //  this.translation = await axios.post(`https://localhost:44390/${nroute}`,  {body:data})
     },
     ...call("languageStore", ["loadLanguages", "testTranslation"]),
     async translateClick() {

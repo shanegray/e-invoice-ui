@@ -44,7 +44,6 @@ const state: LanguageState = {
       url: "/invoicesettings",
     },
     { title: "App Settings", icon: "mdi-cogs", url: "/appsettings" },
-    // { title: 'example', icon: 'mdi-cog-outline', url: "/example" },
   ],
   Translation: "",
 
@@ -64,7 +63,6 @@ const actions = {
     const { data } = await axios.get(url);
 
     commit("SET_LANGUAGES", data);
-    //console.log("languages set" )
   },
 
   async fillInvoiceWords({ commit }) {
@@ -122,31 +120,18 @@ const actions = {
   },
   selectLocaleCode({ commit }, code) {
     commit("SET_SELECTED_LOCALE_CODE", code);
-    //console.log("SelectedLocaleCode: " + state.selectedLocaleCode );
   },
   async SetLocaleWordArray({ commit }) {
-    //console.log("running SetLocaleWordArray()")
 
-    /* const url = 
-    `api/locale/getlocaletranslationv2/?languageCode=${state.selectedLocaleCode}`
-    
-    const { data } = await axios.get(url);
-      console.log("Locale code: " + state.selectedLocaleCode)
-  */
     const LocaleWords = [];
     const lw = state.localeWordDict;
 
-    //console.log("lw: " + lw);
     Object.values(lw).forEach(function (value) {
-      //console.log("value: " + value)
       LocaleWords.push(value);
     });
-    //console.log("LocaleWords:" + LocaleWords[0])
     commit("SET_LOCALE_WORD_ARRAY", LocaleWords);
   },
-  // selectDefaultLocale({ commit }, code) {
-  //   commit("SET_SELECTED_LOCALE_CODE", code);
-  // },
+
   async UpdateInvoiceTranslation({ commit }, translateInvoice) {
     const data = {
       LanguageCode: state.selectedLocaleCode,
@@ -166,21 +151,18 @@ const actions = {
       SelectedWord: translateLocale.SelectedWord,
       TranslatedWord: translateLocale.ReplacementWord,
     };
-    // console.log("data:" + translateLocale.SelectedWord)
-    //console.log("data:" + translateLocale.ReplacementWord)
+
     const nroute = "api/locale/updatelocale/";
     return axios.post(`${nroute}`, Appdata);
   },
 
   async invoiceCreate(data) {
-    //console.log("data:" + data)
     const nroute = "api/translate/convertxml2htmlv3";
     const response = await axios.post(`${nroute}`, data);
     return response.data;
   },
 
   async testTranslation({ commit }, request) {
-    //console.log("data:" + request)
 
     const nroute = "api/translate/testpage/";
     const response = await axios.post(`${nroute}`, request);
@@ -188,7 +170,6 @@ const actions = {
     return response.data;
   },
   async Getpdf({ commit }, userAppIdentification) {
-    //console.log("userAppIdentification " + userAppIdentification)
     axios({
       url: `api/fileapi/gettranslatedpdf/?userAppIdentification=${userAppIdentification}`,
       method: "GET",
