@@ -33,7 +33,6 @@
             <v-col cols="11" sm="3" md="5" class="ml-6">
               <v-text-field
                 class="invoice-number-textbox ma-0"
-                name="attachment"
                 label="Invoice Number"
                 type="text"
               />
