@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "resolveJsonModule": true,
     "target": "esnext",
     "module": "esnext",
     "strict": false,
@@ -26,6 +27,7 @@
       "dom.iterable",
       "scripthost"
     ]
+    
   },
   "include": [
     "src/**/*.ts",
